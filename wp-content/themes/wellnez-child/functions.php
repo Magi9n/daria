@@ -96,3 +96,75 @@ add_action( 'template_redirect', function () {
         }
     }
 }, 0 );
+
+/**
+ * Fallback de precio para cursos de Tutor cuando el producto WC trae 0 o vacío
+ *
+ * - Si el precio de WooCommerce es 0/empty, obtenemos el precio del curso Tutor
+ *   asociado (sale o regular) y lo usamos como precio del producto.
+ * - Aplica a get_price, get_regular_price y get_sale_price.
+ */
+function wellnez_child_get_course_id_by_product( $product_id ) {
+    global $wpdb;
+    $product_id = absint( $product_id );
+    if ( ! $product_id ) return 0;
+    $post_id = $wpdb->get_var( $wpdb->prepare(
+        "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %d LIMIT 1",
+        '_tutor_course_product_id',
+        $product_id
+    ) );
+    return $post_id ? absint( $post_id ) : 0;
+}
+
+function wellnez_child_tutor_course_price_fallback( $price, $product ) {
+    // Si ya hay precio válido (>0), respetar.
+    $numeric = is_numeric( $price ) ? (float) $price : (float) 0;
+    if ( $numeric > 0 ) {
+        return $price;
+    }
+
+    if ( ! $product || ! method_exists( $product, 'get_id' ) ) {
+        return $price;
+    }
+
+    $course_id = wellnez_child_get_course_id_by_product( $product->get_id() );
+    if ( ! $course_id ) {
+        return $price;
+    }
+
+    // Intentar obtener precio desde Tutor.
+    if ( function_exists( 'tutor_utils' ) ) {
+        $raw = tutor_utils()->get_raw_course_price( $course_id );
+        if ( is_object( $raw ) ) {
+            $fallback = 0;
+            $sale     = isset( $raw->sale_price ) ? (float) $raw->sale_price : 0;
+            $regular  = isset( $raw->regular_price ) ? (float) $raw->regular_price : 0;
+            if ( $sale > 0 ) {
+                $fallback = $sale;
+            } elseif ( $regular > 0 ) {
+                $fallback = $regular;
+            }
+            if ( $fallback > 0 ) {
+                return (string) $fallback;
+            }
+        }
+    }
+
+    return $price;
+}
+add_filter( 'woocommerce_product_get_price', 'wellnez_child_tutor_course_price_fallback', 10, 2 );
+add_filter( 'woocommerce_product_get_regular_price', 'wellnez_child_tutor_course_price_fallback', 10, 2 );
+add_filter( 'woocommerce_product_get_sale_price', 'wellnez_child_tutor_course_price_fallback', 10, 2 );
+
+/**
+ * Ajustar decimales a 2 cuando la divisa sea MXN (para evitar 0.000)
+ */
+add_filter( 'woocommerce_price_num_decimals', function( $decimals ) {
+    if ( function_exists( 'get_woocommerce_currency' ) ) {
+        $currency = get_woocommerce_currency();
+        if ( 'MXN' === $currency ) {
+            return 2;
+        }
+    }
+    return $decimals;
+}, 20 );
