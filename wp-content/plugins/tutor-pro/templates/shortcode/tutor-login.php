@@ -16,7 +16,19 @@ if ( is_user_logged_in() && ! is_admin() ) {
 	return;
 }
 
-add_filter( 'tutor_after_login_redirect_url', function() {
+add_filter( 'tutor_after_login_redirect_url', function( $redirect_url ) {
+    if ( class_exists( 'WooCommerce' ) ) {
+        // Check if a redirect URL is provided and it points to the checkout page.
+        if ( ! empty( $_REQUEST['redirect_to'] ) && strpos( $_REQUEST['redirect_to'], wc_get_checkout_url() ) !== false ) {
+            return esc_url( $_REQUEST['redirect_to'] );
+        } 
+
+        // Fallback for when redirect_to is not set, but the referer is the checkout page.
+        $referer = wp_get_referer();
+        if ( $referer && strpos( $referer, wc_get_checkout_url() ) !== false ) {
+            return esc_url( $referer );
+        }
+    }
     return tutor_utils()->tutor_dashboard_url();
 });
 ?>
