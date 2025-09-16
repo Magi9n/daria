@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Tutor LMS Checkout Fix
- * Description: Captura la intención de compra y redirige correctamente después del login
- * Version: 1.0
+ * Plugin Name: Tutor LMS KILLER Fix (IRROMPIBLE)
+ * Description: Solución definitiva que ANULA completamente la redirección de Tutor LMS
+ * Version: 2.0
  * Author: Cascade AI
  */
 
@@ -10,42 +10,67 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Inyectar JavaScript en todas las páginas
-add_action( 'wp_footer', 'tcf_inject_purchase_intent_script' );
-function tcf_inject_purchase_intent_script() {
+// INTERCEPTAR EL LOGIN CON MÁXIMA PRIORIDAD
+add_action( 'wp_login', 'tcf_nuclear_redirect_fix', 1, 2 );
+function tcf_nuclear_redirect_fix( $user_login, $user ) {
+    if ( !user_can( $user, 'manage_options' ) ) {
+        // Si hay productos en el carrito, FORZAR redirección al checkout
+        if ( function_exists( 'WC' ) && WC()->cart && !WC()->cart->is_empty() ) {
+            // REDIRECCIÓN NUCLEAR - No se puede anular
+            wp_redirect( wc_get_checkout_url() );
+            exit();
+        }
+    }
+}
+
+// SCRIPT VIGILANTE ULTRA-AGRESIVO
+add_action( 'wp_head', 'tcf_nuclear_javascript', 1 );
+function tcf_nuclear_javascript() {
     ?>
     <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        // Capturar clics en botones de "añadir al carrito"
-        var addToCartButtons = document.querySelectorAll('.tutor-btn-enroll, .single_add_to_cart_button, [href*="add-to-cart"]');
-        
-        addToCartButtons.forEach(function(button) {
-            button.addEventListener('click', function(e) {
-                // Guardar la URL actual como intención de compra
-                localStorage.setItem('tutor_purchase_intent', window.location.href);
-                localStorage.setItem('tutor_purchase_timestamp', Date.now());
-            });
-        });
-        
-        // Si estamos en la página del escritorio y hay intención de compra reciente
-        if (window.location.href.indexOf('/escritorio/') !== -1) {
-            var purchaseIntent = localStorage.getItem('tutor_purchase_intent');
-            var timestamp = localStorage.getItem('tutor_purchase_timestamp');
-            
-            // Verificar que la intención sea reciente (menos de 5 minutos)
-            if (purchaseIntent && timestamp) {
-                var timeDiff = Date.now() - parseInt(timestamp);
-                if (timeDiff < 300000) { // 5 minutos en milisegundos
-                    // Limpiar el localStorage
-                    localStorage.removeItem('tutor_purchase_intent');
-                    localStorage.removeItem('tutor_purchase_timestamp');
-                    
-                    // Redirigir de vuelta al producto
-                    window.location.href = purchaseIntent;
+    // EJECUTAR INMEDIATAMENTE - NO ESPERAR A DOM
+    (function() {
+        // VIGILANTE PERMANENTE
+        setInterval(function() {
+            if (window.location.href.indexOf('/escritorio/') !== -1) {
+                var intent = localStorage.getItem('tcf_buy_intent');
+                if (intent) {
+                    localStorage.removeItem('tcf_buy_intent');
+                    window.location.replace(intent);
                 }
             }
-        }
-    });
+        }, 100); // Cada 100ms
+        
+        // CAPTURAR INTENCIÓN DE COMPRA
+        document.addEventListener('click', function(e) {
+            var target = e.target;
+            if (target.classList.contains('tutor-btn-enroll') || 
+                target.classList.contains('single_add_to_cart_button') ||
+                target.href && target.href.indexOf('add-to-cart') !== -1) {
+                localStorage.setItem('tcf_buy_intent', window.location.href);
+            }
+        }, true);
+        
+        // OVERRIDE BRUTAL DE CUALQUIER REDIRECCIÓN
+        var originalReplace = window.location.replace;
+        var originalAssign = window.location.assign;
+        
+        window.location.replace = function(url) {
+            if (url.indexOf('/escritorio/') !== -1 && localStorage.getItem('tcf_buy_intent')) {
+                url = localStorage.getItem('tcf_buy_intent');
+                localStorage.removeItem('tcf_buy_intent');
+            }
+            originalReplace.call(window.location, url);
+        };
+        
+        window.location.assign = function(url) {
+            if (url.indexOf('/escritorio/') !== -1 && localStorage.getItem('tcf_buy_intent')) {
+                url = localStorage.getItem('tcf_buy_intent');
+                localStorage.removeItem('tcf_buy_intent');
+            }
+            originalAssign.call(window.location, url);
+        };
+    })();
     </script>
     <?php
 }
