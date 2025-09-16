@@ -193,4 +193,24 @@ add_filter( 'woocommerce_price_num_decimals', function( $decimals ) {
  */
 add_filter( 'monetize_by', function( $value ) { return 'wc'; }, 999 );
 
+/**
+ * Evitar que Tutor LMS reemplace la plantilla de la página del carrito de WooCommerce.
+ *
+ * - Tutor LMS usa el filtro 'template_include' para forzar su propia plantilla de carrito.
+ * - Esta función detecta si estamos en la página del carrito de WooCommerce y, si es así,
+ *   elimina el filtro de Tutor LMS para permitir que se cargue la plantilla correcta.
+ */
+add_filter( 'template_include', 'wellnez_child_prevent_tutor_cart_hijack', 20 );
+function wellnez_child_prevent_tutor_cart_hijack( $template ) {
+    // Solo actuar si WooCommerce está activo y estamos en la página del carrito.
+    if ( function_exists( 'is_cart' ) && is_cart() && function_exists( 'tutor' ) ) {
+        // Identificar y eliminar el filtro específico de Tutor LMS.
+        $tutor_template_loader = array( tutor()->template, 'load_template_from_include' );
+        if ( has_filter( 'template_include', $tutor_template_loader ) ) {
+            remove_filter( 'template_include', $tutor_template_loader );
+        }
+    }
+    return $template;
+}
+
 
