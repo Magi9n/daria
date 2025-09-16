@@ -183,3 +183,23 @@ require_once ASTRA_THEME_DIR . 'inc/core/markup/class-astra-markup.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+/**
+ * Evitar que Tutor LMS reemplace la plantilla de la página del carrito de WooCommerce.
+ *
+ * - Tutor LMS usa el filtro 'template_include' para forzar su propia plantilla de carrito.
+ * - Esta función detecta si estamos en la página del carrito de WooCommerce y, si es así,
+ *   elimina el filtro de Tutor LMS para permitir que se cargue la plantilla correcta.
+ */
+add_filter( 'template_include', 'astra_prevent_tutor_cart_hijack', 20 );
+function astra_prevent_tutor_cart_hijack( $template ) {
+    // Solo actuar si WooCommerce está activo y estamos en la página del carrito.
+    if ( function_exists( 'is_cart' ) && is_cart() && function_exists( 'tutor' ) ) {
+        // Identificar y eliminar el filtro específico de Tutor LMS.
+        $tutor_template_loader = array( tutor()->template, 'load_template_from_include' );
+        if ( has_filter( 'template_include', $tutor_template_loader ) ) {
+            remove_filter( 'template_include', $tutor_template_loader );
+        }
+    }
+    return $template;
+}
