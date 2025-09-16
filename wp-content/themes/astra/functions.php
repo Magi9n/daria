@@ -185,25 +185,12 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
 /**
- * Forzar la plantilla del carrito de WooCommerce y evitar que Tutor LMS o Elementor la sobreescriban.
+ * Redirigir directamente al checkout después de añadir un producto al carrito.
  *
- * Esta función se engancha a 'template_include' con una prioridad alta (99) para ejecutarse
- * después de otros filtros. Si detecta que estamos en la página del carrito de WooCommerce,
- * localiza y devuelve la plantilla original de WooCommerce, ignorando cualquier otra modificación.
+ * Esta función omite la página del carrito y lleva al usuario directamente
+ * a la página de pago para agilizar el proceso de compra.
  */
-add_filter( 'template_include', 'astra_force_woocommerce_cart_template', 99 );
-function astra_force_woocommerce_cart_template( $template ) {
-    // Verificar si estamos en la página del carrito de WooCommerce.
-    if ( function_exists( 'is_cart' ) && is_cart() ) {
-        // Localizar la plantilla del carrito directamente desde el plugin de WooCommerce.
-        $woocommerce_template_path = WC()->plugin_path() . '/templates/cart/cart.php';
-        
-        // Si el archivo de la plantilla existe, devolver esa ruta.
-        if ( file_exists( $woocommerce_template_path ) ) {
-            return $woocommerce_template_path;
-        }
-    }
-    
-    // Si no es la página del carrito, devolver la plantilla original sin cambios.
-    return $template;
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_skip_cart_redirect_to_checkout' );
+function astra_skip_cart_redirect_to_checkout( $url ) {
+    return wc_get_checkout_url();
 }
