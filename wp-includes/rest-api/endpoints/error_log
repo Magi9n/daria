@@ -1,0 +1,4 @@
+[29-Jun-2025 21:59:31 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_REST_Posts_Controller" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:17
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php on line 17

@@ -1,0 +1,20 @@
+[29-Jun-2025 21:58:38 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_Block_Supports" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/border.php:170
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/border.php on line 170
+[29-Jun-2025 22:00:04 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_Block_Supports" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/align.php:59
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/align.php on line 59
+[29-Jun-2025 22:00:13 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_Block_Supports" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/typography.php:684
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/typography.php on line 684
+[29-Jun-2025 22:00:54 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_Block_Supports" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/colors.php:138
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/colors.php on line 138
+[29-Jun-2025 22:01:03 America/Boise] PHP Fatal error:  Uncaught Error: Class "WP_Block_Supports" not found in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/spacing.php:83
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-includes/block-supports/spacing.php on line 83
