@@ -185,35 +185,10 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
 /**
- * Redirigir directamente al checkout después de añadir un producto al carrito.
- *
- * Esta función omite la página del carrito y lleva al usuario directamente
- * a la página de pago para agilizar el proceso de compra.
+ * Redirigir a la página del carrito personalizada (/courses-cart/) después de añadir un producto.
  */
-add_filter( 'woocommerce_add_to_cart_redirect', 'astra_skip_cart_redirect_to_checkout' );
-function astra_skip_cart_redirect_to_checkout( $url ) {
-    return wc_get_checkout_url();
-}
-
-/**
- * Forzar la plantilla de la página de pago de WooCommerce para evitar que sea sobreescrita.
- *
- * Si estamos en la página de pago, esta función asegura que se cargue la página
- * que contiene el shortcode [woocommerce_checkout] y no una plantilla de tema o plugin.
- */
-add_filter( 'template_include', 'astra_force_woocommerce_checkout_template', 99 );
-function astra_force_woocommerce_checkout_template( $template ) {
-    if ( function_exists( 'is_checkout' ) && is_checkout() ) {
-        $checkout_page_id = wc_get_page_id( 'checkout' );
-        if ( $checkout_page_id ) {
-            // Forzamos el uso de la plantilla de página por defecto del tema para renderizar el shortcode.
-            $page_template = get_page_template_slug( $checkout_page_id );
-            if ( $page_template ) {
-                return get_query_template( 'page', array( $page_template ) );
-            } else {
-                return get_page_template();
-            }
-        }
-    }
-    return $template;
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_custom_cart' );
+function astra_redirect_to_custom_cart( $url ) {
+    // Devuelve la URL de la página del carrito personalizada.
+    return site_url( '/courses-cart/' );
 }
