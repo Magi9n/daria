@@ -14,3 +14,17 @@
 
 /*  [ Add your custom css below ]
 - - - - - - - - - - - - - - - - - - - - */
+
+/* Ocultar icono/minicart de WooCommerce en cabecera */
+.header-cart, .cart-count, .sidemenu-wrapper .widget_shopping_cart, .sidemenu-wrapper .sidemenu-content .widget_shopping_cart_content,
+.widget_shopping_cart, .woocommerce-mini-cart, .vs-header .icon-btn .fa-shopping-cart, .vs-header .icon-btn .far.fa-shopping-cart {
+  display: none !important;
+}
+
+/* Si hay un botón/link de carrito del tema, opcionalmente apuntar a Tutor con un estilo consistente (si decides añadirlo en el header) */
+.tutor-header-cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tutor-header-cart-link .tutor-icon-cart-filled { font-size: 18px; }

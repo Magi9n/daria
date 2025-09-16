@@ -168,3 +168,57 @@ add_filter( 'woocommerce_price_num_decimals', function( $decimals ) {
     }
     return $decimals;
 }, 20 );
+
+/**
+ * Forzar monetización por Tutor (carrito nativo) sin tocar la DB.
+ * Tutor\Options_V2 aplica filtros por clave al recuperar opciones,
+ * por lo que forzamos 'monetize_by' => 'tutor'.
+ */
+add_filter( 'monetize_by', function( $value ) { return 'tutor'; }, 999 );
+
+/**
+ * Redirigir automáticamente las páginas de WooCommerce al carrito/checkout nativo de Tutor.
+ * Evita abrir /cart/ o /checkout/ de Woo aunque estén enlazadas por el tema.
+ */
+add_action( 'template_redirect', function () {
+    // Redirigir carrito de Woo -> carrito de Tutor
+    if ( function_exists( 'is_cart' ) && is_cart() ) {
+        if ( class_exists( '\\Tutor\\Ecommerce\\CartController' ) ) {
+            $url = \\Tutor\\Ecommerce\\CartController::get_page_url();
+            if ( $url && esc_url_raw( $url ) !== esc_url_raw( home_url( add_query_arg( array(), $_SERVER['REQUEST_URI'] ?? '' ) ) ) ) {
+                wp_safe_redirect( $url );
+                exit;
+            }
+        }
+    }
+    // Redirigir checkout de Woo -> checkout de Tutor
+    if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+        if ( class_exists( '\\Tutor\\Ecommerce\\CheckoutController' ) ) {
+            $url = \\Tutor\\Ecommerce\\CheckoutController::get_page_url();
+            if ( $url && esc_url_raw( $url ) !== esc_url_raw( home_url( add_query_arg( array(), $_SERVER['REQUEST_URI'] ?? '' ) ) ) ) {
+                wp_safe_redirect( $url );
+                exit;
+            }
+        }
+    }
+}, 1 );
+
+/**
+ * Reemplazar los botones del mini‑carrito de Woo para que apunten al carrito/checkout de Tutor.
+ */
+add_action( 'init', function() {
+    // Quitar botones del tema padre
+    remove_action( 'woocommerce_widget_shopping_cart_buttons', 'wellnez_minicart_view_cart_button', 10 );
+    remove_action( 'woocommerce_widget_shopping_cart_buttons', 'wellnez_minicart_checkout_button', 20 );
+
+    // Añadir botones hacia Tutor
+    add_action( 'woocommerce_widget_shopping_cart_buttons', function() {
+        $cart_url = function_exists( 'tutor_get_cart_url' ) ? tutor_get_cart_url() : ( class_exists( '\\Tutor\\Ecommerce\\CartController' ) ? \\Tutor\\Ecommerce\\CartController::get_page_url() : '#' );
+        echo '<a href="' . esc_url( $cart_url ) . '" class="button checkout wc-forward vs-btn style1">' . esc_html__( 'View cart', 'wellnez' ) . '</a>';
+    }, 10 );
+
+    add_action( 'woocommerce_widget_shopping_cart_buttons', function() {
+        $checkout_url = class_exists( '\\Tutor\\Ecommerce\\CheckoutController' ) ? \\Tutor\\Ecommerce\\CheckoutController::get_page_url() : '#';
+        echo '<a href="' . esc_url( $checkout_url ) . '" class="button wc-forward vs-btn style1">' . esc_html__( 'Checkout', 'wellnez' ) . '</a>';
+    }, 20 );
+} );
