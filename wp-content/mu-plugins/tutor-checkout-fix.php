@@ -1,76 +1,90 @@
 <?php
 /**
- * Plugin Name: Tutor LMS KILLER Fix (IRROMPIBLE)
- * Description: Solución definitiva que ANULA completamente la redirección de Tutor LMS
- * Version: 2.0
- * Author: Cascade AI
+ * Plugin Name: Tutor Checkout Fix Final
+ * Description: Solución definitiva para el problema de redirección
+ * Version: 1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// INTERCEPTAR EL LOGIN CON MÁXIMA PRIORIDAD
-add_action( 'wp_login', 'tcf_nuclear_redirect_fix', 1, 2 );
-function tcf_nuclear_redirect_fix( $user_login, $user ) {
+// Añadir script en TODAS las páginas con máxima prioridad
+add_action( 'wp_head', 'tcf_add_debug_script', 1 );
+function tcf_add_debug_script() {
+    ?>
+    <script>
+    console.log('TCF Plugin cargado correctamente');
+    
+    // Función que se ejecuta inmediatamente
+    (function() {
+        console.log('Script TCF iniciado');
+        
+        // Capturar clicks en botones de compra
+        document.addEventListener('click', function(e) {
+            var target = e.target;
+            console.log('Click detectado en:', target);
+            
+            // Buscar diferentes tipos de botones de compra
+            if (target.textContent && (
+                target.textContent.toLowerCase().includes('inscribirse') ||
+                target.textContent.toLowerCase().includes('comprar') ||
+                target.textContent.toLowerCase().includes('añadir') ||
+                target.classList.contains('tutor-btn-enroll') ||
+                target.classList.contains('single_add_to_cart_button')
+            )) {
+                console.log('Botón de compra detectado, guardando URL:', window.location.href);
+                localStorage.setItem('tcf_purchase_url', window.location.href);
+                localStorage.setItem('tcf_purchase_time', Date.now());
+            }
+        }, true);
+        
+        // Vigilante que se ejecuta constantemente
+        var checkRedirect = function() {
+            var currentUrl = window.location.href;
+            
+            if (currentUrl.indexOf('/escritorio/') !== -1) {
+                console.log('Estamos en escritorio, verificando intención de compra...');
+                
+                var purchaseUrl = localStorage.getItem('tcf_purchase_url');
+                var purchaseTime = localStorage.getItem('tcf_purchase_time');
+                
+                if (purchaseUrl && purchaseTime) {
+                    var timeDiff = Date.now() - parseInt(purchaseTime);
+                    console.log('Intención encontrada, tiempo transcurrido:', timeDiff);
+                    
+                    // Si la intención es reciente (menos de 2 minutos)
+                    if (timeDiff < 120000) {
+                        console.log('Redirigiendo a:', purchaseUrl);
+                        localStorage.removeItem('tcf_purchase_url');
+                        localStorage.removeItem('tcf_purchase_time');
+                        window.location.href = purchaseUrl;
+                    }
+                }
+            }
+        };
+        
+        // Ejecutar verificación cada 500ms
+        setInterval(checkRedirect, 500);
+        
+        // También ejecutar inmediatamente
+        setTimeout(checkRedirect, 100);
+        
+    })();
+    </script>
+    <?php
+}
+
+// Interceptar login con máxima prioridad
+add_action( 'wp_login', 'tcf_login_redirect', 1, 2 );
+function tcf_login_redirect( $user_login, $user ) {
+    error_log( 'TCF: Login detectado para usuario: ' . $user_login );
+    
     if ( !user_can( $user, 'manage_options' ) ) {
-        // Si hay productos en el carrito, FORZAR redirección al checkout
         if ( function_exists( 'WC' ) && WC()->cart && !WC()->cart->is_empty() ) {
-            // REDIRECCIÓN NUCLEAR - No se puede anular
+            error_log( 'TCF: Carrito no vacío, redirigiendo al checkout' );
             wp_redirect( wc_get_checkout_url() );
             exit();
         }
     }
-}
-
-// SCRIPT VIGILANTE ULTRA-AGRESIVO
-add_action( 'wp_head', 'tcf_nuclear_javascript', 1 );
-function tcf_nuclear_javascript() {
-    ?>
-    <script type="text/javascript">
-    // EJECUTAR INMEDIATAMENTE - NO ESPERAR A DOM
-    (function() {
-        // VIGILANTE PERMANENTE
-        setInterval(function() {
-            if (window.location.href.indexOf('/escritorio/') !== -1) {
-                var intent = localStorage.getItem('tcf_buy_intent');
-                if (intent) {
-                    localStorage.removeItem('tcf_buy_intent');
-                    window.location.replace(intent);
-                }
-            }
-        }, 100); // Cada 100ms
-        
-        // CAPTURAR INTENCIÓN DE COMPRA
-        document.addEventListener('click', function(e) {
-            var target = e.target;
-            if (target.classList.contains('tutor-btn-enroll') || 
-                target.classList.contains('single_add_to_cart_button') ||
-                target.href && target.href.indexOf('add-to-cart') !== -1) {
-                localStorage.setItem('tcf_buy_intent', window.location.href);
-            }
-        }, true);
-        
-        // OVERRIDE BRUTAL DE CUALQUIER REDIRECCIÓN
-        var originalReplace = window.location.replace;
-        var originalAssign = window.location.assign;
-        
-        window.location.replace = function(url) {
-            if (url.indexOf('/escritorio/') !== -1 && localStorage.getItem('tcf_buy_intent')) {
-                url = localStorage.getItem('tcf_buy_intent');
-                localStorage.removeItem('tcf_buy_intent');
-            }
-            originalReplace.call(window.location, url);
-        };
-        
-        window.location.assign = function(url) {
-            if (url.indexOf('/escritorio/') !== -1 && localStorage.getItem('tcf_buy_intent')) {
-                url = localStorage.getItem('tcf_buy_intent');
-                localStorage.removeItem('tcf_buy_intent');
-            }
-            originalAssign.call(window.location, url);
-        };
-    })();
-    </script>
-    <?php
 }
