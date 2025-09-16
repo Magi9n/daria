@@ -1,0 +1,20 @@
+[08-Apr-2025 19:16:35 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php on line 16
+[24-Jul-2025 12:19:58 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php on line 16
+[29-Jul-2025 21:56:56 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php on line 16
+[08-Aug-2025 21:11:03 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function is_network_admin() in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/menu.php:9
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/menu.php on line 9
+[15-Aug-2025 21:13:38 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/admin.php on line 16

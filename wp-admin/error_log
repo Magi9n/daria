@@ -1,0 +1,172 @@
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:30:37 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:32:57 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:32:57 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:33:08 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:33:08 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:33:13 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:33:13 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:33:35 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:33:35 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:33:55 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:33:55 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:34:06 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:34:06 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 02:35:07 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1494
+[06-Aug-2024 02:35:07 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/gallery/widgets/gallery.php on line 1497
+[06-Aug-2024 18:05:00 UTC] PHP Warning:  Undefined property: WP_Ajax_Upgrader_Skin::$api in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-theme-upgrader.php on line 160
+[13-Aug-2024 21:38:36 UTC] PHP Warning:  Undefined array key "anchor" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/widgets/menu-anchor.php on line 182
+[13-Aug-2024 21:44:22 UTC] PHP Warning:  Undefined array key "anchor" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/widgets/menu-anchor.php on line 182
+[10-Dec-2024 17:24:52 UTC] WordPress database error BLOB, TEXT, GEOMETRY or JSON column 'answer_explanation' can't have a default value for query ALTER TABLE wp_tutor_quiz_questions ALTER COLUMN `answer_explanation` SET DEFAULT '' made by require_once('wp-admin/admin.php'), do_action('admin_init'), WP_Hook->do_action, WP_Hook->apply_filters, TUTOR\Upgrader->init_upgrader, TUTOR\Upgrader->upgrade_to_3_0_0, TUTOR\Tutor::tutor_activate, TUTOR\Tutor::create_database, dbDelta
+[10-Dec-2024 17:28:04 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:30:17 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:34:24 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:40:13 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:42:24 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:44:39 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:51:16 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:53:29 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:57:32 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 17:59:44 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 18:01:58 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 18:04:11 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 18:06:35 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 18:08:45 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[10-Dec-2024 18:48:02 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 324010406 bytes) in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/updraftplus/includes/class-filesystem-functions.php on line 867
+[11-Dec-2024 15:57:18 UTC] PHP Warning:  Undefined array key "template" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/ultimate-elementor/admin/bsf-core/index.php on line 321
+[11-Dec-2024 16:04:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_column_count() on null in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php:260
+Stack trace:
+#0 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(326): Automattic\WooCommerce\Packages::display_notice_for_merged_plugins('ultimate-elemen...')
+#1 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(1491): do_action('after_plugin_ro...', 'ultimate-elemen...', Array, 'search')
+#4 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(711): WP_Plugins_List_Table->single_row(Array)
+#5 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1712): WP_Plugins_List_Table->display_rows()
+#6 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1639): WP_List_Table->display_rows_or_placeholder()
+#7 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/ajax-actions.php(4834): WP_List_Table->display()
+#8 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(324): wp_ajax_search_plugins('')
+#9 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#10 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#11 /home3/mshomete/public_html/dariaalexa/wp-admin/admin-ajax.php(192): do_action('wp_ajax_search-...')
+#12 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php on line 260
+[11-Dec-2024 16:04:35 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_column_count() on null in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php:260
+Stack trace:
+#0 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(326): Automattic\WooCommerce\Packages::display_notice_for_merged_plugins('elementor/eleme...')
+#1 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(1491): do_action('after_plugin_ro...', 'elementor/eleme...', Array, 'all')
+#4 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(711): WP_Plugins_List_Table->single_row(Array)
+#5 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1712): WP_Plugins_List_Table->display_rows()
+#6 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1639): WP_List_Table->display_rows_or_placeholder()
+#7 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/ajax-actions.php(4834): WP_List_Table->display()
+#8 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(324): wp_ajax_search_plugins('')
+#9 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#10 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#11 /home3/mshomete/public_html/dariaalexa/wp-admin/admin-ajax.php(192): do_action('wp_ajax_search-...')
+#12 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php on line 260
+[11-Dec-2024 16:05:20 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_column_count() on null in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php:260
+Stack trace:
+#0 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(326): Automattic\WooCommerce\Packages::display_notice_for_merged_plugins('elementor/eleme...')
+#1 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(1491): do_action('after_plugin_ro...', 'elementor/eleme...', Array, 'search')
+#4 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-plugins-list-table.php(711): WP_Plugins_List_Table->single_row(Array)
+#5 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1712): WP_Plugins_List_Table->display_rows()
+#6 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-list-table.php(1639): WP_List_Table->display_rows_or_placeholder()
+#7 /home3/mshomete/public_html/dariaalexa/wp-admin/includes/ajax-actions.php(4834): WP_List_Table->display()
+#8 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(324): wp_ajax_search_plugins('')
+#9 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#10 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#11 /home3/mshomete/public_html/dariaalexa/wp-admin/admin-ajax.php(192): do_action('wp_ajax_search-...')
+#12 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/woocommerce/src/Packages.php on line 260
+[11-Dec-2024 22:04:34 UTC] PHP Warning:  Undefined array key "product_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/woocommerce/tags/product-price.php on line 37
+[18-Dec-2024 22:22:16 UTC] PHP Warning:  include(/home3/mshomete/public_html/dariaalexa/wp-content/languages/plugins/olympus-google-fonts-es_MX.l10n.php): Failed to open stream: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-includes/l10n.php on line 1607
+[18-Dec-2024 22:22:16 UTC] PHP Warning:  include(): Failed opening '/home3/mshomete/public_html/dariaalexa/wp-content/languages/plugins/olympus-google-fonts-es_MX.l10n.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/mshomete/public_html/dariaalexa/wp-includes/l10n.php on line 1607
+[18-Dec-2024 22:22:16 UTC] PHP Warning:  include(/home3/mshomete/public_html/dariaalexa/wp-content/languages/plugins/olympus-google-fonts-es_MX.l10n.php): Failed to open stream: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-includes/l10n.php on line 1607
+[18-Dec-2024 22:22:16 UTC] PHP Warning:  include(): Failed opening '/home3/mshomete/public_html/dariaalexa/wp-content/languages/plugins/olympus-google-fonts-es_MX.l10n.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/mshomete/public_html/dariaalexa/wp-includes/l10n.php on line 1607
+[28-Jun-2025 01:56:34 UTC] PHP Warning:  Undefined array key "anchor" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/widgets/menu-anchor.php on line 200
+[01-Jul-2025 20:26:52 UTC] PHP Warning:  unlink(tik-tok.png): No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/assets-manager/asset-types/icons/custom-icons.php on line 199
+[01-Jul-2025 22:26:56 UTC] PHP Warning:  Undefined array key "column" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/core/logger/items/js.php on line 16
+[01-Jul-2025 22:26:56 UTC] PHP Warning:  Undefined array key "url" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/core/logger/items/js.php on line 17
+[13-Aug-2025 06:34:42 UTC] WordPress database error Duplicate key name 'claim_id_status_priority_scheduled_date_gmt' for query ALTER TABLE wp_actionscheduler_actions ADD KEY `claim_id_status_priority_scheduled_date_gmt` (`claim_id`,`status`,`priority`,`scheduled_date_gmt`) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_DBStore->init, ActionScheduler_Abstract_Schema->register_tables, ActionScheduler_Abstract_Schema->update_table, dbDelta
+[13-Aug-2025 06:34:42 UTC] WordPress database error Duplicate key name 'status_last_attempt_gmt' for query ALTER TABLE wp_actionscheduler_actions ADD KEY `status_last_attempt_gmt` (`status`,`last_attempt_gmt`) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_DBStore->init, ActionScheduler_Abstract_Schema->register_tables, ActionScheduler_Abstract_Schema->update_table, dbDelta
+[13-Aug-2025 06:34:42 UTC] WordPress database error Duplicate key name 'status_claim_id' for query ALTER TABLE wp_actionscheduler_actions ADD KEY `status_claim_id` (`status`,`claim_id`) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_DBStore->init, ActionScheduler_Abstract_Schema->register_tables, ActionScheduler_Abstract_Schema->update_table, dbDelta
+[13-Aug-2025 06:34:42 UTC] WordPress database error Duplicate key name 'customer_product_date' for query ALTER TABLE wp_wc_order_product_lookup ADD KEY `customer_product_date` (`customer_id`,`product_id`,`date_created`) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, WC_Install::check_version, WC_Install::install, WC_Install::install_core, WC_Install::create_tables, dbDelta
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 41
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 41
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 41
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Undefined array key "id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 41
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 07:15:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor/includes/managers/image.php on line 113
+[13-Aug-2025 10:39:08 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/tutor/models/LessonModel.php:126
+Stack trace:
+#0 /home3/mshomete/public_html/dariaalexa/wp-content/plugins/tutor/classes/Ajax.php(108): Tutor\Models\LessonModel::update_lesson_reading_info(false, 1, 'video_best_watc...', '6.5863190362396...')
+#1 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(324): TUTOR\Ajax->sync_video_playback('')
+#2 /home3/mshomete/public_html/dariaalexa/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#3 /home3/mshomete/public_html/dariaalexa/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home3/mshomete/public_html/dariaalexa/wp-admin/admin-ajax.php(192): do_action('wp_ajax_sync_vi...')
+#5 {main}
+  thrown in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/tutor/models/LessonModel.php on line 126
+[14-Aug-2025 05:37:18 UTC] PHP Warning:  Undefined array key 0 in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/dynamic-tags/acf/tags/acf-text.php on line 33
+[14-Aug-2025 05:37:18 UTC] PHP Warning:  Undefined array key 1 in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/dynamic-tags/acf/tags/acf-text.php on line 33
+[14-Aug-2025 06:06:52 UTC] PHP Warning:  Undefined array key 0 in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/dynamic-tags/acf/tags/acf-text.php on line 33
+[14-Aug-2025 06:06:52 UTC] PHP Warning:  Undefined array key 1 in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/dynamic-tags/acf/tags/acf-text.php on line 33
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 819
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 821
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 823
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 830
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 830
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 855
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 868
+[30-Aug-2025 09:26:36 UTC] PHP Warning:  Attempt to read property "base" on null in /home3/mshomete/public_html/dariaalexa/wp-includes/admin-bar.php on line 879
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/includes/controls/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/breakpoints/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/experiments/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/editor/loader/v2/js/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/settings/editor-preferences/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/admin/menu/interfaces/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/app/modules/kit-library/connect/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/logger/loggers/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/kits/views/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/utils/promotions/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/core/upgrade/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/twig/symfony/polyfill-ctype/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/dependency-injection/php-di/php-di/src/Definition/Resolver/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/dependency-injection/php-di/php-di/src/Factory/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/dependency-injection/php-di/invoker/src/ParameterResolver/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/dependency-injection/laravel/serializable-closure/src/Support/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  dir(/home3/mshomete/public_html/dariaalexa/wp-content/upgrade/elementor.3.31.3/elementor/vendor_prefixed/dependency-injection/psr/container/): Failed to open directory: No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-filesystem-direct.php on line 636
+[30-Aug-2025 11:23:29 UTC] PHP Warning:  unlink(/tmp/elementor.3.31.3.zip): No such file or directory in /home3/mshomete/public_html/dariaalexa/wp-admin/includes/class-wp-upgrader.php on line 388
+[05-Sep-2025 07:16:47 UTC] PHP Warning:  Undefined array key "post_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 64
+[05-Sep-2025 07:16:47 UTC] PHP Warning:  Undefined array key "form_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 76
+[14-Sep-2025 06:09:02 UTC] PHP Warning:  Undefined array key "post_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 64
+[14-Sep-2025 06:09:02 UTC] PHP Warning:  Undefined array key "form_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 76
+[14-Sep-2025 06:09:07 UTC] PHP Warning:  Undefined array key "post_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 64
+[14-Sep-2025 06:09:07 UTC] PHP Warning:  Undefined array key "form_id" in /home3/mshomete/public_html/dariaalexa/wp-content/plugins/elementor-pro/modules/forms/classes/ajax-handler.php on line 76
