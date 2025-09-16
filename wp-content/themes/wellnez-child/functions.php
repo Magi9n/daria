@@ -19,6 +19,12 @@ function wellnez_child_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'wellnez_child_enqueue_styles', 100000 );
 
+// Encolar JS para redirigir al checkout de Tutor tras login cuando se añadió al carrito estando deslogueado
+add_action( 'wp_enqueue_scripts', function(){
+    $path = get_stylesheet_directory_uri() . '/assets/js/tutor-login-redirect.js';
+    wp_enqueue_script( 'tutor-login-redirect', $path, array(), wp_get_theme()->get('Version'), true );
+}, 100001 );
+
 /**
  * Corrección del bucle de login en checkout (WooCommerce + Tutor Pro 2FA)
  *
@@ -211,7 +217,7 @@ add_action( 'init', function() {
     remove_action( 'woocommerce_widget_shopping_cart_buttons', 'wellnez_minicart_view_cart_button', 10 );
     remove_action( 'woocommerce_widget_shopping_cart_buttons', 'wellnez_minicart_checkout_button', 20 );
 
-    // Añadir botones hacia Tutor
+    // Si por alguna razón el minicart llegara a renderizarse, apuntar sus botones a Tutor
     add_action( 'woocommerce_widget_shopping_cart_buttons', function() {
         $cart_url = function_exists( 'tutor_get_cart_url' ) ? tutor_get_cart_url() : ( class_exists( '\\Tutor\\Ecommerce\\CartController' ) ? \\Tutor\\Ecommerce\\CartController::get_page_url() : '#' );
         echo '<a href="' . esc_url( $cart_url ) . '" class="button checkout wc-forward vs-btn style1">' . esc_html__( 'View cart', 'wellnez' ) . '</a>';
@@ -221,4 +227,27 @@ add_action( 'init', function() {
         $checkout_url = class_exists( '\\Tutor\\Ecommerce\\CheckoutController' ) ? \\Tutor\\Ecommerce\\CheckoutController::get_page_url() : '#';
         echo '<a href="' . esc_url( $checkout_url ) . '" class="button wc-forward vs-btn style1">' . esc_html__( 'Checkout', 'wellnez' ) . '</a>';
     }, 20 );
+
+    // Desregistrar el widget Mini-Cart de WooWidgets si el tema lo usa
+    unregister_widget( 'WC_Widget_Cart' );
 } );
+
+// Forzar que los enlaces de "ver carrito" y "finalizar compra" de Woo apunten a Tutor, incluso fuera del mini-cart
+add_filter( 'woocommerce_widget_cart_is_hidden', '__return_true', 999 );
+add_filter( 'woocommerce_widget_cart_item_quantity', function( $html ) { return ''; }, 999 );
+add_filter( 'woocommerce_cart_link', function( $link ) {
+    $url = function_exists( 'tutor_get_cart_url' ) ? tutor_get_cart_url() : ( class_exists( '\\Tutor\\Ecommerce\\CartController' ) ? \\Tutor\\Ecommerce\\CartController::get_page_url() : home_url( '/' ) );
+    return '<a class="tutor-header-cart-link" href="' . esc_url( $url ) . '"><span class="tutor-icon-cart-filled"></span><span>' . esc_html__( 'Cart', 'tutor' ) . '</span></a>';
+}, 999 );
+add_filter( 'woocommerce_get_cart_url', function( $url ) {
+    if ( class_exists( '\\Tutor\\Ecommerce\\CartController' ) ) {
+        return \\Tutor\\Ecommerce\\CartController::get_page_url();
+    }
+    return $url;
+}, 999 );
+add_filter( 'woocommerce_get_checkout_url', function( $url ) {
+    if ( class_exists( '\\Tutor\\Ecommerce\\CheckoutController' ) ) {
+        return \\Tutor\\Ecommerce\\CheckoutController::get_page_url();
+    }
+    return $url;
+}, 999 );
