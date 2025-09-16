@@ -185,21 +185,25 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
 /**
- * Evitar que Tutor LMS reemplace la plantilla de la página del carrito de WooCommerce.
+ * Forzar la plantilla del carrito de WooCommerce y evitar que Tutor LMS o Elementor la sobreescriban.
  *
- * - Tutor LMS usa el filtro 'template_include' para forzar su propia plantilla de carrito.
- * - Esta función detecta si estamos en la página del carrito de WooCommerce y, si es así,
- *   elimina el filtro de Tutor LMS para permitir que se cargue la plantilla correcta.
+ * Esta función se engancha a 'template_include' con una prioridad alta (99) para ejecutarse
+ * después de otros filtros. Si detecta que estamos en la página del carrito de WooCommerce,
+ * localiza y devuelve la plantilla original de WooCommerce, ignorando cualquier otra modificación.
  */
-add_filter( 'template_include', 'astra_prevent_tutor_cart_hijack', 20 );
-function astra_prevent_tutor_cart_hijack( $template ) {
-    // Solo actuar si WooCommerce está activo y estamos en la página del carrito.
-    if ( function_exists( 'is_cart' ) && is_cart() && function_exists( 'tutor' ) ) {
-        // Identificar y eliminar el filtro específico de Tutor LMS.
-        $tutor_template_loader = array( tutor()->template, 'load_template_from_include' );
-        if ( has_filter( 'template_include', $tutor_template_loader ) ) {
-            remove_filter( 'template_include', $tutor_template_loader );
+add_filter( 'template_include', 'astra_force_woocommerce_cart_template', 99 );
+function astra_force_woocommerce_cart_template( $template ) {
+    // Verificar si estamos en la página del carrito de WooCommerce.
+    if ( function_exists( 'is_cart' ) && is_cart() ) {
+        // Localizar la plantilla del carrito directamente desde el plugin de WooCommerce.
+        $woocommerce_template_path = WC()->plugin_path() . '/templates/cart/cart.php';
+        
+        // Si el archivo de la plantilla existe, devolver esa ruta.
+        if ( file_exists( $woocommerce_template_path ) ) {
+            return $woocommerce_template_path;
         }
     }
+    
+    // Si no es la página del carrito, devolver la plantilla original sin cambios.
     return $template;
 }
