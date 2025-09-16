@@ -17,18 +17,7 @@ wp-content/uploads/2024/12/Introduccion.mp4
 wp-content/uploads/2024/11/ClasesDaria_Cierre1_low.mp4
 
 # Ignorar carpetas de caché
-wp-content/cache/
-wp-content/wpcache/
-*.w3tc.php
 
 # Ignorar archivos de backup
-*.zip
-*.tar.gz
-*.sql
 
 # Ignorar archivos de configuración sensibles y de desarrollo
-wp-config.php
-.htaccess
-.DS_Store
-Thumbs.db
-node_modules/
