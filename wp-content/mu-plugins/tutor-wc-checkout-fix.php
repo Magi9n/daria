@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Tutor LMS & WooCommerce Checkout Fix
+ * Plugin Name: Tutor LMS & WooCommerce Checkout Fix (Definitive)
  * Description: Soluciona los conflictos de redirección entre Tutor LMS y WooCommerce para asegurar un flujo de compra correcto.
- * Version: 1.0
+ * Version: 2.0
  * Author: Cascade AI
  */
 
@@ -10,26 +10,22 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-// 1. Al añadir un producto, redirigir a la página del carrito correcta.
-add_filter( 'woocommerce_add_to_cart_redirect', 'twcf_redirect_to_cart_page', 99 );
-function twcf_redirect_to_cart_page() {
-    // Usamos wc_get_cart_url() para asegurar que siempre sea la página correcta de WooCommerce.
+// 1. Al añadir un producto, redirigir a la página del carrito de WooCommerce.
+add_filter( 'woocommerce_add_to_cart_redirect', function() {
     return wc_get_cart_url();
-}
+}, 99 );
 
-// 2. Forzar la redirección al checkout después del login si el usuario estaba comprando.
-add_filter( 'login_redirect', 'twcf_force_checkout_redirect_after_login', 10, 3 );
-function twcf_force_checkout_redirect_after_login( $redirect_to, $requested_redirect_to, $user ) {
-    // No afectar a administradores ni a procesos con errores.
-    if ( is_wp_error( $user ) || user_can( $user, 'manage_options' ) ) {
-        return $redirect_to;
+// 2. Solución definitiva para la redirección post-login.
+add_action( 'wp_login', 'twcf_definitive_checkout_redirect', 10, 2 );
+function twcf_definitive_checkout_redirect( $user_login, $user ) {
+    // No afectar a administradores.
+    if ( user_can( $user, 'manage_options' ) ) {
+        return;
     }
 
-    // Si WooCommerce está activo y el carrito no está vacío, forzar redirección al checkout.
+    // Si el carrito de WooCommerce tiene productos, redirigir forzosamente al checkout.
     if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
-        return wc_get_checkout_url();
+        wp_redirect( wc_get_checkout_url() );
+        exit(); // Detener la ejecución para anular cualquier otra redirección.
     }
-
-    // Para cualquier otro caso, devolver la URL de redirección por defecto (ej. el escritorio de Tutor).
-    return $redirect_to;
 }
