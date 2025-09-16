@@ -192,3 +192,22 @@ function astra_redirect_to_custom_cart( $url ) {
     // Devuelve la URL de la página del carrito personalizada.
     return site_url( '/courses-cart/' );
 }
+
+/**
+ * Redirigir al checkout después de iniciar sesión si el usuario estaba en proceso de compra.
+ */
+add_filter( 'login_redirect', 'astra_checkout_login_redirect', 20, 3 );
+function astra_checkout_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
+    // Si hay un error o el usuario es administrador, no hacer nada.
+    if ( is_wp_error( $user ) || user_can( $user, 'administrator' ) ) {
+        return $redirect_to;
+    }
+
+    // Si el usuario tiene productos en el carrito, redirigir al checkout.
+    if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
+        return wc_get_checkout_url();
+    }
+
+    // De lo contrario, devolver la redirección por defecto (probablemente el panel de Tutor).
+    return $redirect_to;
+}
