@@ -472,6 +472,10 @@ class Ajax {
 				if ( ! empty( $course_enroll_attempt ) && is_a( $user, 'WP_User' ) ) {
 					do_action( 'tutor_do_enroll_after_login_if_attempt', $course_enroll_attempt, $user->ID );
 				}
+				// If the user has items in the cart, override the redirect and send them to the checkout page.
+				if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
+					$redirect_to = wc_get_checkout_url();
+				}
 				wp_safe_redirect( $redirect_to );
 				exit();
 			}
