@@ -189,39 +189,38 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
  */
 
 // 1. Redirigir a la página del carrito correcta después de añadir un producto.
-add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_custom_cart_page' );
-function astra_redirect_to_custom_cart_page() {
-    return wc_get_cart_url(); // Usamos la URL del carrito de WooCommerce para más seguridad.
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_correct_cart_page' );
+function astra_redirect_to_correct_cart_page() {
+    return wc_get_cart_url();
 }
 
-// 2. Marcar al usuario si intenta acceder al checkout sin iniciar sesión.
-add_action( 'template_redirect', 'astra_set_checkout_session_marker' );
-function astra_set_checkout_session_marker() {
-    if ( function_exists('is_checkout') && is_checkout() && ! is_user_logged_in() ) {
-        if ( function_exists('WC') && WC()->session && ! WC()->session->has_session() ) {
-            WC()->session->set_customer_session_cookie(true);
+// 2. Si un usuario inicia sesión durante la compra, redirigirlo a una URL especial.
+add_filter( 'login_redirect', 'astra_set_special_redirect_url_after_login', 999, 3 );
+function astra_set_special_redirect_url_after_login( $redirect_to, $requested_redirect_to, $user ) {
+    if ( ! is_wp_error( $user ) && ! user_can( $user, 'manage_options' ) ) {
+        if ( function_exists('WC') && WC()->cart && !WC()->cart->is_empty() ) {
+            // Redirigir al dashboard de Tutor, pero con un parámetro especial.
+            $tutor_dashboard_url = tutor_utils()->tutor_dashboard_url();
+            return add_query_arg( 'continue_checkout', '1', $tutor_dashboard_url );
         }
-        if ( function_exists('WC') && WC()->session ) {
-            WC()->session->set( 'astra_user_was_on_checkout', true );
-        }
     }
-}
-
-// 3. Después del login, comprobar la marca y forzar la redirección al checkout.
-add_filter( 'login_redirect', 'astra_redirect_user_to_checkout_after_login', 9999, 3 );
-function astra_redirect_user_to_checkout_after_login( $redirect_to, $requested_redirect_to, $user ) {
-    // No afectar a administradores ni a errores.
-    if ( is_wp_error( $user ) || user_can( $user, 'manage_options' ) ) {
-        return $redirect_to;
-    }
-
-    // Comprobar si existe la marca en la sesión.
-    if ( function_exists('WC') && WC()->session && WC()->session->get( 'astra_user_was_on_checkout' ) ) {
-        // Limpiar la marca para que no afecte a futuros logins.
-        WC()->session->set( 'astra_user_was_on_checkout', false );
-        // Forzar redirección al checkout.
-        return wc_get_checkout_url();
-    }
-
     return $redirect_to;
+}
+
+// 3. Usar JavaScript para anular la redirección de Tutor y enviar al usuario al checkout.
+add_action( 'wp_footer', 'astra_javascript_force_checkout_redirect' );
+function astra_javascript_force_checkout_redirect() {
+    // Solo ejecutar en la página del dashboard de Tutor.
+    if ( function_exists('tutor_utils') && is_page( basename( tutor_utils()->tutor_dashboard_url() ) ) ) {
+        ?>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('continue_checkout')) {
+                    window.location.href = '<?php echo esc_js( wc_get_checkout_url() ); ?>';
+                }
+            });
+        </script>
+        <?php
+    }
 }
