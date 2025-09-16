@@ -184,31 +184,4 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
-/**
- * Solución simple para el problema de redirección de Tutor LMS
- */
-add_action( 'wp_footer', 'astra_simple_checkout_redirect_fix' );
-function astra_simple_checkout_redirect_fix() {
-    // Solo ejecutar en la página del escritorio de Tutor
-    if ( strpos( $_SERVER['REQUEST_URI'], '/escritorio/' ) !== false ) {
-        ?>
-        <script type="text/javascript">
-        // Si hay productos en el carrito y estamos en el escritorio, redirigir al checkout
-        if ( localStorage.getItem('tutor_was_buying') === 'true' ) {
-            localStorage.removeItem('tutor_was_buying');
-            window.location.href = '<?php echo wc_get_checkout_url(); ?>';
-        }
-        </script>
-        <?php
-    }
-    
-    // En la página de checkout, marcar que el usuario estaba comprando
-    if ( function_exists('is_checkout') && is_checkout() && !is_user_logged_in() ) {
-        ?>
-        <script type="text/javascript">
-        localStorage.setItem('tutor_was_buying', 'true');
-        </script>
-        <?php
-    }
-}
 
