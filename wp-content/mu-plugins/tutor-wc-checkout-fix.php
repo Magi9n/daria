@@ -1,31 +1,52 @@
 <?php
 /**
- * Plugin Name: Tutor LMS & WooCommerce Checkout Fix (Definitive)
- * Description: Soluciona los conflictos de redirección entre Tutor LMS y WooCommerce para asegurar un flujo de compra correcto.
- * Version: 2.0
+ * Plugin Name: Tutor LMS & WooCommerce Checkout Fix (Final)
+ * Description: Solución definitiva con JavaScript y LocalStorage para forzar la redirección al checkout.
+ * Version: 4.0
  * Author: Cascade AI
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
-// 1. Al añadir un producto, redirigir a la página del carrito de WooCommerce.
+// 1. Al añadir un producto, redirigir al carrito de WooCommerce.
 add_filter( 'woocommerce_add_to_cart_redirect', function() {
     return wc_get_cart_url();
 }, 99 );
 
-// 2. Solución definitiva para la redirección post-login.
-add_action( 'wp_login', 'twcf_definitive_checkout_redirect', 10, 2 );
-function twcf_definitive_checkout_redirect( $user_login, $user ) {
-    // No afectar a administradores.
-    if ( user_can( $user, 'manage_options' ) ) {
-        return;
+// 2. Inyectar los scripts de JavaScript en el pie de página.
+add_action( 'wp_footer', 'twcf_final_redirect_scripts' );
+function twcf_final_redirect_scripts() {
+    $checkout_url = wc_get_checkout_url();
+
+    // Script 1: En la página de checkout, si el usuario no está logueado, establece la marca.
+    if ( is_checkout() && ! is_user_logged_in() ) {
+        ?>
+        <script type="text/javascript">
+            localStorage.setItem('twcf_redirect_flag', 'true');
+        </script>
+        <?php
     }
 
-    // Si el carrito de WooCommerce tiene productos, redirigir forzosamente al checkout.
-    if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
-        wp_redirect( wc_get_checkout_url() );
-        exit(); // Detener la ejecución para anular cualquier otra redirección.
+    // Script 2: En la página de checkout, si el usuario SÍ está logueado, elimina la marca.
+    if ( is_checkout() && is_user_logged_in() ) {
+        ?>
+        <script type="text/javascript">
+            localStorage.removeItem('twcf_redirect_flag');
+        </script>
+        <?php
     }
+
+    // Script 3: Script VIGILANTE GLOBAL - se ejecuta en TODAS las páginas.
+    ?>
+    <script type="text/javascript">
+        (function() {
+            // Si la marca existe y NO estamos en la página de checkout, forzar redirección.
+            if ( localStorage.getItem('twcf_redirect_flag') === 'true' && window.location.href.indexOf('<?php echo $checkout_url; ?>') === -1 ) {
+                window.location.href = '<?php echo esc_js( $checkout_url ); ?>';
+            }
+        })();
+    </script>
+    <?php
 }
