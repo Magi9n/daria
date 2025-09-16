@@ -8,6 +8,14 @@ wp-content/uploads/2024/12/ClasesDaria_Leccion6_low.mp4
 wp-content/uploads/2024/12/ClasesDaria_Leccion4_low.mp4
 wp-content/uploads/2024/12/CLasesDaria_Leccion3_low.mp4
 
+
+# Archivos grandes que exceden el límite de GitHub
+wp-content/uploads/2024/11/ClasesDaria_Cierre2_low.mp4
+wp-content/uploads/2024/11/ClasesDaria_Leccion2_low.mp4
+wp-content/uploads/2024/11/ClasesDaria_Leccion5_low.mp4
+wp-content/uploads/2024/12/Introduccion.mp4
+wp-content/uploads/2024/11/ClasesDaria_Cierre1_low.mp4
+
 # Ignorar carpetas de caché
 wp-content/cache/
 wp-content/wpcache/
