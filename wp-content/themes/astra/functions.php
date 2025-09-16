@@ -194,20 +194,29 @@ function astra_redirect_to_custom_cart( $url ) {
 }
 
 /**
- * Redirigir al checkout después de iniciar sesión si el usuario estaba en proceso de compra.
+ * Redirección de login definitiva para el flujo de compra de WooCommerce.
+ *
+ * Esta función se ejecuta con prioridad máxima para asegurar que tiene la última palabra.
+ * Si un usuario inicia sesión y venía del checkout (o tiene productos en el carrito),
+ * se le redirige forzosamente al checkout para no interrumpir la compra.
  */
-add_filter( 'login_redirect', 'astra_checkout_login_redirect', 20, 3 );
-function astra_checkout_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
-    // Si hay un error o el usuario es administrador, no hacer nada.
-    if ( is_wp_error( $user ) || user_can( $user, 'administrator' ) ) {
+add_filter( 'login_redirect', 'astra_override_tutor_login_redirect', 999, 3 );
+function astra_override_tutor_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
+    // No afectar a administradores ni a procesos con errores.
+    if ( is_wp_error( $user ) || user_can( $user, 'manage_options' ) ) {
         return $redirect_to;
     }
 
-    // Si el usuario tiene productos en el carrito, redirigir al checkout.
+    // Si WooCommerce está activo y el carrito no está vacío.
     if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
+        // Si la redirección solicitada era el checkout, respetarla.
+        if ( $requested_redirect_to && strpos( $requested_redirect_to, 'checkout' ) !== false ) {
+            return $requested_redirect_to;
+        }
+        // Como fallback, si hay algo en el carrito, enviar al checkout.
         return wc_get_checkout_url();
     }
 
-    // De lo contrario, devolver la redirección por defecto (probablemente el panel de Tutor).
+    // Para cualquier otro caso, devolver la URL de redirección por defecto.
     return $redirect_to;
 }
