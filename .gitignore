@@ -1,6 +1,4 @@
 # Ignorar la carpeta de subidas de medios
-wp-content/uploads/
-
 # Archivos grandes que no deben ser versionados
 wp-content/uploads/2024/12/skin.mp4
 wp-content/uploads/2024/12/skin-1.mp4
