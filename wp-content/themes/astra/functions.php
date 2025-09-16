@@ -185,38 +185,43 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
 /**
- * Redirigir a la página del carrito personalizada (/courses-cart/) después de añadir un producto.
+ * SOLUCIÓN DEFINITIVA PARA EL FLUJO DE COMPRA WOOCOMMERCE + TUTOR LMS
  */
-add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_custom_cart' );
-function astra_redirect_to_custom_cart( $url ) {
-    // Devuelve la URL de la página del carrito personalizada.
-    return site_url( '/courses-cart/' );
+
+// 1. Redirigir a la página del carrito correcta después de añadir un producto.
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_custom_cart_page' );
+function astra_redirect_to_custom_cart_page() {
+    return wc_get_cart_url(); // Usamos la URL del carrito de WooCommerce para más seguridad.
 }
 
-/**
- * Redirección de login definitiva para el flujo de compra de WooCommerce.
- *
- * Esta función se ejecuta con prioridad máxima para asegurar que tiene la última palabra.
- * Si un usuario inicia sesión y venía del checkout (o tiene productos en el carrito),
- * se le redirige forzosamente al checkout para no interrumpir la compra.
- */
-add_filter( 'login_redirect', 'astra_override_tutor_login_redirect', 999, 3 );
-function astra_override_tutor_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
-    // No afectar a administradores ni a procesos con errores.
+// 2. Marcar al usuario si intenta acceder al checkout sin iniciar sesión.
+add_action( 'template_redirect', 'astra_set_checkout_session_marker' );
+function astra_set_checkout_session_marker() {
+    if ( function_exists('is_checkout') && is_checkout() && ! is_user_logged_in() ) {
+        if ( function_exists('WC') && WC()->session && ! WC()->session->has_session() ) {
+            WC()->session->set_customer_session_cookie(true);
+        }
+        if ( function_exists('WC') && WC()->session ) {
+            WC()->session->set( 'astra_user_was_on_checkout', true );
+        }
+    }
+}
+
+// 3. Después del login, comprobar la marca y forzar la redirección al checkout.
+add_filter( 'login_redirect', 'astra_redirect_user_to_checkout_after_login', 9999, 3 );
+function astra_redirect_user_to_checkout_after_login( $redirect_to, $requested_redirect_to, $user ) {
+    // No afectar a administradores ni a errores.
     if ( is_wp_error( $user ) || user_can( $user, 'manage_options' ) ) {
         return $redirect_to;
     }
 
-    // Si WooCommerce está activo y el carrito no está vacío.
-    if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
-        // Si la redirección solicitada era el checkout, respetarla.
-        if ( $requested_redirect_to && strpos( $requested_redirect_to, 'checkout' ) !== false ) {
-            return $requested_redirect_to;
-        }
-        // Como fallback, si hay algo en el carrito, enviar al checkout.
+    // Comprobar si existe la marca en la sesión.
+    if ( function_exists('WC') && WC()->session && WC()->session->get( 'astra_user_was_on_checkout' ) ) {
+        // Limpiar la marca para que no afecte a futuros logins.
+        WC()->session->set( 'astra_user_was_on_checkout', false );
+        // Forzar redirección al checkout.
         return wc_get_checkout_url();
     }
 
-    // Para cualquier otro caso, devolver la URL de redirección por defecto.
     return $redirect_to;
 }
