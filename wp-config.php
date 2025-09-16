@@ -1,4 +1,6 @@
 <?php
+define( 'WP_HOME', 'https://daria.mate4kids.com' );
+define( 'WP_SITEURL', 'https://daria.mate4kids.com' );
 /**
  * The base configuration for WordPress
  *
