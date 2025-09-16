@@ -1,0 +1,2596 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wellnez\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-23 05:47+0000\n"
+"PO-Revision-Date: 2023-11-23 05:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: Afrikaans\n"
+"Language: af\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.4.1\n"
+"X-Domain: wellnez"
+
+#: inc/hooks/hooks-functions.php:336
+msgid " Comment"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:338
+msgid " Comments"
+msgstr ""
+
+#: comments.php:57
+msgid ""
+" Save my name, email, and website in this browser for the next time I "
+"comment."
+msgstr ""
+
+#: woocommerce/cart/cart.php:149
+msgid " Update cart"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:523
+msgid " Views"
+msgstr ""
+
+#: inc/wellnez-functions.php:243
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:524
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#. %s: Quantity.
+#: woocommerce/global/quantity-input.php:28
+#, php-format
+msgid "%s quantity"
+msgstr ""
+
+#: inc/wp_bootstrap_pagination.php:40
+msgid "&laquo;"
+msgstr ""
+
+#: inc/wp_bootstrap_pagination.php:41
+msgid "&raquo;"
+msgstr ""
+
+#. %s location.
+#: woocommerce/cart/cart-totals.php:71
+#, php-format
+msgid "(estimated for %s)"
+msgstr ""
+
+#: inc/wellnez-functions.php:495
+msgid "0"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:668
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:691
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:848
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1129
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1348
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1414
+msgid "1 Column"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:672
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:695
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:852
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1133
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1352
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1418
+msgid "2 Column Left"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:676
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:699
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:856
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1137
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1356
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1422
+msgid "2 Column Right"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1371
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1483
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1529
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1575
+msgid "2 Columns"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1375
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1487
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1533
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1579
+msgid "3 Columns"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1379
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1491
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1537
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1583
+msgid "4 Columns"
+msgstr ""
+
+#: 404.php:22 inc/wellnez-framework/wellnez-options/wellnez-options.php:1252
+msgid "404"
+msgstr ""
+
+#: templates/header-menu-bottom.php:190
+msgid "404 PAGE"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1235
+msgid "404 Page"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1241
+msgid "404 Page Background"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1383
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1391
+msgid "5 Columns"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1387
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1395
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1495
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1541
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1587
+msgid "6 Columns"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1872
+msgid ""
+"<p class=\"description\">This is a section created by adding a filter to the "
+"sections array. Can be used by child themes to add/remove sections from the "
+"options.</p>"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:209
+msgid "<p>This is the sidebar content, HTML is allowed.</p>"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:198
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:203
+msgid "<p>This is the tab content, HTML is allowed.</p>"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:106
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: woocommerce/myaccount/my-address.php:84
+msgid "Add"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:317
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:28
+msgid "Add Blog Sidebar Widgets Here."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1719
+msgid "Add Copyright Text"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:116
+msgid "Add File"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:230
+msgid "Add Image"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:49
+msgid "Add Offcanvas Sidebar Widgets Here."
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:39
+msgid "Add Page Sidebar Widgets Here."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1635
+msgid "Add social icon and url."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:197
+msgid "Add Swap Image"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:666
+msgid "Add To Cart"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:60
+msgid "Add widgets here to appear in your woocommerce page sidebar."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1242
+msgid "Add Your 404 Page Background Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1336
+msgid "Add Your Shop Page Background Image"
+msgstr ""
+
+#: woocommerce/checkout/form-shipping.php:61
+msgid "Additional information"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:423
+msgid "Admin Label"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:429
+msgid "Admin Login Logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:436
+msgid "Any CSS your write here will run in admin."
+msgstr ""
+
+#: woocommerce/cart/cart.php:142 woocommerce/checkout/form-coupon.php:34
+#: woocommerce/checkout/form-coupon.php:34
+msgid "Apply coupon"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:453
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:466
+msgid "Availability:"
+msgstr ""
+
+#: woocommerce/cart/cart.php:66 woocommerce/checkout/review-order.php:57
+msgid "Available on backorder"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:95
+#: woocommerce/single-product-reviews.php:106
+msgid "Average"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:348
+msgid "Back To Top"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:355
+msgid "Back To Top Button"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:364
+msgid "Back To Top Button Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:380
+msgid "Back To Top Button Border Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:372
+msgid "Back To Top Icon Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1192
+msgid "Background"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:65
+#, php-format
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:869
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1435
+msgid "Below Thumbnail"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:24
+msgid "Billing &amp; Shipping"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-address.php:20
+#: woocommerce/myaccount/my-address.php:26
+#: woocommerce/myaccount/my-address.php:35
+#: woocommerce/order/order-details-customer.php:29
+msgid "Billing address"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:28
+msgid "Billing details"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:902
+msgid "Biography Info"
+msgstr ""
+
+#: templates/header-menu-bottom.php:164 templates/header-menu-bottom.php:173
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:656
+msgid "Blog"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:741
+msgid "Blog Custom Title"
+msgstr ""
+
+#: templates/header-menu-bottom.php:266
+msgid "Blog Details"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:877
+msgid "Blog Details Custom Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:793
+msgid "Blog Excerpt / Content Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:952
+msgid "Blog Meta Hover Text Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:938
+msgid "Blog Meta Icon Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:945
+msgid "Blog Meta Text Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:723
+msgid "Blog Page Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:729
+msgid "Blog Page Title Setting"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:821
+msgid "Blog Pagination Active Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:814
+msgid "Blog Pagination Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:829
+msgid "Blog Pagination Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:871
+msgid "Blog Post Title Position"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:748
+msgid "Blog Posts Excerpt"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:26
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1152
+msgid "Blog Sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:715
+msgid "Blog Style"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:711
+msgid "Blog Style One"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:712
+msgid "Blog Style Two"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:779
+msgid "Blog Title Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:786
+msgid "Blog Title Hover Color"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:285
+msgid "Blur"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:283
+msgid "Blur Radius"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:306
+msgid "Body Typography"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1017
+msgid "Box Shadow"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:151
+msgid "Breadcrumb"
+msgstr ""
+
+#: inc/wellnez-functions.php:436
+msgctxt "breadcrumb"
+msgid "Home"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1216
+msgid "Breadcrumb Active Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1208
+msgid "Breadcrumb Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1225
+msgid "Breadcrumb Divider Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1199
+msgid "Breadcrumb Hide/Show"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:107
+msgid "Breadcumb Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1310
+msgid "Button Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1295
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1303
+msgid "Button Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1318
+msgid "Button Hover Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1271
+msgid "Button Text"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:24
+msgid "Calculate shipping"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:24 inc/hooks/hooks-functions.php:32
+msgid "Cancel Preloader"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:625
+msgid "Cart Offcanvas"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:25
+msgid "Cart Totals"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:985
+msgid "Category"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:225
+msgid "Category Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:214
+msgid "Category Metabox"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:491
+msgid "Category:"
+msgid_plural "Categories:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/cart/cart-shipping.php:76
+msgid "Change address"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:84
+msgid "check to display page breadcrumb area."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:123
+msgid "check to display Page Title."
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:565
+msgid "Checkout"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:665
+msgid ""
+"Choose blog layout from here. If you use this option then you will able to "
+"change three type of blog layout ( Default Left Sidebar Layour ). "
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:845
+msgid ""
+"Choose blog single page layout from here. If you use this option then you "
+"will able to change three type of blog single page layout ( Default Left "
+"Sidebar Layour ). "
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1226
+msgid "Choose breadcrumb divider color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1217
+msgid ""
+"Choose page header breadcrumb text active color here.If you user this option "
+"then you will able to set page breadcrumb active color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1209
+msgid ""
+"Choose page header breadcrumb text color here.If you user this option then "
+"you will able to set page breadcrumb color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1410
+msgid "Choose product single page sidebar."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1344
+msgid "Choose shop page sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:465
+msgid "Choose the site Dark logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:456
+msgid "Choose the site logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1125
+msgid ""
+"Choose your page layout. If you use this option then you will able to choose "
+"three type of page layout ( Default no sidebar ). "
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:76
+msgid "City"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:26
+msgid "Click here to enter your code"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:91
+msgid "CMB2"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:976
+msgid "Comment Count"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:470
+msgid "Comments are closed"
+msgstr ""
+
+#: comments.php:25
+#, php-format
+msgctxt "comments title"
+msgid "Comment (1)"
+msgid_plural "Comments (%1$s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:146
+#: inc/woo-hooks/wellnez-woo-hooks.php:197
+#: inc/woo-hooks/wellnez-woo-hooks.php:270
+#: inc/woo-hooks/wellnez-woo-hooks.php:339
+msgid "Company name (optional)"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:97
+msgid "Contact Form 7"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:172
+msgid "Container"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:173
+msgid "Container Fluid"
+msgstr ""
+
+#: woocommerce/cart/cart.php:150
+msgid "Continue Shopping"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:903
+msgid ""
+"Control biography info from here. If you use this option then you will able "
+"to show or hide biography info ( Default setting Show )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:730
+msgid ""
+"Control blog page title setting. If you use this option then you can able to "
+"show default or custom blog page title ( Default Blog )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:724
+msgid ""
+"Control blog page title show / hide. If you use this option then you will "
+"able to show / hide your blog page title ( Default Setting Show )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:872
+msgid "Control blog post title position from here."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:609
+msgid "Control Header Searchbar By Show Or Hide System."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:912
+msgid ""
+"Control post navigation from here. If you use this option then you will able "
+"to show or hide post navigation ( Default setting Show )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:894
+msgid ""
+"Control post share options from here. If you use this option then you will "
+"able to show or hide post share options."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1438
+msgid "Control product details title position from here."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:761
+msgid "Control read more text from here."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:921
+msgid ""
+"Control related post from here. If you use this option then you will able to "
+"show or hide related post ( Default setting Show )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:749
+msgid ""
+"Control the number of characters you want to show in the blog page for each "
+"post.. If you use this option then you can able to control your blog post "
+"characters from here ( Default show 10 )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1718
+msgid "Copyright Text"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:32
+#: woocommerce/checkout/form-coupon.php:33
+msgid "Coupon code"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:54
+msgid "Create an account?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1569
+msgid "Cross sell Product Column"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1551
+msgid "Cross sell product Hide/Show"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1560
+msgid "Cross sell products number"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1763
+msgid "CSS Code"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:733
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:764
+msgid "Custom"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1756
+msgid "Custom Css"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:435
+msgid "Custom CSS For admin"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:145
+msgid "Custom Page Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:139
+msgid "Custom Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:732
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:763
+msgid "Default"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:138
+msgid "Default Title"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:221
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:314
+msgid "Delete"
+msgstr ""
+
+#: inc/demo-data/demo-import.php:16
+msgid "Demo Preview Imgae"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:203
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:298
+msgid "Description"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1695
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1705
+msgid "Disable"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:359
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:400
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:888
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:962
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:971
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:980
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:989
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1164
+msgid "Disabled"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-account.php:34
+msgid "Display Name"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1778
+msgid "Documentation"
+msgstr ""
+
+#: inc/wellnez-functions.php:250 woocommerce/myaccount/my-address.php:84
+msgid "Edit"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:77
+msgid "Elementor"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:98
+msgid "Email"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:156
+#: inc/woo-hooks/wellnez-woo-hooks.php:207
+#: inc/woo-hooks/wellnez-woo-hooks.php:282
+#: inc/woo-hooks/wellnez-woo-hooks.php:351
+msgid "Email address"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:358
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:399
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:887
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:961
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:970
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:979
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:988
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1163
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1694
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1704
+msgid "Enabled"
+msgstr ""
+
+#: inc/wellnez-functions.php:472
+msgid "Enter"
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:91
+msgid "Enter a different address"
+msgstr ""
+
+#: woocommerce/cart/cart.php:141
+msgid "Enter Coupon Code"
+msgstr ""
+
+#: comments.php:55
+msgid "Enter E-mail Address *"
+msgstr ""
+
+#: inc/wellnez-functions.php:471
+msgid "Enter Password"
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:85
+msgid "Enter your address to view shipping options."
+msgstr ""
+
+#: 404.php:26
+msgid "Enter Your Keyword...."
+msgstr ""
+
+#: comments.php:54
+msgid "Enter Your Name *"
+msgstr ""
+
+#: inc/wellnez-breadcrumbs.php:124
+msgid "Error 404"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:219
+msgid "Extra Info"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:199
+msgid "Facts Number"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:294
+msgid "Facts number"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1697
+msgid ""
+"First make your footer from footer custom types then select it from here."
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:136
+#: inc/woo-hooks/wellnez-woo-hooks.php:187
+#: inc/woo-hooks/wellnez-woo-hooks.php:258
+#: inc/woo-hooks/wellnez-woo-hooks.php:327
+#: woocommerce/myaccount/form-edit-account.php:27
+msgid "First Name"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1664
+msgid "Footer"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1711
+msgid "Footer Bottom Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1702
+msgid "Footer Bottom?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1681
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1684
+msgid "Footer Builder"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1734
+msgid "Footer Copyright Ancor Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1742
+msgid "Footer Copyright Ancor Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1726
+msgid "Footer Copyright Text Color"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:72
+msgid "Forgot Your Password?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:174
+msgid "Fullwidth"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:228
+msgid "General"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:101
+msgid "Global Settings"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:94
+#: woocommerce/single-product-reviews.php:105
+msgid "Good"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1055
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1170
+msgid "H1"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1056
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1171
+msgid "H2"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1057
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1172
+msgid "H3"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1058
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1173
+msgid "H4"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1059
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1174
+msgid "H5"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1060
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1175
+msgid "H6"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:26
+msgid "Have a coupon?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:476
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:499
+msgid "Header"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:487
+msgid "Header Builder"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:508
+msgid "Header Logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:556
+msgid "Header Menu"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:489
+msgid "Header Options"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:608
+msgid "Header Searchbar?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:90
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:129
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:607
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:722
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:896
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:905
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:914
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:923
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1011
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1454
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1463
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1509
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1555
+msgid "Hide"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1200
+msgid ""
+"Hide / Show breadcrumb from all pages and posts ( Default settings hide )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1552
+msgid "Hide / Show cross sell product in single page (Default Settings Show)"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1460
+msgid "Hide / Show related product in single page (Default Settings Show)"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1506
+msgid "Hide / Show upsell product in single page (Default Settings Show)"
+msgstr ""
+
+#: inc/wellnez-breadcrumbs.php:27
+msgid "Home"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:306
+msgid "Hot"
+msgstr ""
+
+#. URI of the theme
+msgid "https://wordpress.vecurosoft.com/wellnez/"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:186
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:282
+msgid "Icon"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1651
+msgid "Icon (example: fa fa-facebook) "
+msgstr ""
+
+#: woocommerce/cart/cart.php:28 woocommerce/checkout/review-order.php:23
+msgid "Image"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:127
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:234
+msgid "image"
+msgstr ""
+
+#: inc/demo-data/demo-import.php:76
+msgid "Import Demo Data"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:457
+msgid "In Stock"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:430
+msgid "It belongs to the back-end of your website to log-in to admin panel."
+msgstr ""
+
+#: templates/content-none.php:34
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:141
+#: inc/woo-hooks/wellnez-woo-hooks.php:192
+#: inc/woo-hooks/wellnez-woo-hooks.php:264
+#: inc/woo-hooks/wellnez-woo-hooks.php:333
+#: woocommerce/myaccount/form-edit-account.php:30
+msgid "Last Name"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:55
+msgid "LayerSlider"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:664
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:844
+msgid "Layout"
+msgstr ""
+
+#: comments.php:63
+msgid "Leave A Comment"
+msgstr ""
+
+#. %s is product title
+#: woocommerce/single-product-reviews.php:67
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:30
+msgid "Log In"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:69
+msgid "Log in"
+msgstr ""
+
+#: comments.php:67
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: woocommerce/global/form-login.php:51 woocommerce/myaccount/form-login.php:69
+msgid "Login"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:448
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:455
+msgid "Logo"
+msgstr ""
+
+#: inc/wellnez-functions.php:60 inc/wellnez-functions.php:87
+msgid "logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:524
+msgid "Logo Dimensions (Width/Height)."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:535
+msgid "Logo Top and Bottom Margin."
+msgstr ""
+
+#: woocommerce/global/form-login.php:55
+msgid "Lost your password?"
+msgstr ""
+
+#: woocommerce/myaccount/form-lost-password.php:27
+msgid ""
+"Lost your password? Please enter your username or email address. You will "
+"receive a link to create a new password via email."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1609
+msgid "Mailchimp API Key"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1615
+msgid "Mailchimp List ID"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:563
+msgid "Menu Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:570
+msgid "Menu Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:930
+msgid "Meta Data"
+msgstr ""
+
+#: inc/theme-setup.php:36
+msgid "Mobile Menu"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:31
+#: woocommerce/order/order-details-customer.php:48
+msgid "N/A"
+msgstr ""
+
+#: woocommerce/cart/cart.php:70 woocommerce/checkout/review-order.php:61
+msgid "Name"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:77
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:228
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: templates/pagination.php:22
+msgid "Next"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:405
+msgid "Next Post"
+msgstr ""
+
+#. $s shipping destination.
+#: woocommerce/cart/cart-shipping.php:90
+#, php-format
+msgid "No shipping options were found for %s."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:96
+#: woocommerce/single-product-reviews.php:107
+msgid "Not that bad"
+msgstr ""
+
+#: templates/content-none.php:17
+msgid "Nothing Found"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:632
+msgid "Offcanvas Panel Background"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:47
+msgid "Offcanvas Sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:639
+msgid "Offcanvas Title Color"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:243
+msgid "Offset X"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:263
+msgid "Offset Y"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:868
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1434
+msgid "On Header"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:71
+msgid "One Click Demo Importer"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:119
+msgid ""
+"Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+
+#: 404.php:23
+msgid "OOOPS, PAGE NOT FOUND"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1259
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:326
+msgid "Opacity"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:324
+msgid "Opacity .1 - 1"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:98
+msgid "Order Total"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:467
+msgid "Out Of Stock"
+msgstr ""
+
+#: inc/wellnez-functions.php:153
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1117
+msgid "Page"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:83
+msgid "Page Breadcrumb Area"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:96
+msgid "Page Breadcrumb Settings"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1250
+msgid "Page Error Number"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:160
+msgid "Page Layout"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:77
+msgid "Page Meta"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:102
+msgid "Page Settings"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:37
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1151
+msgid "Page Sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1264
+msgid "Page Subtitle"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:122
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1257
+msgid "Page Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:134
+msgid "Page Title Settings"
+msgstr ""
+
+#: inc/wellnez-functions.php:149
+msgid "Pages:"
+msgstr ""
+
+#: woocommerce/global/form-login.php:37 woocommerce/myaccount/form-login.php:54
+#: woocommerce/myaccount/form-login.php:102
+msgid "Password"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-account.php:42
+msgid "Password Change"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1764
+msgid "Paste your CSS code here."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:93
+#: woocommerce/single-product-reviews.php:104
+msgid "Perfect"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:151
+#: inc/woo-hooks/wellnez-woo-hooks.php:202
+#: inc/woo-hooks/wellnez-woo-hooks.php:276
+#: inc/woo-hooks/wellnez-woo-hooks.php:345
+msgid "Phone"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1288
+msgid "Pick a subtitle color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1280
+msgid "Pick a title color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1311
+msgid "Pick Button Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1296
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1304
+msgid "Pick Button Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1319
+msgid "Pick Button Hover Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:614
+msgid "Placeholder Text"
+msgstr ""
+
+#: woocommerce/checkout/payment.php:33
+msgid "Please fill in your details above to see available payment methods."
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:502
+msgid "Post"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:967
+msgid "Post Auhtor"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:686
+msgid "Post Column"
+msgstr ""
+
+#: comments.php:70
+msgid "Post Comment"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:958
+msgid "Post Date"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:63
+msgid "Post Format Audio"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:57
+msgid "Post Format Video"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:911
+msgid "Post Navigation"
+msgstr ""
+
+#. %s is product title
+#: woocommerce/single-product-reviews.php:65
+msgid "POST REVIEW"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:73
+msgid "Post Review"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:52
+msgid "Post Thumb Controller"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:69
+msgid "Post Thumbnail For Slider"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:182
+#: inc/woo-hooks/wellnez-woo-hooks.php:233
+#: inc/woo-hooks/wellnez-woo-hooks.php:313
+#: inc/woo-hooks/wellnez-woo-hooks.php:382
+msgid "Postcode"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:82
+msgid "Postcode / ZIP"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1682
+msgid "Pre-built Footer"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1672
+msgid "Pre-built Footer / Footer Builder"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:486
+msgid "Prebuilt"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:389
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:396
+msgid "Preloader"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:405
+msgid "Preloader Color One"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:411
+msgid "Preloader Color Two"
+msgstr ""
+
+#: templates/pagination.php:21
+msgid "Prev"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:393
+msgid "Previous Post"
+msgstr ""
+
+#: woocommerce/cart/cart.php:79 woocommerce/checkout/review-order.php:25
+#: woocommerce/checkout/review-order.php:70
+msgid "Price"
+msgstr ""
+
+#: woocommerce/cart/cart.php:30
+msgid "Price/Unit"
+msgstr ""
+
+#: inc/theme-setup.php:35
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:543
+msgid "Proceed to checkout"
+msgstr ""
+
+#: woocommerce/cart/cart.php:49 woocommerce/checkout/review-order.php:40
+msgid "Product"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1366
+msgid "Product Column"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1443
+msgid "Product Details Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1437
+msgid "Product Details Title Position"
+msgstr ""
+
+#: woocommerce/cart/cart.php:29 woocommerce/checkout/review-order.php:24
+msgid "Product Name"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1403
+msgid "Product Per Page"
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:42
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1409
+msgid "Product Single Page sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:188
+msgid "Product Swap Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:646
+msgid "Product Title Color"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:168
+msgid "Progress"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:263
+msgid "progress"
+msgstr ""
+
+#: woocommerce/cart/cart.php:31 woocommerce/cart/cart.php:85
+#: woocommerce/checkout/review-order.php:26
+#: woocommerce/checkout/review-order.php:76
+#: woocommerce/global/quantity-input.php:28
+msgid "Quantity"
+msgstr ""
+
+#: woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php:21
+msgid "Quantity: "
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:92
+#: woocommerce/single-product-reviews.php:103
+msgid "Rate&hellip;"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:802 inc/hooks/hooks-functions.php:805
+msgid "Read More"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:800
+msgid "Read More Button Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:807
+msgid "Read More Button Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:771
+msgid "Read More Text"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:760
+msgid "Read More Text Setting"
+msgstr ""
+
+#: templates/content-none.php:21
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:84
+msgid "Redux Framework"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:34
+#: woocommerce/myaccount/form-login.php:114
+#: woocommerce/myaccount/form-login.php:114
+msgid "Register"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:920
+msgid "Related Post"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1477
+msgid "Related Product Column"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1459
+msgid "Related product Hide/Show"
+msgstr ""
+
+#: woocommerce/single-product/related.php:29
+msgid "Related products"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1468
+msgid "Related products number"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:502
+msgid "Relatetd"
+msgstr ""
+
+#: woocommerce/global/form-login.php:46 woocommerce/myaccount/form-login.php:62
+msgid "Remember me"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:146
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:244
+#: woocommerce/cart/cart.php:33 woocommerce/cart/cart.php:112
+msgid "Remove"
+msgstr ""
+
+#: woocommerce/cart/cart.php:120 woocommerce/cart/mini-cart.php:49
+msgid "Remove this item"
+msgstr ""
+
+#: woocommerce/myaccount/form-lost-password.php:39
+msgid "Reset password"
+msgstr ""
+
+#: 404.php:25 inc/wellnez-framework/wellnez-options/wellnez-options.php:1273
+msgid "Return To Home"
+msgstr ""
+
+#: woocommerce/cart/cart-empty.php:33
+msgid "Return to shop"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:386
+msgid "Review"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:384
+msgid "Reviews"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:303
+msgid "Sale"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-address.php:46
+msgid "Save address"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-account.php:59
+msgid "Save changes"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:113
+msgid ""
+"Save my name, email, and website in this browser for the next time I comment."
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:676
+msgid "Search"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:675
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:17
+msgid "Search Here"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:189
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:285
+msgid "Search icon..."
+msgstr ""
+
+#: templates/header-menu-bottom.php:182
+msgid "Search Result"
+msgstr ""
+
+#: inc/wellnez-breadcrumbs.php:122
+msgid "Search results for: "
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:616
+msgid "Search Your Product"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:242
+msgid "Secondary Theme Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1871
+msgid "Section via hook"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:31
+msgid "Select a country / region&hellip"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:56
+msgid "Select an option&hellip;"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1696
+msgid "Select Footer"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:490
+msgid "Select header options."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:500
+msgid "Select header."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1124
+msgid "Select layout"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1179
+msgid ""
+"Select page title tag. If you use this option then you can able to change "
+"title tag H1 - H6 ( Default tag H1 )"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:152
+msgid "Select Show to display breadcrumb area"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:687
+msgid ""
+"Select your blog post column from here. If you use this option then you will "
+"able to select three type of blog post layout ( Default Two Column )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:39
+msgid "Service Page Controller"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:365
+msgid "Set Back to top button Background Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:381
+msgid "Set Back to top button border Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:373
+msgid "Set Back to top Icon Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:794
+msgid "Set Blog Excerpt / Content Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:953
+msgid "Set Blog Meta Hover Text Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:939
+msgid "Set Blog Meta Icon Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:946
+msgid "Set Blog Meta Text Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:742
+msgid ""
+"Set blog page custom title form here. If you use this option then you will "
+"able to set your won title text."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:822
+msgid "Set Blog Pagination Active Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:815
+msgid "Set Blog Pagination Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:830
+msgid "Set Blog Pagination Hover Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:780
+msgid "Set Blog Title Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:787
+msgid "Set Blog Title Hover Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1272
+msgid "Set Button Text "
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:226
+msgid "Set Category Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1735
+msgid "Set footer copyright ancor color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1743
+msgid "Set footer copyright ancor Hover color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1727
+msgid "Set footer copyright text color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1561
+msgid ""
+"Set how many cross sell products you want to show in single product page."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1469
+msgid "Set how many related products you want to show in single product page."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1515
+msgid "Set how many upsells products you want to show in single product page."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:526
+msgid "Set logo dimensions to choose width, height, and unit."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:538
+msgid "Set logo top and bottom margin."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1610
+msgid "Set mailchimp api key."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1616
+msgid "Set mailchimp list id."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:564
+msgid "Set Menu Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:571
+msgid "Set Menu Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:634
+msgid "Set Offcanvas Panel Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:640
+msgid "Set Offcanvas Title color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1251
+msgid "Set Page Error Number"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:168
+msgid ""
+"Set page layout container,container fluid,fullwidth or both. It's work only "
+"in template builder page."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1148
+msgid ""
+"Set page sidebar. If you use this option then you will able to set three "
+"type of sidebar ( Default no sidebar )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1265
+msgid "Set Page Subtitle "
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1258
+msgid "Set Page Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:615
+msgid "Set Placeholder Text"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:406
+msgid "Set Preloader Color One"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:412
+msgid "Set Preloader Color Two"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:189
+msgid "Set Product Swap Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:647
+msgid "Set Product Title color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:772
+msgid ""
+"Set read moer text here. If you use this option then you will able to set "
+"your won text."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:801
+msgid "Set Read More Button Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:808
+msgid "Set Read More Button Hover Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:243
+msgid "Set Secondary Theme Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1343
+msgid "Set Shop Page Sidebar."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1451
+msgid "Set Stock Quantity Show Hide?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:599
+msgid "Set Submenu Border Top Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:578
+msgid "Set Submenu Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:585
+msgid "Set Submenu Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:592
+msgid "Set Submenu Icon Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:237
+msgid "Set Theme Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1186
+msgid "Set Title Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1100
+msgid "Set Widget Anchor Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1107
+msgid "Set Widget Anchor Hover Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1093
+msgid "Set Widget Text Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1086
+msgid "Set Widget Title Color."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1570
+msgid "Set your woocommerce cross sell product column."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1367
+msgid "Set your woocommerce product column."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1478
+msgid "Set your woocommerce related product column."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1524
+msgid "Set your woocommerce upsell product column."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1194
+msgid ""
+"Setting page header background. If you use this option then you will able to "
+"set Background Color, Background Image, Background Repeat, Background Size, "
+"Background Attachment, Background Position."
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:370
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:371
+msgid "Shadow Color"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:417
+msgid "Shadow Preview"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:388
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:389
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:390
+msgid "Shadow Type"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:893
+msgid "Share Options"
+msgstr ""
+
+#: woocommerce/checkout/form-shipping.php:28
+msgid "Ship to a different address?"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:51 woocommerce/cart/cart-totals.php:52
+msgid "Shipping"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-address.php:20
+#: woocommerce/myaccount/my-address.php:27
+#: woocommerce/order/order-details-customer.php:46
+msgid "Shipping address"
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:78
+msgid "Shipping options will be updated during checkout."
+msgstr ""
+
+#. $s shipping destination.
+#: woocommerce/cart/cart-shipping.php:75
+#, php-format
+msgid "Shipping to %s."
+msgstr ""
+
+#: templates/header-menu-bottom.php:217
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1444
+msgid "Shop Details"
+msgstr ""
+
+#: woocommerce/loop/orderby.php:24
+msgid "Shop order"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1335
+msgid "Shop Page Background"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:89
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:128
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:606
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:721
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:895
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:904
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:913
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:922
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1010
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1453
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1462
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1508
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1554
+msgid "Show"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:996
+msgid "Sidebar Options"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1147
+msgid "Sidebar Settings"
+msgstr ""
+
+#. $1 and $2 opening and closing emphasis tags respectively
+#: woocommerce/checkout/payment.php:42
+#, php-format
+msgid ""
+"Since your browser does not support JavaScript, or it is disabled, please "
+"ensure you click the %1$sUpdate Totals%2$s button before placing your order. "
+"You may be charged more than the amount stated above if you fail to do so."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:836
+msgid "Single Blog Page"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:516
+msgid "Site Logo"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:489
+msgid "SKU:"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:72
+msgid "Slide"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1626
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1629
+msgid "Social"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1652
+msgid "Social Icon Class"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1653
+msgid "Social Icon Title"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:360
+msgid "Social Network:"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1634
+msgid "Social Profile Links"
+msgstr ""
+
+#: templates/content-none.php:25
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: woocommerce/checkout/payment.php:33
+msgid ""
+"Sorry, it seems that there are no available payment methods for your state. "
+"Please contact us if you require assistance or wish to make alternate "
+"arrangements."
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:305
+msgid "Spread"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:303
+msgid "Spread Radius"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:50
+#: woocommerce/cart/shipping-calculator.php:55
+#: woocommerce/cart/shipping-calculator.php:67
+msgid "State / County"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:309
+msgid "Stock Out"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1450
+msgid "Stock Quantity Show Hide"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:598
+msgid "Submenu Border Top Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:577
+msgid "Submenu Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:584
+msgid "Submenu Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:591
+msgid "Submenu Icon Color"
+msgstr ""
+
+#: woocommerce/cart/cart.php:142
+msgid "Submit"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1601
+msgid "Subscribe"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1287
+msgid "Subtitle Color"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:29 woocommerce/cart/cart-totals.php:30
+#: woocommerce/cart/mini-cart.php:75 woocommerce/checkout/review-order.php:98
+#: woocommerce/checkout/review-order.php:99
+msgid "Subtotal"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:180
+msgid "Swap Image"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1161
+msgid ""
+"Switch enabled to display page title. Fot this option you will able to show "
+"/ hide page title.  Default setting Enabled"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:397
+msgid "Switch Enabled to Display Preloader."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:356
+msgid "Switch On to Display back to top button."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:986
+msgid "Switch On to Display Category."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:977
+msgid "Switch On to Display Comment Count."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:968
+msgid "Switch On to Display Post Author."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:959
+msgid "Switch On to Display Post Date."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:885
+msgid "Switch On to Display Tags."
+msgstr ""
+
+#: templates/content-single.php:85
+msgid "Tag:"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:884
+msgid "Tags"
+msgstr ""
+
+#: templates/content-single.php:83
+msgid "Tags:"
+msgstr ""
+
+#. Name of the template
+msgid "Template Builder"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:547
+msgid "Text Logo"
+msgstr ""
+
+#: woocommerce/myaccount/my-address.php:46
+msgid "The following addresses will be used on the checkout page by default."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1266
+msgid "The page you've requested is not available."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:236
+msgid "Theme Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:197
+msgid "Theme Information 1"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:202
+msgid "Theme Information 2"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:380
+msgid "There are no reviews yet"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:52
+msgid "There are no reviews yet."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:87
+msgid ""
+"There are no shipping options available. Please ensure that your address has "
+"been entered correctly, or contact us if you need any help."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:878
+msgid "This title will show in Breadcrumb title."
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:63
+msgid "TI WooCommerce Wishlist"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:158
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:254
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1160
+msgid "Title"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1185
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1279
+msgid "Title Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1178
+msgid "Title Tag"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:248
+msgid "Title Typography"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:99 woocommerce/cart/cart.php:32
+#: woocommerce/cart/cart.php:107 woocommerce/checkout/review-order.php:27
+#: woocommerce/checkout/review-order.php:82
+#: woocommerce/checkout/review-order.php:144
+#: woocommerce/checkout/review-order.php:145
+msgid "Total"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks.php:177
+#: inc/woo-hooks/wellnez-woo-hooks.php:228
+#: inc/woo-hooks/wellnez-woo-hooks.php:307
+#: inc/woo-hooks/wellnez-woo-hooks.php:376
+msgid "Town / City"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:301
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:341
+msgid "Typography option with each property can be called individually."
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:339
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:340
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:341
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:341
+msgid "Units"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:86
+msgid "Update"
+msgstr ""
+
+#: woocommerce/cart/cart.php:149
+msgid "Update cart"
+msgstr ""
+
+#: woocommerce/checkout/payment.php:44
+msgid "Update totals"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:139
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:242
+msgid "Upload"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:108
+msgid "Upload an image or enter an URL."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:518
+msgid "Upload your site logo for header ( recommendation png format )."
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1505
+msgid "Upsell product Hide/Show"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1523
+msgid "Upsells Product Column"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1514
+msgid "Upsells products number"
+msgstr ""
+
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:207
+#: inc/redux-custom-field/wheely-option-slide-add-field.php:301
+msgid "URL"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:64
+msgid "Use This Field When Post Format Audio"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:58
+msgid "Use This Field When Post Format Video"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:70
+msgid "Use This Field When You Want A Slider In Post Thumbnail"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:51
+#: woocommerce/myaccount/form-login.php:92
+msgid "User Name"
+msgstr ""
+
+#: woocommerce/global/form-login.php:34
+#: woocommerce/myaccount/form-lost-password.php:30
+msgid "Username or email"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:261
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1720
+msgid "Vecuro"
+msgstr ""
+
+#. Author of the theme
+msgid "Vecurosoft"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:528
+msgid "verified owner"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:97
+#: woocommerce/single-product-reviews.php:108
+msgid "Very poor"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:558
+msgid "View cart"
+msgstr ""
+
+#: 404.php:24
+msgid "We Can't Seem to find the page you're looking for."
+msgstr ""
+
+#. Name of the theme
+msgid "Wellnez"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:39
+msgid "Wellnez Core"
+msgstr ""
+
+#: inc/demo-data/demo-import.php:19
+msgid "Wellnez Demo"
+msgstr ""
+
+#: inc/demo-data/demo-import.php:75
+msgid "Wellnez Demo Import"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1666
+msgid "wellnez Footer"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:47
+msgid "Wellnez Helper"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:85
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:86
+msgid "Wellnez Options"
+msgstr ""
+
+#. Description of the theme
+msgid "Wellnez – Makeup Beauty Spa Wellness Salon Wordpress Theme"
+msgstr ""
+
+#: inc/hooks/hooks-functions.php:261
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1720
+msgid "Wellnez."
+msgstr ""
+
+#: inc/wellnez-functions.php:446
+msgid "What are you looking for?"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:464
+msgid "White Logo"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1099
+msgid "Widget Anchor Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1045
+msgid "Widget Border"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1106
+msgid "Widget Hover Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1027
+msgid "Widget Margin"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1036
+msgid "Widget Padding"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1092
+msgid "Widget Text Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1085
+msgid "Widget Title Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1068
+msgid "Widget Title Margin"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1076
+msgid "Widget Title Padding"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1063
+msgid "Widget Title Tag"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1003
+msgid "Widgets Background Color"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1009
+msgid "Widgets Custom Box Shadow/Padding/Margin/border"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:104
+msgid "WooCommerce"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:1330
+msgid "Woocommerce Page"
+msgstr ""
+
+#: inc/wellnez-widgets-reg.php:58
+msgid "WooCommerce Sidebar"
+msgstr ""
+
+#: inc/wellnez-framework/plugins-activation/wellnez-active-plugins.php:113
+msgid "WPC Smart Quick View for WooCommerce"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:44
+msgid "Write Flaticon Class"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-meta/wellnez-config.php:45
+msgid "Write Flaticon Class For The Icon"
+msgstr ""
+
+#: comments.php:61
+msgid "Write Your Comment *"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:112
+msgid "Write your comments"
+msgstr ""
+
+#: inc/wellnez-framework/wellnez-options/wellnez-options.php:548
+msgid ""
+"Write your logo text use as logo ( You can use span tag for text color )."
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:245
+msgid "X"
+msgstr ""
+
+#: inc/redux-custom-field/extensions/box_shadow/box_shadow/field_box_shadow.php:265
+msgid "Y"
+msgstr ""
+
+#: woocommerce/myaccount/my-address.php:80
+msgid "You have not set up this type of address yet."
+msgstr ""
+
+#: woocommerce/single-product/up-sells.php:28
+msgid "You may also like"
+msgstr ""
+
+#. %s opening and closing link tags respectively
+#: woocommerce/single-product-reviews.php:88
+#, php-format
+msgid "You must be %1$slogged in%2$s to post a review."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:26
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:687
+#: woocommerce/cart/cart-empty.php:30 woocommerce/cart/mini-cart.php:103
+msgid "Your cart is currently empty."
+msgstr ""
+
+#: inc/wellnez-functions.php:254
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:83
+msgid "Your E-mail"
+msgstr ""
+
+#: woocommerce/myaccount/form-edit-account.php:37
+msgid "Your Email"
+msgstr ""
+
+#: comments.php:66
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:82
+msgid "Your Name"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:51
+msgid "Your order"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:91
+#: woocommerce/single-product-reviews.php:102
+msgid "Your Rating"
+msgstr ""
+
+#: inc/woo-hooks/wellnez-woo-hooks-functions.php:518
+msgid "Your review is awaiting approval"
+msgstr ""
