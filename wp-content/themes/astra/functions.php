@@ -97,7 +97,7 @@ function simplify_checkout_fields( $data ) {
 add_filter( 'woocommerce_available_payment_gateways', 'limit_payment_gateways' );
 function limit_payment_gateways( $gateways ) {
     // Solo permitir estas pasarelas específicas
-    $allowed_gateways = array('woo-mercado-pago-basic', 'ppcp-gateway', 'ppcp-card-button-gateway');
+    $allowed_gateways = array('woo-mercado-pago-basic', 'ppcp-gateway');
     
     // Log de todas las pasarelas disponibles para depuración
     error_log( 'Todas las pasarelas disponibles: ' . implode( ', ', array_keys( $gateways ) ) );
@@ -123,7 +123,7 @@ add_action( 'woocommerce_checkout_process', 'validate_tutor_checkout' );
 function validate_tutor_checkout() {
     // Verificar que el método de pago seleccionado sea válido
     if ( isset( $_POST['payment_method'] ) ) {
-        $allowed_methods = array( 'woo-mercado-pago-basic', 'ppcp-gateway', 'ppcp-card-button-gateway' );
+        $allowed_methods = array( 'woo-mercado-pago-basic', 'ppcp-gateway' );
         if ( ! in_array( $_POST['payment_method'], $allowed_methods ) ) {
             wc_add_notice( 'Método de pago no válido. Por favor selecciona Mercado Pago o PayPal.', 'error' );
         }
@@ -133,7 +133,7 @@ function validate_tutor_checkout() {
 /**
  * Interceptar y manejar el proceso de pago de Tutor LMS
  */
-add_action( 'wp', 'handle_tutor_checkout_submission' );
+add_action( 'init', 'handle_tutor_checkout_submission' );
 function handle_tutor_checkout_submission() {
     if ( isset( $_POST['tutor_action'] ) && $_POST['tutor_action'] === 'tutor_pay_now' ) {
         error_log( 'Procesando pago de Tutor LMS - Método: ' . ( $_POST['payment_method'] ?? 'No definido' ) );
@@ -207,11 +207,14 @@ function handle_tutor_checkout_submission() {
                 
                 error_log( 'Orden creada con ID: ' . $order->get_id() );
                 
-                // Redirigir a la página de pago de WooCommerce
+                // Redirigir a la página de pago de WooCommerce usando JavaScript
                 $payment_url = $order->get_checkout_payment_url();
                 error_log( 'Redirigiendo a: ' . $payment_url );
                 
-                wp_redirect( $payment_url );
+                // Usar JavaScript para redirección inmediata
+                echo '<script type="text/javascript">window.location.href = "' . esc_url( $payment_url ) . '";</script>';
+                echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url( $payment_url ) . '"></noscript>';
+                echo '<p>Redirigiendo al pago... <a href="' . esc_url( $payment_url ) . '">Haz clic aquí si no eres redirigido automáticamente</a></p>';
                 exit;
                 
             } catch ( Exception $e ) {
