@@ -1294,36 +1294,6 @@ class WC_Checkout {
 
 			do_action( 'woocommerce_before_checkout_process' );
 
-			// SINCRONIZACIÓN: Verificar si hay productos de Tutor LMS para sincronizar antes de validar carrito vacío
-			if ( WC()->cart->is_empty() && function_exists( 'tutor_utils' ) && class_exists( 'Tutor\Models\CartModel' ) ) {
-				try {
-					$user_id = get_current_user_id();
-					if ( $user_id ) {
-						$tutor_cart_model = new \Tutor\Models\CartModel();
-						$tutor_cart_items = $tutor_cart_model->get_cart_items( $user_id );
-						
-						// Si hay items en el carrito de Tutor LMS, sincronizar con WooCommerce
-						if ( ! empty( $tutor_cart_items ) ) {
-							foreach ( $tutor_cart_items as $item ) {
-								$product_id = null;
-								if ( method_exists( tutor_utils(), 'get_course_product_id' ) ) {
-									$product_id = tutor_utils()->get_course_product_id( $item->course_id );
-								} else {
-									$product_id = get_post_meta( $item->course_id, '_tutor_course_product_id', true );
-								}
-								
-								if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
-									WC()->cart->add_to_cart( $product_id, 1 );
-								}
-							}
-							WC()->cart->calculate_totals();
-						}
-					}
-				} catch ( Exception $sync_error ) {
-					// Si hay error en la sincronización, continuar sin interrumpir el checkout
-					error_log( 'Checkout sync error: ' . $sync_error->getMessage() );
-				}
-			}
 
 			if ( WC()->cart->is_empty() ) {
 				throw new Exception( $expiry_message );

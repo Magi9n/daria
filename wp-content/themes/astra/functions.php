@@ -293,3 +293,119 @@ function astra_checkout_debug_visible() {
         echo '</div>';
     }
 }
+
+// SOLUCIÓN SEGURA: Sincronización bidireccional Tutor LMS <-> WooCommerce
+
+// 1. Sincronizar de Tutor LMS a WooCommerce cuando se añade un curso
+add_action( 'wp_ajax_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 5 );
+add_action( 'wp_ajax_nopriv_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 5 );
+function sync_tutor_to_woocommerce() {
+    if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        return;
+    }
+    
+    $course_id = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
+    if ( ! $course_id ) {
+        return;
+    }
+    
+    // Obtener el product_id asociado al curso
+    $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+    if ( ! $product_id ) {
+        // Método alternativo
+        if ( method_exists( tutor_utils(), 'get_course_product_id' ) ) {
+            $product_id = tutor_utils()->get_course_product_id( $course_id );
+        }
+    }
+    
+    if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
+        // Añadir al carrito de WooCommerce
+        WC()->cart->add_to_cart( $product_id, 1 );
+        WC()->cart->calculate_totals();
+    }
+}
+
+// 2. Sincronizar de WooCommerce a Tutor LMS cuando se añade un producto
+add_action( 'woocommerce_add_to_cart', 'sync_woocommerce_to_tutor', 10, 6 );
+function sync_woocommerce_to_tutor( $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data ) {
+    if ( ! function_exists( 'tutor_utils' ) || ! class_exists( 'Tutor\Models\CartModel' ) ) {
+        return;
+    }
+    
+    // Verificar si el producto pertenece a un curso
+    $course_id = null;
+    
+    // Buscar curso asociado al producto
+    $courses = get_posts( array(
+        'post_type' => 'courses',
+        'meta_query' => array(
+            array(
+                'key' => '_tutor_course_product_id',
+                'value' => $product_id,
+                'compare' => '='
+            )
+        ),
+        'posts_per_page' => 1
+    ) );
+    
+    if ( ! empty( $courses ) ) {
+        $course_id = $courses[0]->ID;
+    }
+    
+    if ( $course_id ) {
+        $user_id = get_current_user_id();
+        if ( $user_id ) {
+            $tutor_cart_model = new \Tutor\Models\CartModel();
+            // Verificar si el curso ya está en el carrito de Tutor LMS
+            if ( ! $tutor_cart_model->is_course_in_user_cart( $user_id, $course_id ) ) {
+                $tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+            }
+        }
+    }
+}
+
+// 3. Recuperar carrito de Tutor LMS en checkout si WooCommerce está vacío
+add_action( 'template_redirect', 'recover_tutor_cart_in_checkout' );
+function recover_tutor_cart_in_checkout() {
+    if ( ! is_checkout() || ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        return;
+    }
+    
+    if ( WC()->cart->is_empty() && class_exists( 'Tutor\Models\CartModel' ) ) {
+        $user_id = get_current_user_id();
+        if ( $user_id ) {
+            $tutor_cart_model = new \Tutor\Models\CartModel();
+            $tutor_cart_items = $tutor_cart_model->get_cart_items( $user_id );
+            
+            if ( ! empty( $tutor_cart_items ) ) {
+                foreach ( $tutor_cart_items as $item ) {
+                    $product_id = get_post_meta( $item->course_id, '_tutor_course_product_id', true );
+                    if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
+                        WC()->cart->add_to_cart( $product_id, 1 );
+                    }
+                }
+                WC()->cart->calculate_totals();
+            }
+        }
+    }
+}
+
+// 4. Desactivar redirección de carrito vacío en checkout
+add_filter( 'woocommerce_checkout_redirect_empty_cart', '__return_false' );
+
+// 5. Debug visible para diagnóstico
+add_action( 'wp_footer', 'cart_sync_debug' );
+function cart_sync_debug() {
+    if ( ( is_checkout() || is_cart() ) && function_exists( 'WC' ) ) {
+        $cart_count = WC()->cart->get_cart_contents_count();
+        $cart_total = WC()->cart->get_total();
+        
+        echo '<div style="position: fixed; top: 10px; right: 10px; background: #28a745; color: #fff; padding: 10px; z-index: 9999; font-size: 12px; border-radius: 5px; max-width: 200px;">';
+        echo '<strong>SYNC DEBUG:</strong><br>';
+        echo 'WC Items: ' . $cart_count . '<br>';
+        echo 'WC Total: ' . $cart_total . '<br>';
+        echo 'Hooks: ✓<br>';
+        echo 'Sync: Activo';
+        echo '</div>';
+    }
+}

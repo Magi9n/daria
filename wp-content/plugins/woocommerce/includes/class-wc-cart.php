@@ -1333,50 +1333,6 @@ class WC_Cart extends WC_Legacy_Cart {
 
 			$this->cart_contents = apply_filters( 'woocommerce_cart_contents_changed', $this->cart_contents );
 
-			// SINCRONIZACIÓN BIDIRECCIONAL: También añadir al carrito de Tutor LMS si es un curso
-			if ( function_exists( 'tutor_utils' ) && class_exists( 'Tutor\Models\CartModel' ) ) {
-				try {
-					// Verificar si el producto pertenece a un curso usando diferentes métodos
-					$course_id = null;
-					if ( method_exists( tutor_utils(), 'product_belongs_with_course' ) ) {
-						$course_id = tutor_utils()->product_belongs_with_course( $product_id );
-					} else {
-						// Método alternativo para obtener el curso del producto
-						$course_id = get_post_meta( $product_id, '_tutor_course_id_for_product', true );
-						if ( ! $course_id ) {
-							// Buscar por el método inverso
-							$courses = get_posts( array(
-								'post_type' => 'courses',
-								'meta_query' => array(
-									array(
-										'key' => '_tutor_course_product_id',
-										'value' => $product_id,
-										'compare' => '='
-									)
-								),
-								'posts_per_page' => 1
-							) );
-							if ( ! empty( $courses ) ) {
-								$course_id = $courses[0]->ID;
-							}
-						}
-					}
-					
-					if ( $course_id ) {
-						$user_id = get_current_user_id();
-						if ( $user_id ) {
-							$tutor_cart_model = new \Tutor\Models\CartModel();
-							// Verificar si el curso ya está en el carrito de Tutor LMS
-							if ( ! $tutor_cart_model->is_course_in_user_cart( $user_id, $course_id ) ) {
-								$tutor_cart_model->add_course_to_cart( $user_id, $course_id );
-							}
-						}
-					}
-				} catch ( Exception $sync_error ) {
-					// Si hay error en la sincronización, continuar sin interrumpir el proceso principal
-					error_log( 'Tutor LMS sync error: ' . $sync_error->getMessage() );
-				}
-			}
 
 			do_action( 'woocommerce_add_to_cart', $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data );
 
