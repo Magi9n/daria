@@ -191,3 +191,33 @@ add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_wc_cart' );
 function astra_redirect_to_wc_cart() {
     return wc_get_cart_url(); // Redirige a /cart/
 }
+
+/**
+ * Solucionar problema de carrito vacío en checkout de Tutor LMS
+ */
+add_action( 'wp_loaded', 'astra_fix_tutor_checkout_cart', 20 );
+function astra_fix_tutor_checkout_cart() {
+    // Solo ejecutar en la página de checkout
+    if ( function_exists('is_checkout') && is_checkout() && !is_admin() ) {
+        // Forzar a WooCommerce a recalcular el carrito
+        if ( function_exists('WC') && WC()->cart ) {
+            WC()->cart->calculate_totals();
+        }
+    }
+}
+
+/**
+ * Asegurar que los productos de Tutor se muestren correctamente en checkout
+ */
+add_action( 'woocommerce_checkout_init', 'astra_ensure_cart_items_in_checkout' );
+function astra_ensure_cart_items_in_checkout() {
+    if ( function_exists('WC') && WC()->cart && WC()->cart->is_empty() ) {
+        // Si el carrito está vacío pero hay productos en la sesión, restaurarlos
+        if ( isset($_SESSION['tutor_cart_items']) && !empty($_SESSION['tutor_cart_items']) ) {
+            foreach ( $_SESSION['tutor_cart_items'] as $product_id ) {
+                WC()->cart->add_to_cart( $product_id );
+            }
+            unset($_SESSION['tutor_cart_items']);
+        }
+    }
+}
