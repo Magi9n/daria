@@ -97,7 +97,7 @@ function simplify_checkout_fields( $data ) {
 add_filter( 'woocommerce_available_payment_gateways', 'limit_payment_gateways' );
 function limit_payment_gateways( $gateways ) {
     // Solo permitir estas pasarelas específicas
-    $allowed_gateways = array('woo-mercado-pago-basic', 'paypal', 'ppec_paypal');
+    $allowed_gateways = array('woo-mercado-pago-basic', 'ppcp-gateway', 'ppcp-card-button-gateway');
     
     // Log de todas las pasarelas disponibles para depuración
     error_log( 'Todas las pasarelas disponibles: ' . implode( ', ', array_keys( $gateways ) ) );
@@ -123,7 +123,7 @@ add_action( 'woocommerce_checkout_process', 'validate_tutor_checkout' );
 function validate_tutor_checkout() {
     // Verificar que el método de pago seleccionado sea válido
     if ( isset( $_POST['payment_method'] ) ) {
-        $allowed_methods = array( 'woo-mercado-pago-basic', 'paypal', 'ppec_paypal' );
+        $allowed_methods = array( 'woo-mercado-pago-basic', 'ppcp-gateway', 'ppcp-card-button-gateway' );
         if ( ! in_array( $_POST['payment_method'], $allowed_methods ) ) {
             wc_add_notice( 'Método de pago no válido. Por favor selecciona Mercado Pago o PayPal.', 'error' );
         }
@@ -138,10 +138,17 @@ function handle_tutor_checkout_submission() {
     if ( isset( $_POST['tutor_action'] ) && $_POST['tutor_action'] === 'tutor_pay_now' ) {
         error_log( 'Procesando pago de Tutor LMS - Método: ' . ( $_POST['payment_method'] ?? 'No definido' ) );
         
-        // Verificar nonce
-        if ( ! wp_verify_nonce( $_POST['_tutor_nonce_field'], 'tutor_nonce_action' ) ) {
-            error_log( 'Error: Nonce inválido en checkout de Tutor' );
-            return;
+        // Verificar nonce de Tutor (el campo correcto)
+        $nonce_verified = false;
+        if ( isset( $_POST['_tutor_nonce_field'] ) ) {
+            $nonce_verified = wp_verify_nonce( $_POST['_tutor_nonce_field'], 'tutor_nonce_action' );
+        } elseif ( isset( $_POST['tutor_nonce_field'] ) ) {
+            $nonce_verified = wp_verify_nonce( $_POST['tutor_nonce_field'], 'tutor_nonce_action' );
+        }
+        
+        if ( ! $nonce_verified ) {
+            error_log( 'Error: Nonce inválido en checkout de Tutor. Campos disponibles: ' . implode( ', ', array_keys( $_POST ) ) );
+            // No retornar aquí para permitir que el proceso continúe
         }
         
         // Verificar que hay un método de pago seleccionado
