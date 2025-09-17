@@ -193,31 +193,57 @@ function astra_redirect_to_wc_cart() {
 }
 
 /**
- * Solucionar problema de carrito vacío en checkout de Tutor LMS
+ * DEBUG: Verificar estado del carrito en checkout
  */
-add_action( 'wp_loaded', 'astra_fix_tutor_checkout_cart', 20 );
-function astra_fix_tutor_checkout_cart() {
-    // Solo ejecutar en la página de checkout
-    if ( function_exists('is_checkout') && is_checkout() && !is_admin() ) {
-        // Forzar a WooCommerce a recalcular el carrito
+add_action( 'wp_footer', 'astra_debug_cart_checkout' );
+function astra_debug_cart_checkout() {
+    if ( function_exists('is_checkout') && is_checkout() ) {
+        ?>
+        <script>
+        console.log('=== DEBUG CARRITO CHECKOUT ===');
+        console.log('URL actual:', window.location.href);
+        
+        // Verificar si hay datos en localStorage
+        console.log('localStorage tcf_purchase_url:', localStorage.getItem('tcf_purchase_url'));
+        console.log('localStorage tcf_purchase_time:', localStorage.getItem('tcf_purchase_time'));
+        </script>
+        <?php
+        
+        // Debug PHP
         if ( function_exists('WC') && WC()->cart ) {
-            WC()->cart->calculate_totals();
+            echo '<script>';
+            echo 'console.log("Carrito WC está vacío:", ' . (WC()->cart->is_empty() ? 'true' : 'false') . ');';
+            echo 'console.log("Cantidad de items en carrito:", ' . WC()->cart->get_cart_contents_count() . ');';
+            echo 'console.log("Total del carrito:", "' . WC()->cart->get_total() . '");';
+            echo 'console.log("Subtotal del carrito:", "' . WC()->cart->get_subtotal() . '");';
+            
+            // Mostrar items del carrito
+            $cart_items = WC()->cart->get_cart();
+            echo 'console.log("Items en carrito:", ' . json_encode(array_keys($cart_items)) . ');';
+            
+            foreach ( $cart_items as $cart_item_key => $cart_item ) {
+                $product = $cart_item['data'];
+                echo 'console.log("Producto ID:", ' . $cart_item['product_id'] . ');';
+                echo 'console.log("Producto nombre:", "' . $product->get_name() . '");';
+                echo 'console.log("Producto precio:", "' . $product->get_price() . '");';
+            }
+            echo '</script>';
         }
     }
 }
 
 /**
- * Asegurar que los productos de Tutor se muestren correctamente en checkout
+ * Cambiar a checkout de Tutor LMS si WooCommerce falla
  */
-add_action( 'woocommerce_checkout_init', 'astra_ensure_cart_items_in_checkout' );
-function astra_ensure_cart_items_in_checkout() {
-    if ( function_exists('WC') && WC()->cart && WC()->cart->is_empty() ) {
-        // Si el carrito está vacío pero hay productos en la sesión, restaurarlos
-        if ( isset($_SESSION['tutor_cart_items']) && !empty($_SESSION['tutor_cart_items']) ) {
-            foreach ( $_SESSION['tutor_cart_items'] as $product_id ) {
-                WC()->cart->add_to_cart( $product_id );
-            }
-            unset($_SESSION['tutor_cart_items']);
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_tutor_checkout' );
+function astra_redirect_to_tutor_checkout() {
+    // Si hay función de Tutor para checkout, usarla
+    if ( function_exists('tutor_utils') ) {
+        $tutor_checkout_url = tutor_utils()->tutor_dashboard_url('purchase-history');
+        if ( $tutor_checkout_url ) {
+            return $tutor_checkout_url;
         }
     }
+    // Fallback al carrito de WooCommerce
+    return wc_get_cart_url();
 }
