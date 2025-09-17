@@ -410,7 +410,97 @@ function recover_tutor_cart_in_checkout() {
 // 4. Desactivar redirección de carrito vacío en checkout
 add_filter( 'woocommerce_checkout_redirect_empty_cart', '__return_false' );
 
-// 5. Debug visible para diagnóstico
+// 5. Sincronizar eliminación de WooCommerce a Tutor LMS
+add_action( 'woocommerce_remove_cart_item', 'sync_wc_remove_to_tutor', 10, 2 );
+function sync_wc_remove_to_tutor( $cart_item_key, $cart ) {
+    if ( ! function_exists( 'tutor_utils' ) || ! class_exists( 'Tutor\Models\CartModel' ) ) {
+        return;
+    }
+    
+    try {
+        // Obtener el producto que se está eliminando
+        $cart_item = $cart->removed_cart_contents[ $cart_item_key ];
+        if ( ! isset( $cart_item['product_id'] ) ) {
+            return;
+        }
+        
+        $product_id = $cart_item['product_id'];
+        
+        // Buscar si este producto pertenece a un curso
+        $courses = get_posts( array(
+            'post_type' => 'courses',
+            'meta_query' => array(
+                array(
+                    'key' => '_tutor_course_product_id',
+                    'value' => $product_id,
+                    'compare' => '='
+                )
+            ),
+            'posts_per_page' => 1
+        ) );
+        
+        if ( ! empty( $courses ) ) {
+            $course_id = $courses[0]->ID;
+            $user_id = get_current_user_id();
+            
+            if ( $user_id && $course_id ) {
+                $tutor_cart_model = new \Tutor\Models\CartModel();
+                $tutor_cart_model->delete_course_from_cart( $user_id, $course_id );
+            }
+        }
+    } catch ( Exception $e ) {
+        error_log( 'Sync WC remove to Tutor error: ' . $e->getMessage() );
+    }
+}
+
+// 6. Sincronizar eliminación de Tutor LMS a WooCommerce
+add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 5 );
+add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 5 );
+function sync_tutor_remove_to_wc() {
+    if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        return;
+    }
+    
+    try {
+        $course_id = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
+        if ( ! $course_id ) {
+            return;
+        }
+        
+        // Obtener el product_id asociado al curso
+        $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+        if ( ! $product_id ) {
+            if ( method_exists( tutor_utils(), 'get_course_product_id' ) ) {
+                $product_id = tutor_utils()->get_course_product_id( $course_id );
+            }
+        }
+        
+        if ( $product_id ) {
+            // Buscar y eliminar el producto del carrito de WooCommerce
+            $cart_contents = WC()->cart->get_cart();
+            foreach ( $cart_contents as $cart_item_key => $cart_item ) {
+                if ( $cart_item['product_id'] == $product_id ) {
+                    WC()->cart->remove_cart_item( $cart_item_key );
+                    break;
+                }
+            }
+            WC()->cart->calculate_totals();
+        }
+    } catch ( Exception $e ) {
+        error_log( 'Sync Tutor remove to WC error: ' . $e->getMessage() );
+    }
+}
+
+// 7. Sincronizar cambios de cantidad
+add_action( 'woocommerce_after_cart_item_quantity_update', 'sync_wc_quantity_to_tutor', 10, 4 );
+function sync_wc_quantity_to_tutor( $cart_item_key, $quantity, $old_quantity, $cart ) {
+    // Para cursos, la cantidad siempre debe ser 1, así que si se cambia a 0, eliminar
+    if ( $quantity == 0 ) {
+        sync_wc_remove_to_tutor( $cart_item_key, $cart );
+    }
+}
+
+// 8. Debug visible para diagnóstico
 add_action( 'wp_footer', 'cart_sync_debug' );
 function cart_sync_debug() {
     if ( ( is_checkout() || is_cart() ) && function_exists( 'WC' ) ) {
@@ -422,7 +512,7 @@ function cart_sync_debug() {
         echo 'WC Items: ' . $cart_count . '<br>';
         echo 'WC Total: ' . $cart_total . '<br>';
         echo 'Hooks: ✓<br>';
-        echo 'Sync: Activo';
+        echo 'Sync: Completo';
         echo '</div>';
     }
 }
