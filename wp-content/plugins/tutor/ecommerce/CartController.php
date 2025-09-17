@@ -242,12 +242,28 @@ class CartController {
 		$response = $this->model->add_course_to_cart( $user_id, $course_id );
 
 		// SINCRONIZACIÓN BIDIRECCIONAL: También añadir al carrito de WooCommerce
-		if ( $response && function_exists( 'WC' ) ) {
-			$product_id = tutor_utils()->get_course_product_id( $course_id );
-			if ( $product_id ) {
-				// Añadir al carrito de WooCommerce para sincronización
-				WC()->cart->add_to_cart( $product_id, 1 );
-				WC()->cart->calculate_totals();
+		if ( $response && function_exists( 'WC' ) && WC()->cart ) {
+			try {
+				$product_id = null;
+				if ( method_exists( tutor_utils(), 'get_course_product_id' ) ) {
+					$product_id = tutor_utils()->get_course_product_id( $course_id );
+				} else {
+					// Método alternativo para obtener el product_id del curso
+					$product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+				}
+				
+				if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
+					// Verificar si el producto ya está en el carrito de WooCommerce
+					$cart_item_key = WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id( $product_id ) );
+					if ( ! $cart_item_key ) {
+						// Añadir al carrito de WooCommerce para sincronización
+						WC()->cart->add_to_cart( $product_id, 1 );
+						WC()->cart->calculate_totals();
+					}
+				}
+			} catch ( Exception $sync_error ) {
+				// Si hay error en la sincronización, continuar sin interrumpir el proceso principal
+				error_log( 'WooCommerce sync error: ' . $sync_error->getMessage() );
 			}
 		}
 
