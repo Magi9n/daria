@@ -778,6 +778,8 @@ function setup_tutor_ajax_logging() {
         );
         
         error_log( '[TUTOR AJAX] Server vars: ' . print_r( $server_vars, true ) );
+    }
+}
 
 // 6. Sincronizar eliminación de Tutor LMS a WooCommerce
 add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
