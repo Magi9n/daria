@@ -507,18 +507,67 @@ function debug_country_change_ajax() {
 add_action( 'wp_ajax_nopriv_tutor_get_states_by_country', 'debug_states_ajax' );
 add_action( 'wp_ajax_tutor_get_states_by_country', 'debug_states_ajax' );
 function debug_states_ajax() {
-    error_log( '[STATES DEBUG] Petición get states detectada - POST: ' . json_encode( $_POST ) );
-    // No hacer nada más, solo loggear
+    // Registrar la petición con todos los detalles
+    error_log( '[TUTOR AJAX] Interceptada petición de estados por país' );
+    error_log( '[TUTOR AJAX] Datos recibidos: ' . print_r( $_POST, true ) );
+    
+    // Verificar si hay un nonce y validarlo
+    if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'tutor_nonce' ) ) {
+        error_log( '[TUTOR AJAX] Error: Nonce inválido o faltante' );
+        wp_send_json_error( 'Nonce inválido' );
+        return;
+    }
+    
+    // Verificar si se proporcionó el país
+    if ( ! isset( $_POST['country'] ) ) {
+        error_log( '[TUTOR AJAX] Error: No se proporcionó el país' );
+        wp_send_json_error( 'País no proporcionado' );
+        return;
+    }
+    
+    // Continuar con el procesamiento normal
+    $country = sanitize_text_field( $_POST['country'] );
+    $states = WC()->countries->get_states( $country );
+    
+    // Registrar los estados que se devolverán
+    error_log( '[TUTOR AJAX] Estados encontrados para ' . $country . ': ' . print_r( $states, true ) );
+    
+    wp_send_json_success( $states );
 }
 
 // Log general para todas las peticiones AJAX de Tutor
 add_action( 'init', 'setup_tutor_ajax_logging' );
 function setup_tutor_ajax_logging() {
-    if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) ) {
-        $action = $_POST['action'];
-        if ( strpos( $action, 'tutor' ) !== false ) {
-            error_log( '[TUTOR AJAX] Action: ' . $action . ' | Data: ' . json_encode( $_POST ) );
+    if ( ! empty( $_POST['action'] ) && strpos( $_POST['action'], 'tutor_' ) === 0 ) {
+        // Registrar la petición AJAX con más contexto
+        $backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 10 );
+        $backtrace_info = array();
+        
+        foreach ( $backtrace as $i => $trace ) {
+            $backtrace_info[] = sprintf(
+                '#%s %s:%s %s%s%s',
+                $i,
+                $trace['file'] ?? '',
+                $trace['line'] ?? '',
+                $trace['class'] ?? '',
+                $trace['type'] ?? '',
+                $trace['function'] ?? ''
+            );
         }
+        
+        error_log( '[TUTOR AJAX] Action: ' . $_POST['action'] . ' | Data: ' . json_encode( $_POST ) );
+        error_log( '[TUTOR AJAX] Backtrace: ' . implode( '\n', $backtrace_info ) );
+        
+        // Registrar también las variables de servidor relevantes
+        $server_vars = array(
+            'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'] ?? '',
+            'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? '',
+            'HTTP_REFERER' => $_SERVER['HTTP_REFERER'] ?? '',
+            'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+            'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR'] ?? ''
+        );
+        
+        error_log( '[TUTOR AJAX] Server vars: ' . print_r( $server_vars, true ) );
     }
 }
 
