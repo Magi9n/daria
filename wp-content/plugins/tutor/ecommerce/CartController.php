@@ -241,6 +241,16 @@ class CartController {
 
 		$response = $this->model->add_course_to_cart( $user_id, $course_id );
 
+		// SINCRONIZACIÓN BIDIRECCIONAL: También añadir al carrito de WooCommerce
+		if ( $response && function_exists( 'WC' ) ) {
+			$product_id = tutor_utils()->get_course_product_id( $course_id );
+			if ( $product_id ) {
+				// Añadir al carrito de WooCommerce para sincronización
+				WC()->cart->add_to_cart( $product_id, 1 );
+				WC()->cart->calculate_totals();
+			}
+		}
+
 		if ( $response ) {
 			$this->json_response(
 				__( 'The course was added to the cart successfully.', 'tutor' ),

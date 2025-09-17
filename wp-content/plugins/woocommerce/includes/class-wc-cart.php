@@ -1333,6 +1333,21 @@ class WC_Cart extends WC_Legacy_Cart {
 
 			$this->cart_contents = apply_filters( 'woocommerce_cart_contents_changed', $this->cart_contents );
 
+			// SINCRONIZACIÓN BIDIRECCIONAL: También añadir al carrito de Tutor LMS si es un curso
+			if ( function_exists( 'tutor_utils' ) && class_exists( 'Tutor\Models\CartModel' ) ) {
+				$course_id = tutor_utils()->product_belongs_with_course( $product_id );
+				if ( $course_id ) {
+					$user_id = get_current_user_id();
+					if ( $user_id ) {
+						$tutor_cart_model = new \Tutor\Models\CartModel();
+						// Verificar si el curso ya está en el carrito de Tutor LMS
+						if ( ! $tutor_cart_model->is_course_in_user_cart( $user_id, $course_id ) ) {
+							$tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+						}
+					}
+				}
+			}
+
 			do_action( 'woocommerce_add_to_cart', $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data );
 
 			return $cart_item_key;
