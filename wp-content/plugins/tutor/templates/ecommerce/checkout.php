@@ -340,9 +340,149 @@ $is_checkout_page = true;
 						<?php endif; ?>
 						<!-- handle errors end -->
 						<?php $enable_pay_now_btn = apply_filters( 'tutor_checkout_enable_pay_now_btn', true, $checkout_data ); ?>
-						<button type="submit" <?php echo $enable_pay_now_btn ? '' : 'disabled'; ?>  id="tutor-checkout-pay-now-button" class="tutor-btn tutor-btn-primary tutor-btn-lg tutor-w-100 tutor-justify-center tutor-mt-16">
+						<button type="button" <?php echo $enable_pay_now_btn ? '' : 'disabled'; ?>  id="tutor-checkout-pay-now-button" class="tutor-btn tutor-btn-primary tutor-btn-lg tutor-w-100 tutor-justify-center tutor-mt-16" onclick="processDirectPayment()">
 							<?php echo esc_html( $pay_now_btn_text ); ?>
 						</button>
+						
+						<script>
+						function processDirectPayment() {
+							console.log('DIRECT PAYMENT: Iniciando proceso de pago directo');
+							
+							// Obtener datos del formulario
+							var formData = new FormData(document.getElementById('tutor-checkout-form'));
+							var paymentMethod = document.querySelector('input[name="payment_method"]:checked');
+							
+							if (!paymentMethod) {
+								alert('Por favor selecciona un método de pago');
+								return;
+							}
+							
+							console.log('DIRECT PAYMENT: Método seleccionado:', paymentMethod.value);
+							
+							// Validar campos requeridos
+							var requiredFields = ['billing_first_name', 'billing_last_name', 'billing_email', 'billing_country', 'billing_address_1', 'billing_city'];
+							var missingFields = [];
+							
+							requiredFields.forEach(function(field) {
+								var input = document.querySelector('[name="' + field + '"]');
+								if (!input || !input.value.trim()) {
+									missingFields.push(field);
+								}
+							});
+							
+							if (missingFields.length > 0) {
+								alert('Por favor completa todos los campos requeridos: ' + missingFields.join(', '));
+								return;
+							}
+							
+							// Deshabilitar botón para evitar doble click
+							var button = document.getElementById('tutor-checkout-pay-now-button');
+							button.disabled = true;
+							button.innerHTML = 'Procesando...';
+							
+							// Procesar según el método de pago
+							if (paymentMethod.value === 'woo-mercado-pago-basic') {
+								processMercadoPago(formData);
+							} else if (paymentMethod.value === 'ppcp-gateway') {
+								processPayPal(formData);
+							} else {
+								alert('Método de pago no soportado');
+								button.disabled = false;
+								button.innerHTML = '<?php echo esc_js( $pay_now_btn_text ); ?>';
+							}
+						}
+						
+						function processMercadoPago(formData) {
+							console.log('DIRECT PAYMENT: Procesando Mercado Pago');
+							
+							// Crear preferencia de Mercado Pago
+							var courseId = formData.get('object_ids');
+							var billingData = {
+								first_name: formData.get('billing_first_name'),
+								last_name: formData.get('billing_last_name'),
+								email: formData.get('billing_email'),
+								phone: formData.get('billing_phone') || '',
+								country: formData.get('billing_country'),
+								address: formData.get('billing_address_1'),
+								city: formData.get('billing_city'),
+								state: formData.get('billing_state') || '',
+								postcode: formData.get('billing_postcode') || ''
+							};
+							
+							// Enviar datos al backend para crear preferencia
+							jQuery.ajax({
+								url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
+								type: 'POST',
+								data: {
+									action: 'create_mercadopago_preference',
+									course_id: courseId,
+									billing_data: billingData,
+									nonce: '<?php echo wp_create_nonce( "mercadopago_nonce" ); ?>'
+								},
+								success: function(response) {
+									console.log('DIRECT PAYMENT: Respuesta MP:', response);
+									if (response.success && response.data.init_point) {
+										window.location.href = response.data.init_point;
+									} else {
+										alert('Error al procesar el pago con Mercado Pago');
+										resetButton();
+									}
+								},
+								error: function() {
+									alert('Error de conexión con Mercado Pago');
+									resetButton();
+								}
+							});
+						}
+						
+						function processPayPal(formData) {
+							console.log('DIRECT PAYMENT: Procesando PayPal');
+							
+							var courseId = formData.get('object_ids');
+							var billingData = {
+								first_name: formData.get('billing_first_name'),
+								last_name: formData.get('billing_last_name'),
+								email: formData.get('billing_email'),
+								phone: formData.get('billing_phone') || '',
+								country: formData.get('billing_country'),
+								address: formData.get('billing_address_1'),
+								city: formData.get('billing_city'),
+								state: formData.get('billing_state') || '',
+								postcode: formData.get('billing_postcode') || ''
+							};
+							
+							// Enviar datos al backend para crear orden PayPal
+							jQuery.ajax({
+								url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
+								type: 'POST',
+								data: {
+									action: 'create_paypal_order',
+									course_id: courseId,
+									billing_data: billingData,
+									nonce: '<?php echo wp_create_nonce( "paypal_nonce" ); ?>'
+								},
+								success: function(response) {
+									console.log('DIRECT PAYMENT: Respuesta PayPal:', response);
+									if (response.success && response.data.approval_url) {
+										window.location.href = response.data.approval_url;
+									} else {
+										alert('Error al procesar el pago con PayPal');
+										resetButton();
+									}
+								},
+								error: function() {
+									alert('Error de conexión con PayPal');
+									resetButton();
+								}
+							});
+						}
+						
+						function resetButton() {
+							var button = document.getElementById('tutor-checkout-pay-now-button');
+							button.disabled = false;
+							button.innerHTML = '<?php echo esc_js( $pay_now_btn_text ); ?>';
+						}
+						</script>
 					</div>
 				</div>
 			</div>

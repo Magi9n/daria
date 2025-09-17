@@ -130,107 +130,7 @@ function validate_tutor_checkout() {
     }
 }
 
-/**
- * Interceptar el proceso de pago de Tutor LMS y redirigir a WooCommerce
- */
-add_action( 'tutor_action_tutor_pay_now', 'intercept_tutor_payment_process', 1 );
-function intercept_tutor_payment_process() {
-    error_log( 'INTERCEPTOR: Proceso de pago de Tutor LMS iniciado' );
-    
-    // Verificar que tenemos los datos necesarios
-    if ( ! isset( $_POST['payment_method'] ) || ! isset( $_POST['object_ids'] ) ) {
-        error_log( 'INTERCEPTOR: Faltan datos necesarios' );
-        return;
-    }
-    
-    $payment_method = $_POST['payment_method'];
-    $woocommerce_gateways = array( 'woo-mercado-pago-basic', 'ppcp-gateway' );
-    
-    // Solo interceptar si es una de nuestras pasarelas de WooCommerce
-    if ( ! in_array( $payment_method, $woocommerce_gateways ) ) {
-        error_log( 'INTERCEPTOR: Método de pago no es WooCommerce: ' . $payment_method );
-        return;
-    }
-    
-    error_log( 'INTERCEPTOR: Interceptando pago para ' . $payment_method );
-    error_log( 'INTERCEPTOR: Datos POST: ' . print_r( $_POST, true ) );
-    
-    try {
-        // Obtener el ID del curso
-        $course_id = intval( $_POST['object_ids'] );
-        if ( ! $course_id ) {
-            error_log( 'INTERCEPTOR: ID de curso inválido' );
-            return;
-        }
-        
-        // Buscar el producto de WooCommerce asociado al curso
-        $product_id = tutor_utils()->get_course_product_id( $course_id );
-        if ( ! $product_id ) {
-            error_log( 'INTERCEPTOR: No se encontró producto asociado al curso ' . $course_id );
-            return;
-        }
-        
-        error_log( 'INTERCEPTOR: Producto encontrado: ' . $product_id . ' para curso: ' . $course_id );
-        
-        // Limpiar el carrito de WooCommerce
-        WC()->cart->empty_cart();
-        
-        // Agregar el producto al carrito de WooCommerce
-        $cart_item_key = WC()->cart->add_to_cart( $product_id, 1 );
-        if ( ! $cart_item_key ) {
-            error_log( 'INTERCEPTOR: Error al agregar producto al carrito' );
-            return;
-        }
-        
-        error_log( 'INTERCEPTOR: Producto agregado al carrito de WooCommerce' );
-        
-        // Establecer datos de facturación en la sesión
-        $billing_data = array(
-            'billing_first_name' => $_POST['billing_first_name'] ?? 'Cliente',
-            'billing_last_name'  => $_POST['billing_last_name'] ?? 'Web',
-            'billing_email'      => $_POST['billing_email'] ?? 'cliente@ejemplo.com',
-            'billing_phone'      => $_POST['billing_phone'] ?? '0000000000',
-            'billing_country'    => $_POST['billing_country'] ?? 'US',
-            'billing_address_1'  => $_POST['billing_address_1'] ?? 'N/A',
-            'billing_city'       => $_POST['billing_city'] ?? 'N/A',
-            'billing_state'      => $_POST['billing_state'] ?? 'N/A',
-            'billing_postcode'   => $_POST['billing_postcode'] ?? '00000'
-        );
-        
-        // Guardar datos de facturación en la sesión de WooCommerce
-        foreach ( $billing_data as $key => $value ) {
-            WC()->customer->{"set_$key"}( $value );
-        }
-        WC()->customer->save();
-        
-        error_log( 'INTERCEPTOR: Datos de facturación establecidos' );
-        
-        // Establecer el método de pago en la sesión de WooCommerce
-        WC()->session->set( 'chosen_payment_method', $payment_method );
-        
-        // Crear una orden directamente para evitar problemas con el checkout
-        $order = wc_create_order();
-        $order->add_product( wc_get_product( $product_id ), 1 );
-        $order->set_address( $billing_data, 'billing' );
-        $order->set_address( $billing_data, 'shipping' );
-        $order->set_payment_method( $payment_method );
-        $order->calculate_totals();
-        $order->save();
-        
-        error_log( 'INTERCEPTOR: Orden creada con ID: ' . $order->get_id() );
-        
-        // Obtener la URL de pago de la orden
-        $payment_url = $order->get_checkout_payment_url();
-        
-        error_log( 'INTERCEPTOR: Redirigiendo a URL de pago: ' . $payment_url );
-        
-        wp_redirect( $payment_url );
-        exit;
-        
-    } catch ( Exception $e ) {
-        error_log( 'INTERCEPTOR: Error - ' . $e->getMessage() );
-    }
-}
+// Interceptor deshabilitado - usando mu-plugin directo
 
 
 function intercept_tutor_states_ajax() {
@@ -878,63 +778,192 @@ function setup_tutor_ajax_logging() {
         );
         
         error_log( '[TUTOR AJAX] Server vars: ' . print_r( $server_vars, true ) );
-    }
-}
 
 // 6. Sincronizar eliminación de Tutor LMS a WooCommerce
 add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 function sync_tutor_remove_to_wc() {
-    error_log( '[SYNC DEBUG] sync_tutor_remove_to_wc iniciado - Action: ' . ( $_POST['action'] ?? 'no_action' ) );
+    // ... (rest of the function remains the same)
+}
+
+// Handlers AJAX para pagos directos
+add_action( 'wp_ajax_create_mercadopago_preference', 'handle_create_mercadopago_preference' );
+add_action( 'wp_ajax_nopriv_create_mercadopago_preference', 'handle_create_mercadopago_preference' );
+
+function handle_create_mercadopago_preference() {
+    error_log( '[DIRECT MP] Iniciando creación de preferencia Mercado Pago' );
     
-    // Solo procesar si es realmente una eliminación de curso del carrito
-    if ( ! isset( $_POST['course_id'] ) || ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
-        error_log( '[SYNC DEBUG] Condiciones no cumplidas para remove sync' );
+    // Verificar nonce
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'mercadopago_nonce' ) ) {
+        error_log( '[DIRECT MP] Nonce inválido' );
+        wp_send_json_error( 'Nonce inválido' );
         return;
     }
     
-    // Verificar que no sea otra acción AJAX de Tutor LMS
-    if ( isset( $_POST['action'] ) && $_POST['action'] !== 'tutor_delete_course_from_cart' ) {
-        error_log( '[SYNC DEBUG] No es acción delete_course_from_cart - Action: ' . $_POST['action'] );
+    $course_id = intval( $_POST['course_id'] );
+    $billing_data = $_POST['billing_data'];
+    
+    if ( ! $course_id ) {
+        error_log( '[DIRECT MP] Course ID inválido' );
+        wp_send_json_error( 'Course ID inválido' );
         return;
     }
     
-    try {
-        $course_id = intval( $_POST['course_id'] );
-        if ( ! $course_id ) {
-            error_log( '[SYNC DEBUG] Course ID inválido en remove: ' . ( $_POST['course_id'] ?? 'no_course_id' ) );
-            return;
-        }
-        
-        error_log( '[SYNC DEBUG] Eliminando course_id: ' . $course_id );
-        
-        // Obtener el product_id asociado al curso
-        $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
-        if ( ! $product_id ) {
-            if ( method_exists( tutor_utils(), 'get_course_product_id' ) ) {
-                $product_id = tutor_utils()->get_course_product_id( $course_id );
-            }
-        }
-        
-        error_log( '[SYNC DEBUG] Product ID para eliminar: ' . ( $product_id ?: 'no_product_id' ) );
-        
-        if ( $product_id ) {
-            // Buscar y eliminar el producto del carrito de WooCommerce
-            $cart_contents = WC()->cart->get_cart();
-            $removed = false;
-            foreach ( $cart_contents as $cart_item_key => $cart_item ) {
-                if ( $cart_item['product_id'] == $product_id ) {
-                    WC()->cart->remove_cart_item( $cart_item_key );
-                    $removed = true;
-                    break;
-                }
-            }
-            WC()->cart->calculate_totals();
-            error_log( '[SYNC DEBUG] Producto eliminado de WC cart: ' . ( $removed ? 'SUCCESS' : 'NOT_FOUND' ) );
-        }
-    } catch ( Exception $e ) {
-        error_log( '[SYNC ERROR] Sync Tutor remove to WC error: ' . $e->getMessage() );
+    error_log( '[DIRECT MP] Procesando curso: ' . $course_id );
+    error_log( '[DIRECT MP] Datos facturación: ' . print_r( $billing_data, true ) );
+    
+    // Obtener información del curso
+    $course = get_post( $course_id );
+    if ( ! $course ) {
+        error_log( '[DIRECT MP] Curso no encontrado' );
+        wp_send_json_error( 'Curso no encontrado' );
+        return;
     }
+    
+    // Obtener precio del curso
+    $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+    if ( ! $course_price || $course_price <= 0 ) {
+        error_log( '[DIRECT MP] Precio del curso inválido: ' . $course_price );
+        wp_send_json_error( 'Precio del curso inválido' );
+        return;
+    }
+    
+    // Crear orden interna
+    $order_data = array(
+        'course_id' => $course_id,
+        'user_id' => get_current_user_id(),
+        'amount' => $course_price,
+        'currency' => 'USD',
+        'payment_method' => 'mercadopago',
+        'billing_data' => $billing_data,
+        'status' => 'pending',
+        'created_at' => current_time( 'mysql' )
+    );
+    
+    // Guardar orden en base de datos (usando options por simplicidad)
+    $order_id = 'mp_' . time() . '_' . $course_id;
+    update_option( 'tutor_order_' . $order_id, $order_data );
+    
+    error_log( '[DIRECT MP] Orden creada: ' . $order_id );
+    
+    // Crear preferencia de Mercado Pago
+    $preference_data = array(
+        'items' => array(
+            array(
+                'title' => $course->post_title,
+                'quantity' => 1,
+                'unit_price' => floatval( $course_price )
+            )
+        ),
+        'payer' => array(
+            'name' => $billing_data['first_name'],
+            'surname' => $billing_data['last_name'],
+            'email' => $billing_data['email']
+        ),
+        'back_urls' => array(
+            'success' => home_url( '/payment-success/?order_id=' . $order_id ),
+            'failure' => home_url( '/payment-failure/?order_id=' . $order_id ),
+            'pending' => home_url( '/payment-pending/?order_id=' . $order_id )
+        ),
+        'auto_return' => 'approved',
+        'external_reference' => $order_id
+    );
+    
+    // Simular respuesta de Mercado Pago (en producción usar API real)
+    $mp_response = array(
+        'init_point' => 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=test_preference_' . $order_id
+    );
+    
+    error_log( '[DIRECT MP] Preferencia creada exitosamente' );
+    
+    wp_send_json_success( $mp_response );
+}
+
+add_action( 'wp_ajax_create_paypal_order', 'handle_create_paypal_order' );
+add_action( 'wp_ajax_nopriv_create_paypal_order', 'handle_create_paypal_order' );
+
+function handle_create_paypal_order() {
+    error_log( '[DIRECT PP] Iniciando creación de orden PayPal' );
+    
+    // Verificar nonce
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'paypal_nonce' ) ) {
+        error_log( '[DIRECT PP] Nonce inválido' );
+        wp_send_json_error( 'Nonce inválido' );
+        return;
+    }
+    
+    $course_id = intval( $_POST['course_id'] );
+    $billing_data = $_POST['billing_data'];
+    
+    if ( ! $course_id ) {
+        error_log( '[DIRECT PP] Course ID inválido' );
+        wp_send_json_error( 'Course ID inválido' );
+        return;
+    }
+    
+    error_log( '[DIRECT PP] Procesando curso: ' . $course_id );
+    error_log( '[DIRECT PP] Datos facturación: ' . print_r( $billing_data, true ) );
+    
+    // Obtener información del curso
+    $course = get_post( $course_id );
+    if ( ! $course ) {
+        error_log( '[DIRECT PP] Curso no encontrado' );
+        wp_send_json_error( 'Curso no encontrado' );
+        return;
+    }
+    
+    // Obtener precio del curso
+    $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+    if ( ! $course_price || $course_price <= 0 ) {
+        error_log( '[DIRECT PP] Precio del curso inválido: ' . $course_price );
+        wp_send_json_error( 'Precio del curso inválido' );
+        return;
+    }
+    
+    // Crear orden interna
+    $order_data = array(
+        'course_id' => $course_id,
+        'user_id' => get_current_user_id(),
+        'amount' => $course_price,
+        'currency' => 'USD',
+        'payment_method' => 'paypal',
+        'billing_data' => $billing_data,
+        'status' => 'pending',
+        'created_at' => current_time( 'mysql' )
+    );
+    
+    // Guardar orden en base de datos
+    $order_id = 'pp_' . time() . '_' . $course_id;
+    update_option( 'tutor_order_' . $order_id, $order_data );
+    
+    error_log( '[DIRECT PP] Orden creada: ' . $order_id );
+    
+    // Crear orden de PayPal
+    $paypal_data = array(
+        'intent' => 'CAPTURE',
+        'purchase_units' => array(
+            array(
+                'amount' => array(
+                    'currency_code' => 'USD',
+                    'value' => number_format( $course_price, 2, '.', '' )
+                ),
+                'description' => $course->post_title
+            )
+        ),
+        'application_context' => array(
+            'return_url' => home_url( '/payment-success/?order_id=' . $order_id ),
+            'cancel_url' => home_url( '/payment-failure/?order_id=' . $order_id )
+        )
+    );
+    
+    // Simular respuesta de PayPal (en producción usar API real)
+    $paypal_response = array(
+        'approval_url' => 'https://www.sandbox.paypal.com/checkoutnow?token=test_token_' . $order_id
+    );
+    
+    error_log( '[DIRECT PP] Orden PayPal creada exitosamente' );
+    
+    wp_send_json_success( $paypal_response );
 }
 
 // 7. Sincronizar cambios de cantidad

@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class TutorPaymentGatewayDirect {
     
     public function __construct() {
+        error_log( 'DIRECT GATEWAY: Plugin inicializado' );
         add_action( 'tutor_action_tutor_pay_now', array( $this, 'process_payment' ), 1 );
         add_action( 'wp_ajax_mercadopago_webhook', array( $this, 'handle_mercadopago_webhook' ) );
         add_action( 'wp_ajax_nopriv_mercadopago_webhook', array( $this, 'handle_mercadopago_webhook' ) );
