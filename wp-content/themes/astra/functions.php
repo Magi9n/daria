@@ -193,42 +193,23 @@ function astra_redirect_to_wc_cart() {
 }
 
 /**
- * DEBUG: Verificar estado del carrito en checkout
+ * DEBUG: Verificar estado del carrito en checkout (simplificado)
  */
 add_action( 'wp_footer', 'astra_debug_cart_checkout' );
 function astra_debug_cart_checkout() {
-    if ( function_exists('is_checkout') && is_checkout() ) {
+    if ( function_exists('is_checkout') && is_checkout() && function_exists('WC') && WC()->cart ) {
+        $cart_empty = WC()->cart->is_empty();
+        $cart_count = WC()->cart->get_cart_contents_count();
+        $cart_total = WC()->cart->get_total();
+        
         ?>
         <script>
         console.log('=== DEBUG CARRITO CHECKOUT ===');
-        console.log('URL actual:', window.location.href);
-        
-        // Verificar si hay datos en localStorage
-        console.log('localStorage tcf_purchase_url:', localStorage.getItem('tcf_purchase_url'));
-        console.log('localStorage tcf_purchase_time:', localStorage.getItem('tcf_purchase_time'));
+        console.log('Carrito vacío:', <?php echo $cart_empty ? 'true' : 'false'; ?>);
+        console.log('Items en carrito:', <?php echo $cart_count; ?>);
+        console.log('Total carrito:', '<?php echo esc_js($cart_total); ?>');
         </script>
         <?php
-        
-        // Debug PHP
-        if ( function_exists('WC') && WC()->cart ) {
-            echo '<script>';
-            echo 'console.log("Carrito WC está vacío:", ' . (WC()->cart->is_empty() ? 'true' : 'false') . ');';
-            echo 'console.log("Cantidad de items en carrito:", ' . WC()->cart->get_cart_contents_count() . ');';
-            echo 'console.log("Total del carrito:", "' . WC()->cart->get_total() . '");';
-            echo 'console.log("Subtotal del carrito:", "' . WC()->cart->get_subtotal() . '");';
-            
-            // Mostrar items del carrito
-            $cart_items = WC()->cart->get_cart();
-            echo 'console.log("Items en carrito:", ' . json_encode(array_keys($cart_items)) . ');';
-            
-            foreach ( $cart_items as $cart_item_key => $cart_item ) {
-                $product = $cart_item['data'];
-                echo 'console.log("Producto ID:", ' . $cart_item['product_id'] . ');';
-                echo 'console.log("Producto nombre:", "' . $product->get_name() . '");';
-                echo 'console.log("Producto precio:", "' . $product->get_price() . '");';
-            }
-            echo '</script>';
-        }
     }
 }
 
