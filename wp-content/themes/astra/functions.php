@@ -783,7 +783,40 @@ function setup_tutor_ajax_logging() {
 add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 function sync_tutor_remove_to_wc() {
-    // ... (rest of the function remains the same)
+    error_log( '[SYNC DEBUG] sync_tutor_remove_to_wc iniciado' );
+    
+    if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        error_log( '[SYNC DEBUG] Funciones WC o tutor_utils no disponibles en remove' );
+        return;
+    }
+    
+    if ( ! isset( $_POST['course_id'] ) ) {
+        error_log( '[SYNC DEBUG] No course_id en remove request' );
+        return;
+    }
+    
+    $course_id = intval( $_POST['course_id'] );
+    if ( ! $course_id ) {
+        error_log( '[SYNC DEBUG] Course ID inválido en remove: ' . ( $_POST['course_id'] ?? 'no_course_id' ) );
+        return;
+    }
+    
+    // Obtener el product_id asociado al curso
+    $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+    if ( ! $product_id ) {
+        error_log( '[SYNC DEBUG] No product_id encontrado para curso ' . $course_id . ' en remove' );
+        return;
+    }
+    
+    // Remover producto del carrito de WooCommerce
+    $cart = WC()->cart;
+    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+        if ( $cart_item['product_id'] == $product_id ) {
+            $cart->remove_cart_item( $cart_item_key );
+            error_log( '[SYNC DEBUG] Producto ' . $product_id . ' removido del carrito WC' );
+            break;
+        }
+    }
 }
 
 // Handlers AJAX para pagos directos
