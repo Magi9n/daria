@@ -8,6 +8,9 @@
  * @since 1.0.0
  */
 
+// Mensaje de depuración para verificar que el archivo se está cargando
+error_log('Archivo functions.php cargado correctamente');
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -507,32 +510,70 @@ function debug_country_change_ajax() {
 add_action( 'wp_ajax_nopriv_tutor_get_states_by_country', 'debug_states_ajax' );
 add_action( 'wp_ajax_tutor_get_states_by_country', 'debug_states_ajax' );
 function debug_states_ajax() {
+    // Habilitar el registro de errores
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
     // Registrar la petición con todos los detalles
-    error_log( '[TUTOR AJAX] Interceptada petición de estados por país' );
-    error_log( '[TUTOR AJAX] Datos recibidos: ' . print_r( $_POST, true ) );
+    error_log('========================================');
+    error_log('[TUTOR AJAX] Interceptada petición de estados por país - ' . date('Y-m-d H:i:s'));
+    error_log('[TUTOR AJAX] Método de solicitud: ' . $_SERVER['REQUEST_METHOD']);
+    error_log('[TUTOR AJAX] Datos POST: ' . print_r($_POST, true));
+    error_log('[TUTOR AJAX] Datos GET: ' . print_r($_GET, true));
+    
+    // Verificar si WooCommerce está cargado
+    if (!function_exists('WC')) {
+        error_log('[TUTOR AJAX] ERROR: WooCommerce no está cargado');
+        wp_send_json_error('WooCommerce no está disponible');
+        return;
+    }
     
     // Verificar si hay un nonce y validarlo
-    if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'tutor_nonce' ) ) {
-        error_log( '[TUTOR AJAX] Error: Nonce inválido o faltante' );
-        wp_send_json_error( 'Nonce inválido' );
+    if (!isset($_POST['nonce'])) {
+        error_log('[TUTOR AJAX] ERROR: Falta el nonce en la petición');
+        wp_send_json_error('Nonce no proporcionado');
+        return;
+    }
+    
+    if (!wp_verify_nonce($_POST['nonce'], 'tutor_nonce')) {
+        error_log('[TUTOR AJAX] ERROR: Nonce inválido');
+        wp_send_json_error('Nonce inválido');
         return;
     }
     
     // Verificar si se proporcionó el país
-    if ( ! isset( $_POST['country'] ) ) {
-        error_log( '[TUTOR AJAX] Error: No se proporcionó el país' );
-        wp_send_json_error( 'País no proporcionado' );
+    if (!isset($_POST['country'])) {
+        error_log('[TUTOR AJAX] ERROR: No se proporcionó el país');
+        wp_send_json_error('País no proporcionado');
         return;
     }
     
-    // Continuar con el procesamiento normal
-    $country = sanitize_text_field( $_POST['country'] );
-    $states = WC()->countries->get_states( $country );
+    $country = sanitize_text_field($_POST['country']);
+    error_log('[TUTOR AJAX] Procesando país: ' . $country);
     
-    // Registrar los estados que se devolverán
-    error_log( '[TUTOR AJAX] Estados encontrados para ' . $country . ': ' . print_r( $states, true ) );
+    try {
+        // Obtener los estados del país
+        $states = WC()->countries->get_states($country);
+        
+        if (empty($states)) {
+            error_log('[TUTOR AJAX] No se encontraron estados para: ' . $country);
+            $states = array(); // Asegurarse de devolver un array vacío en lugar de null
+        } else {
+            error_log('[TUTOR AJAX] Estados encontrados para ' . $country . ': ' . count($states));
+        }
+        
+        // Registrar los primeros 3 estados como ejemplo
+        $example_states = array_slice($states, 0, 3, true);
+        error_log('[TUTOR AJAX] Ejemplo de estados: ' . print_r($example_states, true));
+        
+        wp_send_json_success($states);
+        
+    } catch (Exception $e) {
+        error_log('[TUTOR AJAX] EXCEPCIÓN al obtener estados: ' . $e->getMessage());
+        wp_send_json_error('Error al obtener los estados: ' . $e->getMessage());
+    }
     
-    wp_send_json_success( $states );
+    error_log('========================================');
 }
 
 // Log general para todas las peticiones AJAX de Tutor
