@@ -98,57 +98,104 @@ $is_checkout_page = true;
 
 								<?php
 								$supported_gateways = array();
-								if ( $plan_id && function_exists( 'tutor_get_subscription_supported_payment_gateways' ) ) {
-									$supported_gateways = tutor_get_subscription_supported_payment_gateways();
-								} elseif ( function_exists( 'tutor_get_all_active_payment_gateways' ) ) {
-									$supported_gateways = tutor_get_all_active_payment_gateways();
-								} else {
-									// Fallback: usar pasarelas de WooCommerce si están disponibles
-									if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
-										$wc_gateways = WC()->payment_gateways()->get_available_payment_gateways();
-										$supported_gateways = array_keys( $wc_gateways );
-									}
-								}
-								if ( empty( $supported_gateways ) ) {
-									?>
 
-										<div class="tutor-alert tutor-warning">
-										<?php esc_html_e( 'No payment method found. Please contact the site administrator.', 'tutor' ); ?>
-										</div>
-										<?php
-								} else {
-									foreach ( $supported_gateways as $gateway ) {
-										list( 'name' => $name, 'label' => $label, 'icon' => $icon ) = $gateway;
-										$is_manual = $gateway['is_manual'] ?? false;
-										if ( $is_manual ) {
-											?>
-											<label class="tutor-checkout-payment-item" data-payment-method="<?php echo esc_attr( $name ); ?>" data-payment-type="manual">
-												<input type="radio" value="<?php echo esc_attr( $name ); ?>" name="payment_method" class="tutor-form-check-input">
-												<div class="tutor-payment-item-content">
-												<?php if ( ! empty( $icon ) ) : ?>
-													<img src ="<?php echo esc_url( $icon ); ?>" alt="<?php echo esc_attr( $name ); ?>"/>
-													<?php endif; ?>
-												<?php echo esc_html( $label ); ?>
-												</div>
-												<div class="tutor-d-none tutor-payment-item-instructions"><?php echo wp_kses_post( $gateway['payment_instructions'] ?? '' ); ?></div>
-											</label>
-												<?php
+								// Verificar si las funciones de Tutor LMS están disponibles
+								$tutor_functions_exist = function_exists( 'tutor_get_subscription_supported_payment_gateways' ) && 
+									function_exists( 'tutor_get_all_active_payment_gateways' );
+
+								try {
+									if ( $tutor_functions_exist ) {
+										if ( $plan_id ) {
+											$supported_gateways = tutor_get_subscription_supported_payment_gateways();
 										} else {
-											?>
-											<label class="tutor-checkout-payment-item" data-payment-type="automate">
-												<input type="radio" name="payment_method" value="<?php echo esc_attr( $name ); ?>" class="tutor-form-check-input">
-												<div class="tutor-payment-item-content">
-												<?php if ( ! empty( $icon ) ) : ?>
-													<img src = "<?php echo esc_url( $icon ); ?>" alt="<?php echo esc_attr( $name ); ?>"/>
-													<?php endif; ?>
-												<?php echo esc_html( $label ); ?>
-												</div>
-											</label>
-												<?php
+											$supported_gateways = tutor_get_all_active_payment_gateways();
 										}
+									}
+								} catch (Exception $e) {
+									error_log('Error al obtener pasarelas de pago de Tutor LMS: ' . $e->getMessage());
+								}
+
+								// Si no hay pasarelas de Tutor o hubo un error, intentar con WooCommerce
+								if ( empty( $supported_gateways ) && function_exists( 'WC' ) && WC()->payment_gateways() ) {
+									try {
+										$wc_gateways = WC()->payment_gateways()->get_available_payment_gateways();
+										if ( ! empty( $wc_gateways ) ) {
+											$supported_gateways = array_keys( $wc_gateways );
+											error_log('Usando pasarelas de pago de WooCommerce: ' . implode(', ', $supported_gateways));
+										}
+									} catch (Exception $e) {
+										error_log('Error al obtener pasarelas de pago de WooCommerce: ' . $e->getMessage());
 									}
 								}
 								?>
+								<?php if ( empty( $supported_gateways ) ) : ?>
+								<div class="tutor-alert tutor-warning">
+									<?php esc_html_e( 'No payment method found. Please contact the site administrator.', 'tutor' ); ?>
+								</div>
+							<?php else : ?>
+								<?php 
+								// Verificar si $supported_gateways es un array de arrays (formato de Tutor) o un array de strings (formato de WooCommerce)
+								$is_tutor_format = isset($supported_gateways[0]) && is_array($supported_gateways[0]);
+								
+								if ($is_tutor_format) {
+									// Formato de Tutor LMS
+									foreach ($supported_gateways as $gateway) {
+										if (!is_array($gateway)) continue;
+										
+										$name = $gateway['name'] ?? '';
+										$label = $gateway['label'] ?? $name;
+										$icon = $gateway['icon'] ?? '';
+										$is_manual = $gateway['is_manual'] ?? false;
+										
+										if ($is_manual) {
+											?>
+											<label class="tutor-checkout-payment-item" data-payment-method="<?php echo esc_attr($name); ?>" data-payment-type="manual">
+												<input type="radio" value="<?php echo esc_attr($name); ?>" name="payment_method" class="tutor-form-check-input">
+												<div class="tutor-payment-item-content">
+													<?php if (!empty($icon)) : ?>
+														<img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($name); ?>"/>
+													<?php endif; ?>
+													<?php echo esc_html($label); ?>
+												</div>
+												<div class="tutor-d-none tutor-payment-item-instructions"><?php echo wp_kses_post($gateway['payment_instructions'] ?? ''); ?></div>
+											</label>
+											<?php
+										} else {
+											?>
+											<label class="tutor-checkout-payment-item" data-payment-type="automate">
+												<input type="radio" name="payment_method" value="<?php echo esc_attr($name); ?>" class="tutor-form-check-input">
+												<div class="tutor-payment-item-content">
+													<?php if (!empty($icon)) : ?>
+														<img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($name); ?>"/>
+													<?php endif; ?>
+													<?php echo esc_html($label); ?>
+												</div>
+											</label>
+											<?php
+										}
+									}
+								} else {
+									// Formato de WooCommerce (array de strings)
+									foreach ($supported_gateways as $gateway_id) {
+										$gateway = WC()->payment_gateways->payment_gateways()[$gateway_id] ?? null;
+										if (!$gateway) continue;
+										
+										$name = $gateway->id;
+										$label = $gateway->get_title();
+										$icon = $gateway->get_icon();
+										?>
+										<label class="tutor-checkout-payment-item" data-payment-type="woocommerce">
+											<input type="radio" name="payment_method" value="<?php echo esc_attr($name); ?>" class="tutor-form-check-input">
+											<div class="tutor-payment-item-content">
+												<?php echo $icon; // El ícono ya está escapado por WooCommerce ?>
+												<?php echo esc_html($label); ?>
+											</div>
+										</label>
+										<?php
+									}
+								}
+								?>
+							<?php endif; ?>
 							</div>
 
 							<div class="tutor-payment-instructions tutor-mb-20 tutor-d-none"></div>
