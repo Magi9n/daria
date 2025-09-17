@@ -205,13 +205,26 @@ function intercept_tutor_payment_process() {
         
         error_log( 'INTERCEPTOR: Datos de facturación establecidos' );
         
-        // Redirigir al checkout de WooCommerce con el método de pago preseleccionado
-        $checkout_url = wc_get_checkout_url();
-        $checkout_url = add_query_arg( 'payment_method', $payment_method, $checkout_url );
+        // Establecer el método de pago en la sesión de WooCommerce
+        WC()->session->set( 'chosen_payment_method', $payment_method );
         
-        error_log( 'INTERCEPTOR: Redirigiendo a WooCommerce checkout: ' . $checkout_url );
+        // Crear una orden directamente para evitar problemas con el checkout
+        $order = wc_create_order();
+        $order->add_product( wc_get_product( $product_id ), 1 );
+        $order->set_address( $billing_data, 'billing' );
+        $order->set_address( $billing_data, 'shipping' );
+        $order->set_payment_method( $payment_method );
+        $order->calculate_totals();
+        $order->save();
         
-        wp_redirect( $checkout_url );
+        error_log( 'INTERCEPTOR: Orden creada con ID: ' . $order->get_id() );
+        
+        // Obtener la URL de pago de la orden
+        $payment_url = $order->get_checkout_payment_url();
+        
+        error_log( 'INTERCEPTOR: Redirigiendo a URL de pago: ' . $payment_url );
+        
+        wp_redirect( $payment_url );
         exit;
         
     } catch ( Exception $e ) {
