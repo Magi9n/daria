@@ -72,147 +72,16 @@ $is_checkout_page = true;
 					<?php } ?>
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
-						<div class="tutor-checkout-billing-fields">
-							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
-								<?php esc_html_e( 'Billing Information', 'tutor' ); ?>
-							</h5>
-							
-							<div class="tutor-row">
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'First Name', 'tutor' ); ?></label>
-										<input type="text" name="billing_first_name" value="<?php echo esc_attr( $billing_info->billing_first_name ?? '' ); ?>" required>
-									</div>
-								</div>
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'Last Name', 'tutor' ); ?></label>
-										<input type="text" name="billing_last_name" value="<?php echo esc_attr( $billing_info->billing_last_name ?? '' ); ?>" required>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tutor-form-group">
-								<label><?php esc_html_e( 'Email', 'tutor' ); ?></label>
-								<input type="email" name="billing_email" value="<?php echo esc_attr( $billing_info->billing_email ?? get_option( 'admin_email' ) ); ?>" required>
-							</div>
-							
-							<div class="tutor-form-group">
-								<label><?php esc_html_e( 'Phone', 'tutor' ); ?></label>
-								<input type="text" name="billing_phone" value="<?php echo esc_attr( $billing_info->billing_phone ?? '' ); ?>">
-							</div>
-							
-							<div class="tutor-row">
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'Country', 'tutor' ); ?></label>
-										<select name="billing_country" id="billing_country" required>
-											<?php
-											$countries = WC()->countries->get_countries();
-											$selected_country = $billing_info->billing_country ?? 'US';
-											foreach ( $countries as $code => $name ) {
-												echo '<option value="' . esc_attr( $code ) . '"' . selected( $selected_country, $code, false ) . '>' . esc_html( $name ) . '</option>';
-											}
-											?>
-										</select>
-									</div>
-								</div>
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'State', 'tutor' ); ?></label>
-										<select name="billing_state" id="billing_state">
-											<option value=""><?php esc_html_e( 'Select State', 'tutor' ); ?></option>
-											<?php
-											$states = WC()->countries->get_states( $selected_country );
-											if ( $states ) {
-												$selected_state = $billing_info->billing_state ?? '';
-												foreach ( $states as $code => $name ) {
-													echo '<option value="' . esc_attr( $code ) . '"' . selected( $selected_state, $code, false ) . '>' . esc_html( $name ) . '</option>';
-												}
-											}
-											?>
-										</select>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tutor-form-group">
-								<label><?php esc_html_e( 'Address', 'tutor' ); ?></label>
-								<input type="text" name="billing_address_1" value="<?php echo esc_attr( $billing_info->billing_address_1 ?? '' ); ?>" required>
-							</div>
-							
-							<div class="tutor-row">
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'City', 'tutor' ); ?></label>
-										<input type="text" name="billing_city" value="<?php echo esc_attr( $billing_info->billing_city ?? '' ); ?>" required>
-									</div>
-								</div>
-								<div class="tutor-col-md-6">
-									<div class="tutor-form-group">
-										<label><?php esc_html_e( 'Postal Code', 'tutor' ); ?></label>
-										<input type="text" name="billing_postcode" value="<?php echo esc_attr( $billing_info->billing_postcode ?? '' ); ?>" required>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<script>
-						jQuery(document).ready(function($) {
-							// Estados predefinidos para países comunes
-							var countryStates = {
-								'US': {
-									'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California',
-									'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia',
-									'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa',
-									'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
-									'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri',
-									'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey',
-									'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio',
-									'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
-									'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont',
-									'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
-								},
-								'MX': {
-									'AGU': 'Aguascalientes', 'BCN': 'Baja California', 'BCS': 'Baja California Sur',
-									'CAM': 'Campeche', 'CHP': 'Chiapas', 'CHH': 'Chihuahua', 'COA': 'Coahuila',
-									'COL': 'Colima', 'DIF': 'Ciudad de México', 'DUR': 'Durango', 'GUA': 'Guanajuato',
-									'GRO': 'Guerrero', 'HID': 'Hidalgo', 'JAL': 'Jalisco', 'MEX': 'Estado de México',
-									'MIC': 'Michoacán', 'MOR': 'Morelos', 'NAY': 'Nayarit', 'NLE': 'Nuevo León',
-									'OAX': 'Oaxaca', 'PUE': 'Puebla', 'QUE': 'Querétaro', 'ROO': 'Quintana Roo',
-									'SLP': 'San Luis Potosí', 'SIN': 'Sinaloa', 'SON': 'Sonora', 'TAB': 'Tabasco',
-									'TAM': 'Tamaulipas', 'TLA': 'Tlaxcala', 'VER': 'Veracruz', 'YUC': 'Yucatán', 'ZAC': 'Zacatecas'
-								},
-								'PE': {
-									'AMA': 'Amazonas', 'ANC': 'Áncash', 'APU': 'Apurímac', 'ARE': 'Arequipa',
-									'AYA': 'Ayacucho', 'CAJ': 'Cajamarca', 'CAL': 'Callao', 'CUS': 'Cusco',
-									'HUV': 'Huancavelica', 'HUC': 'Huánuco', 'ICA': 'Ica', 'JUN': 'Junín',
-									'LAL': 'La Libertad', 'LAM': 'Lambayeque', 'LIM': 'Lima', 'LOR': 'Loreto',
-									'MDD': 'Madre de Dios', 'MOQ': 'Moquegua', 'PAS': 'Pasco', 'PIU': 'Piura',
-									'PUN': 'Puno', 'SAM': 'San Martín', 'TAC': 'Tacna', 'TUM': 'Tumbes', 'UCA': 'Ucayali'
-								}
-							};
-							
-							// Manejar cambio de país
-							$('#billing_country').on('change', function() {
-								var country = $(this).val();
-								var $stateSelect = $('#billing_state');
-								
-								// Limpiar estados actuales
-								$stateSelect.html('<option value=""><?php esc_html_e( "Select State", "tutor" ); ?></option>');
-								
-								// Cargar estados del país seleccionado
-								if (countryStates[country]) {
-									$.each(countryStates[country], function(code, name) {
-										$stateSelect.append('<option value="' + code + '">' + name + '</option>');
-									});
-								} else {
-									$stateSelect.html('<option value=""><?php esc_html_e( "No states available", "tutor" ); ?></option>');
-								}
-							});
-						});
-						</script>
-						
+						<!-- Billing information simplificado - solo campos esenciales ocultos -->
+						<input type="hidden" name="billing_first_name" value="Cliente">
+						<input type="hidden" name="billing_last_name" value="Comprador">
+						<input type="hidden" name="billing_email" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : 'cliente@ejemplo.com'; ?>">
+						<input type="hidden" name="billing_phone" value="">
+						<input type="hidden" name="billing_country" value="Mexico">
+						<input type="hidden" name="billing_state" value="MEX">
+						<input type="hidden" name="billing_address_1" value="Dirección no especificada">
+						<input type="hidden" name="billing_city" value="Ciudad">
+						<input type="hidden" name="billing_postcode" value="00000">	
 						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
 								<?php esc_html_e( 'Payment Method', 'tutor' ); ?>
