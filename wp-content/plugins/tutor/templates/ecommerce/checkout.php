@@ -159,41 +159,56 @@ $is_checkout_page = true;
 						
 						<script>
 						jQuery(document).ready(function($) {
-							// Manejar cambio de país sin causar errores AJAX
+							// Estados predefinidos para países comunes
+							var countryStates = {
+								'US': {
+									'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California',
+									'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia',
+									'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa',
+									'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
+									'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri',
+									'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey',
+									'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio',
+									'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
+									'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont',
+									'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
+								},
+								'MX': {
+									'AGU': 'Aguascalientes', 'BCN': 'Baja California', 'BCS': 'Baja California Sur',
+									'CAM': 'Campeche', 'CHP': 'Chiapas', 'CHH': 'Chihuahua', 'COA': 'Coahuila',
+									'COL': 'Colima', 'DIF': 'Ciudad de México', 'DUR': 'Durango', 'GUA': 'Guanajuato',
+									'GRO': 'Guerrero', 'HID': 'Hidalgo', 'JAL': 'Jalisco', 'MEX': 'Estado de México',
+									'MIC': 'Michoacán', 'MOR': 'Morelos', 'NAY': 'Nayarit', 'NLE': 'Nuevo León',
+									'OAX': 'Oaxaca', 'PUE': 'Puebla', 'QUE': 'Querétaro', 'ROO': 'Quintana Roo',
+									'SLP': 'San Luis Potosí', 'SIN': 'Sinaloa', 'SON': 'Sonora', 'TAB': 'Tabasco',
+									'TAM': 'Tamaulipas', 'TLA': 'Tlaxcala', 'VER': 'Veracruz', 'YUC': 'Yucatán', 'ZAC': 'Zacatecas'
+								},
+								'PE': {
+									'AMA': 'Amazonas', 'ANC': 'Áncash', 'APU': 'Apurímac', 'ARE': 'Arequipa',
+									'AYA': 'Ayacucho', 'CAJ': 'Cajamarca', 'CAL': 'Callao', 'CUS': 'Cusco',
+									'HUV': 'Huancavelica', 'HUC': 'Huánuco', 'ICA': 'Ica', 'JUN': 'Junín',
+									'LAL': 'La Libertad', 'LAM': 'Lambayeque', 'LIM': 'Lima', 'LOR': 'Loreto',
+									'MDD': 'Madre de Dios', 'MOQ': 'Moquegua', 'PAS': 'Pasco', 'PIU': 'Piura',
+									'PUN': 'Puno', 'SAM': 'San Martín', 'TAC': 'Tacna', 'TUM': 'Tumbes', 'UCA': 'Ucayali'
+								}
+							};
+							
+							// Manejar cambio de país
 							$('#billing_country').on('change', function() {
 								var country = $(this).val();
 								var $stateSelect = $('#billing_state');
 								
 								// Limpiar estados actuales
-								$stateSelect.html('<option value=""><?php esc_html_e( "Loading...", "tutor" ); ?></option>');
+								$stateSelect.html('<option value=""><?php esc_html_e( "Select State", "tutor" ); ?></option>');
 								
-								// Usar AJAX de WooCommerce en lugar de Tutor LMS para evitar errores
-								$.ajax({
-									url: wc_checkout_params.ajax_url,
-									type: 'POST',
-									data: {
-										action: 'woocommerce_get_refreshed_fragments',
-										country: country
-									},
-									success: function(response) {
-										// Obtener estados usando la API de WooCommerce
-										if (typeof wc_country_select_params !== 'undefined' && wc_country_select_params.countries[country]) {
-											var states = wc_country_select_params.countries[country];
-											$stateSelect.html('<option value=""><?php esc_html_e( "Select State", "tutor" ); ?></option>');
-											
-											if (states) {
-												$.each(states, function(code, name) {
-													$stateSelect.append('<option value="' + code + '">' + name + '</option>');
-												});
-											}
-										} else {
-											$stateSelect.html('<option value=""><?php esc_html_e( "No states available", "tutor" ); ?></option>');
-										}
-									},
-									error: function() {
-										$stateSelect.html('<option value=""><?php esc_html_e( "Error loading states", "tutor" ); ?></option>');
-									}
-								});
+								// Cargar estados del país seleccionado
+								if (countryStates[country]) {
+									$.each(countryStates[country], function(code, name) {
+										$stateSelect.append('<option value="' + code + '">' + name + '</option>');
+									});
+								} else {
+									$stateSelect.html('<option value=""><?php esc_html_e( "No states available", "tutor" ); ?></option>');
+								}
 							});
 						});
 						</script>
