@@ -191,38 +191,3 @@ add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_wc_cart' );
 function astra_redirect_to_wc_cart() {
     return wc_get_cart_url(); // Redirige a /cart/
 }
-
-/**
- * Desactivar MercadoPago en checkout para evitar conflictos
- */
-add_action( 'wp_enqueue_scripts', 'astra_disable_mercadopago_checkout', 100 );
-function astra_disable_mercadopago_checkout() {
-    if ( is_checkout() ) {
-        // Desactivar scripts de MercadoPago que causan conflictos
-        wp_dequeue_script( 'woocommerce-mercadopago-checkout-custom' );
-        wp_dequeue_script( 'woocommerce-mercadopago-custom-checkout' );
-        wp_dequeue_script( 'mp-custom-checkout' );
-        
-        // Forzar recálculo del carrito en checkout
-        if ( function_exists('WC') && WC()->cart ) {
-            WC()->cart->calculate_totals();
-        }
-    }
-}
-
-/**
- * Forzar que WooCommerce mantenga los items del carrito en checkout
- */
-add_action( 'woocommerce_checkout_init', 'astra_force_cart_items_checkout' );
-function astra_force_cart_items_checkout() {
-    if ( function_exists('WC') && WC()->cart ) {
-        // Si el carrito parece vacío, intentar restaurar desde cookies/sesión
-        if ( WC()->cart->is_empty() ) {
-            WC()->cart->maybe_set_cart_cookies();
-            WC()->cart->get_cart_from_session();
-        }
-        
-        // Forzar recálculo
-        WC()->cart->calculate_totals();
-    }
-}
