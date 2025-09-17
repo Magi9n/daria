@@ -495,15 +495,29 @@ function sync_wc_remove_to_tutor( $cart_item_key, $cart ) {
     }
 }
 
-// Añadir hook para capturar TODAS las peticiones AJAX y logearlas
-add_action( 'init', 'setup_ajax_logging' );
-function setup_ajax_logging() {
-    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-        error_log( '[AJAX DEBUG] Petición AJAX detectada: ' . ( $_POST['action'] ?? 'no_action' ) . ' - POST data: ' . json_encode( $_POST ) );
-        
-        // Log específico para billing country
-        if ( isset( $_POST['action'] ) && strpos( $_POST['action'], 'billing' ) !== false ) {
-            error_log( '[BILLING DEBUG] Acción billing detectada: ' . $_POST['action'] );
+// Interceptar peticiones AJAX problemáticas
+add_action( 'wp_ajax_nopriv_tutor_checkout_country_change', 'debug_country_change_ajax' );
+add_action( 'wp_ajax_tutor_checkout_country_change', 'debug_country_change_ajax' );
+function debug_country_change_ajax() {
+    error_log( '[COUNTRY DEBUG] Petición country change detectada - POST: ' . json_encode( $_POST ) );
+    // No hacer nada más, solo loggear
+}
+
+// Interceptar cualquier petición AJAX que cause 400
+add_action( 'wp_ajax_nopriv_tutor_get_states_by_country', 'debug_states_ajax' );
+add_action( 'wp_ajax_tutor_get_states_by_country', 'debug_states_ajax' );
+function debug_states_ajax() {
+    error_log( '[STATES DEBUG] Petición get states detectada - POST: ' . json_encode( $_POST ) );
+    // No hacer nada más, solo loggear
+}
+
+// Log general para todas las peticiones AJAX de Tutor
+add_action( 'init', 'setup_tutor_ajax_logging' );
+function setup_tutor_ajax_logging() {
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) ) {
+        $action = $_POST['action'];
+        if ( strpos( $action, 'tutor' ) !== false ) {
+            error_log( '[TUTOR AJAX] Action: ' . $action . ' | Data: ' . json_encode( $_POST ) );
         }
     }
 }
