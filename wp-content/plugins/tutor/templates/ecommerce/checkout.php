@@ -71,16 +71,132 @@ $is_checkout_page = true;
 							</div>
 					<?php } ?>
 
-						<!-- Sección de facturación ocultada para simplificar el proceso de pago -->
-						<input type="hidden" name="billing_first_name" value="Cliente">
-						<input type="hidden" name="billing_last_name" value="Web">
-						<input type="hidden" name="billing_email" value="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>">
-						<input type="hidden" name="billing_phone" value="0000000000">
-						<input type="hidden" name="billing_country" value="US">
-						<input type="hidden" name="billing_address_1" value="N/A">
-						<input type="hidden" name="billing_city" value="N/A">
-						<input type="hidden" name="billing_state" value="N/A">
-						<input type="hidden" name="billing_postcode" value="00000">
+						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
+						<div class="tutor-checkout-billing-fields">
+							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
+								<?php esc_html_e( 'Billing Information', 'tutor' ); ?>
+							</h5>
+							
+							<div class="tutor-row">
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'First Name', 'tutor' ); ?></label>
+										<input type="text" name="billing_first_name" value="<?php echo esc_attr( $billing_info->billing_first_name ?? '' ); ?>" required>
+									</div>
+								</div>
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'Last Name', 'tutor' ); ?></label>
+										<input type="text" name="billing_last_name" value="<?php echo esc_attr( $billing_info->billing_last_name ?? '' ); ?>" required>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tutor-form-group">
+								<label><?php esc_html_e( 'Email', 'tutor' ); ?></label>
+								<input type="email" name="billing_email" value="<?php echo esc_attr( $billing_info->billing_email ?? get_option( 'admin_email' ) ); ?>" required>
+							</div>
+							
+							<div class="tutor-form-group">
+								<label><?php esc_html_e( 'Phone', 'tutor' ); ?></label>
+								<input type="text" name="billing_phone" value="<?php echo esc_attr( $billing_info->billing_phone ?? '' ); ?>">
+							</div>
+							
+							<div class="tutor-row">
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'Country', 'tutor' ); ?></label>
+										<select name="billing_country" id="billing_country" required>
+											<?php
+											$countries = WC()->countries->get_countries();
+											$selected_country = $billing_info->billing_country ?? 'US';
+											foreach ( $countries as $code => $name ) {
+												echo '<option value="' . esc_attr( $code ) . '"' . selected( $selected_country, $code, false ) . '>' . esc_html( $name ) . '</option>';
+											}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'State', 'tutor' ); ?></label>
+										<select name="billing_state" id="billing_state">
+											<option value=""><?php esc_html_e( 'Select State', 'tutor' ); ?></option>
+											<?php
+											$states = WC()->countries->get_states( $selected_country );
+											if ( $states ) {
+												$selected_state = $billing_info->billing_state ?? '';
+												foreach ( $states as $code => $name ) {
+													echo '<option value="' . esc_attr( $code ) . '"' . selected( $selected_state, $code, false ) . '>' . esc_html( $name ) . '</option>';
+												}
+											}
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tutor-form-group">
+								<label><?php esc_html_e( 'Address', 'tutor' ); ?></label>
+								<input type="text" name="billing_address_1" value="<?php echo esc_attr( $billing_info->billing_address_1 ?? '' ); ?>" required>
+							</div>
+							
+							<div class="tutor-row">
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'City', 'tutor' ); ?></label>
+										<input type="text" name="billing_city" value="<?php echo esc_attr( $billing_info->billing_city ?? '' ); ?>" required>
+									</div>
+								</div>
+								<div class="tutor-col-md-6">
+									<div class="tutor-form-group">
+										<label><?php esc_html_e( 'Postal Code', 'tutor' ); ?></label>
+										<input type="text" name="billing_postcode" value="<?php echo esc_attr( $billing_info->billing_postcode ?? '' ); ?>" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<script>
+						jQuery(document).ready(function($) {
+							// Manejar cambio de país sin causar errores AJAX
+							$('#billing_country').on('change', function() {
+								var country = $(this).val();
+								var $stateSelect = $('#billing_state');
+								
+								// Limpiar estados actuales
+								$stateSelect.html('<option value=""><?php esc_html_e( "Loading...", "tutor" ); ?></option>');
+								
+								// Usar AJAX de WooCommerce en lugar de Tutor LMS para evitar errores
+								$.ajax({
+									url: wc_checkout_params.ajax_url,
+									type: 'POST',
+									data: {
+										action: 'woocommerce_get_refreshed_fragments',
+										country: country
+									},
+									success: function(response) {
+										// Obtener estados usando la API de WooCommerce
+										if (typeof wc_country_select_params !== 'undefined' && wc_country_select_params.countries[country]) {
+											var states = wc_country_select_params.countries[country];
+											$stateSelect.html('<option value=""><?php esc_html_e( "Select State", "tutor" ); ?></option>');
+											
+											if (states) {
+												$.each(states, function(code, name) {
+													$stateSelect.append('<option value="' + code + '">' + name + '</option>');
+												});
+											}
+										} else {
+											$stateSelect.html('<option value=""><?php esc_html_e( "No states available", "tutor" ); ?></option>');
+										}
+									},
+									error: function() {
+										$stateSelect.html('<option value=""><?php esc_html_e( "Error loading states", "tutor" ); ?></option>');
+									}
+								});
+							});
+						});
+						</script>
 						
 						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
