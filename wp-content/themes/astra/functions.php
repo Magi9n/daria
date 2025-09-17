@@ -61,7 +61,35 @@ function test_debug_logging() {
 
 // Interceptar la petición AJAX específica de Tutor LMS que está fallando
 add_action('wp_ajax_nopriv_tutor_get_states_by_country', 'intercept_tutor_states_ajax', 1);
-add_action('wp_ajax_tutor_get_states_by_country', 'intercept_tutor_states_ajax', 1);
+add_action( 'wp_ajax_tutor_get_states_by_country', 'intercept_tutor_states_ajax', 5 );
+
+/**
+ * Filtro para manejar los campos de facturación ocultos
+ * Asegura que WooCommerce acepte los valores predeterminados para el pago
+ */
+add_filter( 'woocommerce_checkout_posted_data', 'simplify_checkout_fields' );
+function simplify_checkout_fields( $data ) {
+    // Si ya hay datos de facturación, no hacemos nada
+    if ( ! empty( $data['billing_first_name'] ) && $data['billing_first_name'] !== 'Cliente' ) {
+        return $data;
+    }
+    
+    // Establecer valores predeterminados para los campos de facturación
+    $data['billing_first_name'] = 'Cliente';
+    $data['billing_last_name']  = 'Web';
+    $data['billing_email']      = ! empty( $data['billing_email'] ) ? $data['billing_email'] : get_option( 'admin_email' );
+    $data['billing_phone']      = '0000000000';
+    $data['billing_country']    = 'US';
+    $data['billing_address_1']  = 'N/A';
+    $data['billing_city']       = 'N/A';
+    $data['billing_state']      = 'N/A';
+    $data['billing_postcode']   = '00000';
+    
+    // Asegurarse de que el shipping sea igual al billing
+    $data['ship_to_different_address'] = '0';
+    
+    return $data;
+}
 
 function intercept_tutor_states_ajax() {
     // Verificar si es la acción que estamos buscando

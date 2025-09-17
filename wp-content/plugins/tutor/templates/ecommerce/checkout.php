@@ -71,19 +71,20 @@ $is_checkout_page = true;
 							</div>
 					<?php } ?>
 
-						<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
-							<?php
-							$address_title = __( 'Billing Address', 'tutor' );
-							if ( ! is_user_logged_in() ) {
-								$address_title = __( 'Continue as Guest', 'tutor' );
-							}
-
-							echo esc_html( $address_title );
-							?>
-						</h5>
-
-						<div class="tutor-billing-fields">
-							<?php require tutor()->path . 'templates/ecommerce/billing-form-fields.php'; ?>
+						<!-- Sección de facturación ocultada para simplificar el proceso de pago -->
+						<input type="hidden" name="billing_first_name" value="Cliente">
+						<input type="hidden" name="billing_last_name" value="Web">
+						<input type="hidden" name="billing_email" value="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>">
+						<input type="hidden" name="billing_phone" value="0000000000">
+						<input type="hidden" name="billing_country" value="US">
+						<input type="hidden" name="billing_address_1" value="N/A">
+						<input type="hidden" name="billing_city" value="N/A">
+						<input type="hidden" name="billing_state" value="N/A">
+						<input type="hidden" name="billing_postcode" value="00000">
+						
+						<!-- Mensaje informativo -->
+						<div class="tutor-alert tutor-alert-info tutor-mb-24">
+							<?php esc_html_e( 'Proceso de pago simplificado. Por favor, selecciona tu método de pago para continuar.', 'tutor' ); ?>
 						</div>
 						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
