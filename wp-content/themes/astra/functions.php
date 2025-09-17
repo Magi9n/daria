@@ -133,7 +133,7 @@ function validate_tutor_checkout() {
 /**
  * Interceptar y manejar el proceso de pago de Tutor LMS
  */
-add_action( 'init', 'handle_tutor_checkout_submission' );
+add_action( 'template_redirect', 'handle_tutor_checkout_submission' );
 function handle_tutor_checkout_submission() {
     if ( isset( $_POST['tutor_action'] ) && $_POST['tutor_action'] === 'tutor_pay_now' ) {
         error_log( 'Procesando pago de Tutor LMS - Método: ' . ( $_POST['payment_method'] ?? 'No definido' ) );
@@ -146,81 +146,89 @@ function handle_tutor_checkout_submission() {
         
         if ( ! $nonce_verified ) {
             error_log( 'Error: Nonce inválido en checkout de Tutor. Campos disponibles: ' . implode( ', ', array_keys( $_POST ) ) );
-            // Continuar el proceso aunque el nonce no sea válido para permitir el pago
+            error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
+            // Continuar sin verificar nonce por ahora para diagnosticar
         } else {
             error_log( 'Nonce de Tutor verificado correctamente' );
         }
         
-        // Verificar que hay un método de pago seleccionado
-        if ( empty( $_POST['payment_method'] ) ) {
-            error_log( 'Error: No se seleccionó método de pago' );
-            wc_add_notice( 'Por favor selecciona un método de pago.', 'error' );
+        error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
+        
+        // Verificar que tenemos los datos necesarios
+        if ( ! isset( $_POST['object_ids'] ) || ! isset( $_POST['payment_method'] ) ) {
+            error_log( 'Error: Faltan datos necesarios para el checkout' );
             return;
         }
         
-        // Log del proceso
-        error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
+        // Obtener el ID del curso
+        $course_id = intval( $_POST['object_ids'] );
+        if ( ! $course_id ) {
+            error_log( 'Error: ID de curso inválido' );
+            return;
+        }
         
-        // Crear orden en WooCommerce y redirigir a la pasarela
-        if ( function_exists( 'WC' ) ) {
-            try {
-                // Crear orden de WooCommerce
-                $order = wc_create_order();
-                
-                // Agregar productos del carrito de Tutor al carrito de WooCommerce
-                if ( isset( $_POST['object_ids'] ) ) {
-                    $course_ids = explode( ',', $_POST['object_ids'] );
-                    foreach ( $course_ids as $course_id ) {
-                        $course_id = intval( trim( $course_id ) );
-                        if ( $course_id > 0 ) {
-                            // Buscar el producto de WooCommerce asociado al curso
-                            $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
-                            if ( $product_id ) {
-                                $order->add_product( wc_get_product( $product_id ), 1 );
-                                error_log( 'Producto agregado a la orden: ' . $product_id );
-                            }
-                        }
-                    }
-                }
-                
-                // Establecer dirección de facturación
-                $order->set_address( array(
-                    'first_name' => $_POST['billing_first_name'] ?? 'Cliente',
-                    'last_name'  => $_POST['billing_last_name'] ?? 'Web',
-                    'email'      => $_POST['billing_email'] ?? get_option( 'admin_email' ),
-                    'phone'      => $_POST['billing_phone'] ?? '0000000000',
-                    'country'    => $_POST['billing_country'] ?? 'US',
-                    'address_1'  => $_POST['billing_address_1'] ?? 'N/A',
-                    'city'       => $_POST['billing_city'] ?? 'N/A',
-                    'state'      => $_POST['billing_state'] ?? 'N/A',
-                    'postcode'   => $_POST['billing_postcode'] ?? '00000'
-                ), 'billing' );
-                
-                // Establecer método de pago
-                $order->set_payment_method( $_POST['payment_method'] );
-                
-                // Calcular totales
-                $order->calculate_totals();
-                
-                // Guardar la orden
-                $order->save();
-                
-                error_log( 'Orden creada con ID: ' . $order->get_id() );
-                
-                // Redirigir a la página de pago de WooCommerce usando JavaScript
-                $payment_url = $order->get_checkout_payment_url();
-                error_log( 'Redirigiendo a: ' . $payment_url );
-                
-                // Usar JavaScript para redirección inmediata
-                echo '<script type="text/javascript">window.location.href = "' . esc_url( $payment_url ) . '";</script>';
-                echo '<noscript><meta http-equiv="refresh" content="0;url=' . esc_url( $payment_url ) . '"></noscript>';
-                echo '<p>Redirigiendo al pago... <a href="' . esc_url( $payment_url ) . '">Haz clic aquí si no eres redirigido automáticamente</a></p>';
-                exit;
-                
-            } catch ( Exception $e ) {
-                error_log( 'Error al crear orden de WooCommerce: ' . $e->getMessage() );
-                wc_add_notice( 'Error al procesar el pago. Por favor intenta de nuevo.', 'error' );
+        // Verificar que WooCommerce esté disponible
+        if ( ! function_exists( 'WC' ) ) {
+            error_log( 'Error: WooCommerce no está disponible' );
+            return;
+        }
+        
+        try {
+            // Buscar el producto de WooCommerce asociado al curso
+            $product_id = tutor_utils()->get_course_product_id( $course_id );
+            if ( ! $product_id ) {
+                error_log( 'Error: No se encontró producto asociado al curso ' . $course_id );
+                return;
             }
+            
+            error_log( 'Producto encontrado: ' . $product_id . ' para curso: ' . $course_id );
+            
+            // Crear una nueva orden de WooCommerce
+            $order = wc_create_order();
+            
+            // Agregar el producto a la orden
+            $order->add_product( wc_get_product( $product_id ), 1 );
+            error_log( 'Producto agregado a la orden: ' . $product_id );
+            
+            // Establecer datos de facturación
+            $billing_data = array(
+                'first_name' => $_POST['billing_first_name'] ?? 'Cliente',
+                'last_name'  => $_POST['billing_last_name'] ?? 'Web',
+                'email'      => $_POST['billing_email'] ?? 'cliente@ejemplo.com',
+                'phone'      => $_POST['billing_phone'] ?? '0000000000',
+                'country'    => $_POST['billing_country'] ?? 'US',
+                'address_1'  => $_POST['billing_address_1'] ?? 'N/A',
+                'city'       => $_POST['billing_city'] ?? 'N/A',
+                'state'      => $_POST['billing_state'] ?? 'N/A',
+                'postcode'   => $_POST['billing_postcode'] ?? '00000'
+            );
+            
+            $order->set_address( $billing_data, 'billing' );
+            $order->set_address( $billing_data, 'shipping' );
+            
+            // Establecer el método de pago
+            if ( isset( $_POST['payment_method'] ) ) {
+                $order->set_payment_method( $_POST['payment_method'] );
+            }
+            
+            // Calcular totales
+            $order->calculate_totals();
+            
+            // Guardar la orden
+            $order->save();
+            
+            error_log( 'Orden creada con ID: ' . $order->get_id() );
+            
+            // Redirigir usando wp_redirect (debería funcionar en template_redirect)
+            $payment_url = $order->get_checkout_payment_url();
+            error_log( 'Redirigiendo a: ' . $payment_url );
+            
+            wp_redirect( $payment_url );
+            exit;
+            
+        } catch ( Exception $e ) {
+            error_log( 'Error al crear orden de WooCommerce: ' . $e->getMessage() );
+            wc_add_notice( 'Error al procesar el pago. Por favor intenta de nuevo.', 'error' );
         }
     }
 }
