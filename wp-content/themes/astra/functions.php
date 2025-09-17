@@ -131,49 +131,53 @@ function validate_tutor_checkout() {
 }
 
 /**
- * Interceptar y manejar el proceso de pago de Tutor LMS
+ * Modificar el comportamiento de Tutor LMS para usar WooCommerce
  */
-add_action( 'template_redirect', 'handle_tutor_checkout_submission' );
-function handle_tutor_checkout_submission() {
-    if ( isset( $_POST['tutor_action'] ) && $_POST['tutor_action'] === 'tutor_pay_now' ) {
-        error_log( 'Procesando pago de Tutor LMS - Método: ' . ( $_POST['payment_method'] ?? 'No definido' ) );
+add_filter( 'tutor_gateways_with_class', 'redirect_tutor_to_woocommerce_gateways', 10, 2 );
+function redirect_tutor_to_woocommerce_gateways( $gateways, $payment_method = null ) {
+    error_log( 'Interceptando gateways de Tutor LMS. Método solicitado: ' . $payment_method );
+    
+    // Solo interceptar nuestras pasarelas específicas
+    $woocommerce_gateways = array( 'woo-mercado-pago-basic', 'ppcp-gateway' );
+    
+    if ( in_array( $payment_method, $woocommerce_gateways ) ) {
+        error_log( 'Redirigiendo ' . $payment_method . ' a WooCommerce' );
         
-        // Verificar nonce de Tutor (usar el campo correcto que aparece en los logs)
-        $nonce_verified = false;
-        if ( isset( $_POST['_tutor_nonce'] ) ) {
-            $nonce_verified = wp_verify_nonce( $_POST['_tutor_nonce'], 'tutor_nonce_action' );
-        }
-        
-        if ( ! $nonce_verified ) {
-            error_log( 'Error: Nonce inválido en checkout de Tutor. Campos disponibles: ' . implode( ', ', array_keys( $_POST ) ) );
-            error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
-            // Continuar sin verificar nonce por ahora para diagnosticar
-        } else {
-            error_log( 'Nonce de Tutor verificado correctamente' );
-        }
-        
-        error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
-        
-        // Verificar que tenemos los datos necesarios
-        if ( ! isset( $_POST['object_ids'] ) || ! isset( $_POST['payment_method'] ) ) {
-            error_log( 'Error: Faltan datos necesarios para el checkout' );
-            return;
-        }
-        
-        // Obtener el ID del curso
-        $course_id = intval( $_POST['object_ids'] );
-        if ( ! $course_id ) {
-            error_log( 'Error: ID de curso inválido' );
-            return;
-        }
-        
-        // Verificar que WooCommerce esté disponible
-        if ( ! function_exists( 'WC' ) ) {
-            error_log( 'Error: WooCommerce no está disponible' );
-            return;
-        }
+        // Crear una clase personalizada que maneje la redirección a WooCommerce
+        $gateways[ $payment_method ] = array(
+            'gateway_class' => 'WooCommerceRedirectGateway'
+        );
+    }
+    
+    return $gateways;
+}
+
+/**
+ * Clase personalizada para redirigir pagos a WooCommerce
+ */
+class WooCommerceRedirectGateway {
+    
+    public function setup_payment_and_redirect( $payment_data ) {
+        error_log( 'WooCommerceRedirectGateway: Iniciando redirección a WooCommerce' );
+        error_log( 'Datos de pago: ' . print_r( $payment_data, true ) );
         
         try {
+            // Obtener el ID del curso desde los datos de pago
+            $course_id = null;
+            if ( isset( $payment_data->items ) ) {
+                foreach ( $payment_data->items as $item ) {
+                    if ( isset( $item['item_id'] ) && is_numeric( $item['item_id'] ) ) {
+                        $course_id = $item['item_id'];
+                        break;
+                    }
+                }
+            }
+            
+            if ( ! $course_id ) {
+                error_log( 'Error: No se pudo obtener el ID del curso' );
+                return;
+            }
+            
             // Buscar el producto de WooCommerce asociado al curso
             $product_id = tutor_utils()->get_course_product_id( $course_id );
             if ( ! $product_id ) {
@@ -190,25 +194,26 @@ function handle_tutor_checkout_submission() {
             $order->add_product( wc_get_product( $product_id ), 1 );
             error_log( 'Producto agregado a la orden: ' . $product_id );
             
-            // Establecer datos de facturación
+            // Establecer datos de facturación desde payment_data
             $billing_data = array(
-                'first_name' => $_POST['billing_first_name'] ?? 'Cliente',
-                'last_name'  => $_POST['billing_last_name'] ?? 'Web',
-                'email'      => $_POST['billing_email'] ?? 'cliente@ejemplo.com',
-                'phone'      => $_POST['billing_phone'] ?? '0000000000',
-                'country'    => $_POST['billing_country'] ?? 'US',
-                'address_1'  => $_POST['billing_address_1'] ?? 'N/A',
-                'city'       => $_POST['billing_city'] ?? 'N/A',
-                'state'      => $_POST['billing_state'] ?? 'N/A',
-                'postcode'   => $_POST['billing_postcode'] ?? '00000'
+                'first_name' => $payment_data->billing_address->name ?? 'Cliente',
+                'last_name'  => '',
+                'email'      => $payment_data->billing_address->email ?? 'cliente@ejemplo.com',
+                'phone'      => $payment_data->billing_address->phone_number ?? '0000000000',
+                'country'    => $payment_data->billing_address->country->alpha_2 ?? 'US',
+                'address_1'  => $payment_data->billing_address->address1 ?? 'N/A',
+                'city'       => $payment_data->billing_address->city ?? 'N/A',
+                'state'      => $payment_data->billing_address->state ?? 'N/A',
+                'postcode'   => $payment_data->billing_address->postal_code ?? '00000'
             );
             
             $order->set_address( $billing_data, 'billing' );
             $order->set_address( $billing_data, 'shipping' );
             
-            // Establecer el método de pago
+            // Establecer el método de pago desde $_POST
             if ( isset( $_POST['payment_method'] ) ) {
                 $order->set_payment_method( $_POST['payment_method'] );
+                error_log( 'Método de pago establecido: ' . $_POST['payment_method'] );
             }
             
             // Calcular totales
@@ -217,21 +222,22 @@ function handle_tutor_checkout_submission() {
             // Guardar la orden
             $order->save();
             
-            error_log( 'Orden creada con ID: ' . $order->get_id() );
+            error_log( 'Orden de WooCommerce creada con ID: ' . $order->get_id() );
             
-            // Redirigir usando wp_redirect (debería funcionar en template_redirect)
+            // Redirigir a la página de pago de WooCommerce
             $payment_url = $order->get_checkout_payment_url();
-            error_log( 'Redirigiendo a: ' . $payment_url );
+            error_log( 'Redirigiendo a WooCommerce: ' . $payment_url );
             
             wp_redirect( $payment_url );
             exit;
             
         } catch ( Exception $e ) {
-            error_log( 'Error al crear orden de WooCommerce: ' . $e->getMessage() );
-            wc_add_notice( 'Error al procesar el pago. Por favor intenta de nuevo.', 'error' );
+            error_log( 'Error en WooCommerceRedirectGateway: ' . $e->getMessage() );
+            throw $e;
         }
     }
 }
+
 
 function intercept_tutor_states_ajax() {
     // Verificar si es la acción que estamos buscando
