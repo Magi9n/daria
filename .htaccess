@@ -6,14 +6,24 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# Redirección de /courses-cart/ a /cart/ (manteniendo cualquier dominio)
+RewriteRule ^courses-cart(/.*)?$ /cart/ [R=301,L]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
+# Redirección de /courses-cart/ a /cart/
 </IfModule>
 
 # END WordPress
+
+
+# Redirección de /courses-cart/ a /cart/ (manteniendo cualquier dominio)
+
+# Redirigir todo /courses-cart/ a /cart/
+
+
 
 # BEGIN TUTOR_PREVENT_HOTLINKING
 <IfModule mod_rewrite.c>
