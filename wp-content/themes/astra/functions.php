@@ -97,7 +97,10 @@ function simplify_checkout_fields( $data ) {
 add_filter( 'woocommerce_available_payment_gateways', 'limit_payment_gateways' );
 function limit_payment_gateways( $gateways ) {
     // Solo permitir estas pasarelas específicas
-    $allowed_gateways = array('woo-mercado-pago-basic', 'paypal');
+    $allowed_gateways = array('woo-mercado-pago-basic', 'paypal', 'ppec_paypal');
+    
+    // Log de todas las pasarelas disponibles para depuración
+    error_log( 'Todas las pasarelas disponibles: ' . implode( ', ', array_keys( $gateways ) ) );
     
     // Filtrar las pasarelas disponibles
     $filtered_gateways = array();
@@ -120,10 +123,36 @@ add_action( 'woocommerce_checkout_process', 'validate_tutor_checkout' );
 function validate_tutor_checkout() {
     // Verificar que el método de pago seleccionado sea válido
     if ( isset( $_POST['payment_method'] ) ) {
-        $allowed_methods = array( 'woo-mercado-pago-basic', 'paypal' );
+        $allowed_methods = array( 'woo-mercado-pago-basic', 'paypal', 'ppec_paypal' );
         if ( ! in_array( $_POST['payment_method'], $allowed_methods ) ) {
             wc_add_notice( 'Método de pago no válido. Por favor selecciona Mercado Pago o PayPal.', 'error' );
         }
+    }
+}
+
+/**
+ * Interceptar y manejar el proceso de pago de Tutor LMS
+ */
+add_action( 'wp', 'handle_tutor_checkout_submission' );
+function handle_tutor_checkout_submission() {
+    if ( isset( $_POST['tutor_action'] ) && $_POST['tutor_action'] === 'tutor_pay_now' ) {
+        error_log( 'Procesando pago de Tutor LMS - Método: ' . ( $_POST['payment_method'] ?? 'No definido' ) );
+        
+        // Verificar nonce
+        if ( ! wp_verify_nonce( $_POST['_tutor_nonce_field'], 'tutor_nonce_action' ) ) {
+            error_log( 'Error: Nonce inválido en checkout de Tutor' );
+            return;
+        }
+        
+        // Verificar que hay un método de pago seleccionado
+        if ( empty( $_POST['payment_method'] ) ) {
+            error_log( 'Error: No se seleccionó método de pago' );
+            wc_add_notice( 'Por favor selecciona un método de pago.', 'error' );
+            return;
+        }
+        
+        // Log del proceso
+        error_log( 'Datos del checkout: ' . print_r( $_POST, true ) );
     }
 }
 

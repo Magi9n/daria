@@ -95,7 +95,7 @@ $is_checkout_page = true;
 
 								<?php
 								// Configurar solo las pasarelas específicas: Mercado Pago y PayPal
-								$allowed_gateways = array('woo-mercado-pago-basic', 'paypal');
+								$allowed_gateways = array('woo-mercado-pago-basic', 'paypal', 'ppec_paypal');
 								$supported_gateways = array();
 
 								// Intentar obtener las pasarelas de WooCommerce
