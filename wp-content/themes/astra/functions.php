@@ -855,13 +855,44 @@ function handle_create_mercadopago_preference() {
         return;
     }
     
-    // Obtener precio del curso
-    $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+    // Obtener precio del curso usando el filtro de Tutor LMS
+    $course_price = null;
+    
+    // Intentar obtener precio a través del filtro de Tutor LMS
+    if ( function_exists( 'tutor_utils' ) ) {
+        $course_price = tutor_utils()->get_course_price( $course_id );
+        error_log( '[DIRECT MP] Precio obtenido con tutor_utils: ' . $course_price );
+    }
+    
+    // Si no funciona, intentar con WooCommerce directamente
+    if ( ! $course_price && function_exists( 'WC' ) ) {
+        $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+        if ( $product_id ) {
+            $product = wc_get_product( $product_id );
+            if ( $product ) {
+                $course_price = $product->get_price();
+                error_log( '[DIRECT MP] Precio obtenido con WooCommerce: ' . $course_price );
+            }
+        }
+    }
+    
+    // Si aún no hay precio, intentar con meta directo
+    if ( ! $course_price ) {
+        $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+        error_log( '[DIRECT MP] Precio obtenido con meta directo: ' . $course_price );
+    }
+    
+    // Limpiar y validar el precio
+    $course_price = floatval( str_replace( array( ',', '$', ' ' ), '', $course_price ) );
+    
     if ( ! $course_price || $course_price <= 0 ) {
-        error_log( '[DIRECT MP] Precio del curso inválido: ' . $course_price );
+        error_log( '[DIRECT MP] Precio del curso inválido después de limpieza: ' . $course_price );
+        error_log( '[DIRECT MP] Metas del curso: ' . print_r( get_post_meta( $course_id ), true ) );
         wp_send_json_error( 'Precio del curso inválido' );
         return;
     }
+    
+    error_log( '[DIRECT MP] Precio final validado: ' . $course_price );
     
     // Crear orden interna
     $order_data = array(
@@ -947,13 +978,44 @@ function handle_create_paypal_order() {
         return;
     }
     
-    // Obtener precio del curso
-    $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+    // Obtener precio del curso usando el filtro de Tutor LMS
+    $course_price = null;
+    
+    // Intentar obtener precio a través del filtro de Tutor LMS
+    if ( function_exists( 'tutor_utils' ) ) {
+        $course_price = tutor_utils()->get_course_price( $course_id );
+        error_log( '[DIRECT PP] Precio obtenido con tutor_utils: ' . $course_price );
+    }
+    
+    // Si no funciona, intentar con WooCommerce directamente
+    if ( ! $course_price && function_exists( 'WC' ) ) {
+        $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
+        if ( $product_id ) {
+            $product = wc_get_product( $product_id );
+            if ( $product ) {
+                $course_price = $product->get_price();
+                error_log( '[DIRECT PP] Precio obtenido con WooCommerce: ' . $course_price );
+            }
+        }
+    }
+    
+    // Si aún no hay precio, intentar con meta directo
+    if ( ! $course_price ) {
+        $course_price = get_post_meta( $course_id, '_tutor_course_price', true );
+        error_log( '[DIRECT PP] Precio obtenido con meta directo: ' . $course_price );
+    }
+    
+    // Limpiar y validar el precio
+    $course_price = floatval( str_replace( array( ',', '$', ' ' ), '', $course_price ) );
+    
     if ( ! $course_price || $course_price <= 0 ) {
-        error_log( '[DIRECT PP] Precio del curso inválido: ' . $course_price );
+        error_log( '[DIRECT PP] Precio del curso inválido después de limpieza: ' . $course_price );
+        error_log( '[DIRECT PP] Metas del curso: ' . print_r( get_post_meta( $course_id ), true ) );
         wp_send_json_error( 'Precio del curso inválido' );
         return;
     }
+    
+    error_log( '[DIRECT PP] Precio final validado: ' . $course_price );
     
     // Crear orden interna
     $order_data = array(
