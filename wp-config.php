@@ -88,9 +88,26 @@ $table_prefix = 'wp_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
+// Habilitar el modo de depuración
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 define( 'WP_DEBUG_DISPLAY', false );
+
+// Asegurarse de que los errores se registren
+error_reporting( E_ALL );
+ini_set( 'display_errors', 0 );
+ini_set( 'log_errors', 1 );
+ini_set( 'error_log', __DIR__ . '/wp-content/debug.log' );
+
+// Desactivar caché de objetos
+define( 'WP_CACHE', false );
+
+// Aumentar el límite de memoria
+define( 'WP_MEMORY_LIMIT', '256M' );
+define( 'WP_MAX_MEMORY_LIMIT', '512M' );
+
+// Desactivar revisiones de WordPress
+define( 'WP_POST_REVISIONS', false );
 
 
 /* Add any custom values between this line and the "stop editing" line. */

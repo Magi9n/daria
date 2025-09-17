@@ -8,8 +8,107 @@
  * @since 1.0.0
  */
 
+// Función para registrar mensajes de depuración
+function log_debug_info($message, $data = null, $backtrace = false) {
+    $log_entry = '[' . current_time('mysql') . '] ' . $message . "\n";
+    
+    if ($data !== null) {
+        if (is_array($data) || is_object($data)) {
+            $log_entry .= 'Datos: ' . print_r($data, true) . "\n";
+        } else {
+            $log_entry .= 'Datos: ' . $data . "\n";
+        }
+    }
+    
+    if ($backtrace) {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+        $log_entry .= 'Backtrace: ' . print_r($backtrace, true) . "\n";
+    }
+    
+    $log_entry .= 'Memoria usada: ' . size_format(memory_get_usage()) . "\n";
+    $log_entry .= 'Límite de memoria: ' . ini_get('memory_limit') . "\n";
+    $log_entry .= 'Tiempo de ejecución: ' . timer_stop() . 's' . "\n";
+    $log_entry .= '===================================' . "\n\n";
+    
+    error_log($log_entry);
+}
+
+// Código de prueba para verificar el registro de errores
+function test_debug_logging() {
+    log_debug_info('=== INICIO DE PRUEBA DE REGISTRO ===', null, true);
+    
+    // Verificar si estamos en una petición AJAX
+    if (defined('DOING_AJAX') && DOING_AJAX) {
+        $ajax_info = array(
+            'action' => isset($_POST['action']) ? $_POST['action'] : 'Sin acción',
+            'nonce' => isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : 'Sin nonce',
+            'referer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Sin referer',
+            'user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'Sin user agent'
+        );
+        log_debug_info('=== PETICIÓN AJAX DETECTADA ===', $ajax_info, true);
+    }
+    
+    // Registrar información del servidor
+    $server_info = array(
+        'PHP Version' => phpversion(),
+        'WordPress Version' => get_bloginfo('version'),
+        'WooCommerce Active' => class_exists('WooCommerce') ? 'Sí' : 'No',
+        'Tutor LMS Active' => function_exists('tutor') ? 'Sí' : 'No',
+        'Theme' => wp_get_theme()->get('Name') . ' ' . wp_get_theme()->get('Version')
+    );
+    log_debug_info('=== INFORMACIÓN DEL SISTEMA ===', $server_info);
+}
+
+// Interceptar la petición AJAX específica de Tutor LMS que está fallando
+add_action('wp_ajax_nopriv_tutor_get_states_by_country', 'intercept_tutor_states_ajax', 1);
+add_action('wp_ajax_tutor_get_states_by_country', 'intercept_tutor_states_ajax', 1);
+
+function intercept_tutor_states_ajax() {
+    // Verificar si es la acción que estamos buscando
+    if (isset($_POST['action']) && $_POST['action'] === 'tutor_get_states_by_country') {
+        // Registrar información detallada de la petición
+        $request_data = array(
+            'action' => $_POST['action'],
+            'country' => isset($_POST['country']) ? $_POST['country'] : 'No definido',
+            'nonce' => isset($_POST['nonce']) ? $_POST['nonce'] : 'No definido',
+            'referer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'No definido',
+            'request_method' => $_SERVER['REQUEST_METHOD'],
+            'request_uri' => $_SERVER['REQUEST_URI'],
+            'http_user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'No definido'
+        );
+        
+        log_debug_info('=== INTERCEPTOR TUTOR GET STATES ===', $request_data, true);
+        
+        // Verificar nonce si está presente
+        if (isset($_POST['nonce'])) {
+            $nonce_verification = wp_verify_nonce($_POST['nonce'], 'tutor_nonce');
+            log_debug_info('Verificación de nonce', array(
+                'nonce' => $_POST['nonce'],
+                'verification_result' => $nonce_verification ? 'Válido' : 'Inválido o expirado'
+            ));
+        }
+        
+        // Verificar si WooCommerce está cargado
+        if (function_exists('WC')) {
+            $country = isset($_POST['country']) ? wc_clean(wp_unslash($_POST['country'])) : '';
+            $states = WC()->countries->get_states($country);
+            log_debug_info('Estados obtenidos de WooCommerce', array(
+                'país' => $country,
+                'estados' => $states ? $states : 'No se encontraron estados para este país'
+            ));
+        } else {
+            log_debug_info('ERROR: WooCommerce no está cargado', null, true);
+        }
+    }
+    
+    // No detenemos la ejecución, permitimos que continúe el flujo normal
+}
+
+// Ejecutar la prueba cuando WordPress se haya cargado completamente
+add_action('wp_loaded', 'test_debug_logging');
+
 // Mensaje de depuración para verificar que el archivo se está cargando
-error_log('Archivo functions.php cargado correctamente');
+error_log('Archivo functions.php cargado correctamente - ' . date('Y-m-d H:i:s'));
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
