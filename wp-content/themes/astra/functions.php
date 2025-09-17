@@ -297,14 +297,20 @@ function astra_checkout_debug_visible() {
 // SOLUCIÓN SEGURA: Sincronización bidireccional Tutor LMS <-> WooCommerce
 
 // 1. Sincronizar de Tutor LMS a WooCommerce cuando se añade un curso
-add_action( 'wp_ajax_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 5 );
-add_action( 'wp_ajax_nopriv_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 5 );
+add_action( 'wp_ajax_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 99 );
+add_action( 'wp_ajax_nopriv_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 99 );
 function sync_tutor_to_woocommerce() {
+    // Solo procesar después de que Tutor LMS haya procesado la petición
     if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
         return;
     }
     
-    $course_id = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
+    // Verificar que sea realmente una adición de curso
+    if ( ! isset( $_POST['course_id'] ) || ! isset( $_POST['action'] ) || $_POST['action'] !== 'tutor_add_course_to_cart' ) {
+        return;
+    }
+    
+    $course_id = intval( $_POST['course_id'] );
     if ( ! $course_id ) {
         return;
     }
@@ -319,9 +325,21 @@ function sync_tutor_to_woocommerce() {
     }
     
     if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
-        // Añadir al carrito de WooCommerce
-        WC()->cart->add_to_cart( $product_id, 1 );
-        WC()->cart->calculate_totals();
+        // Verificar si ya está en el carrito para evitar duplicados
+        $cart_contents = WC()->cart->get_cart();
+        $product_in_cart = false;
+        
+        foreach ( $cart_contents as $cart_item ) {
+            if ( $cart_item['product_id'] == $product_id ) {
+                $product_in_cart = true;
+                break;
+            }
+        }
+        
+        if ( ! $product_in_cart ) {
+            WC()->cart->add_to_cart( $product_id, 1 );
+            WC()->cart->calculate_totals();
+        }
     }
 }
 
@@ -454,15 +472,21 @@ function sync_wc_remove_to_tutor( $cart_item_key, $cart ) {
 }
 
 // 6. Sincronizar eliminación de Tutor LMS a WooCommerce
-add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 5 );
-add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 5 );
+add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
+add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 function sync_tutor_remove_to_wc() {
-    if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+    // Solo procesar si es realmente una eliminación de curso del carrito
+    if ( ! isset( $_POST['course_id'] ) || ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        return;
+    }
+    
+    // Verificar que no sea otra acción AJAX de Tutor LMS
+    if ( isset( $_POST['action'] ) && $_POST['action'] !== 'tutor_delete_course_from_cart' ) {
         return;
     }
     
     try {
-        $course_id = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
+        $course_id = intval( $_POST['course_id'] );
         if ( ! $course_id ) {
             return;
         }
