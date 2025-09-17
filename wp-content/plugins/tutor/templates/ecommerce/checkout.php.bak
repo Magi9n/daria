@@ -81,7 +81,6 @@ $is_checkout_page = true;
 						<input type="hidden" name="billing_city" value="N/A">
 						<input type="hidden" name="billing_state" value="N/A">
 						<input type="hidden" name="billing_postcode" value="00000">
-						
 						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
 								<?php esc_html_e( 'Payment Method', 'tutor' ); ?>
@@ -94,67 +93,60 @@ $is_checkout_page = true;
 								<?php endif; ?>
 
 								<?php
-								// Configurar solo las pasarelas específicas: Mercado Pago y PayPal
-								$allowed_gateways = array('woo-mercado-pago-basic', 'paypal');
 								$supported_gateways = array();
 
-								// Intentar obtener las pasarelas de WooCommerce
-								if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
+								// Obtener las pasarelas disponibles de WooCommerce
+								if (function_exists('WC') && WC()->payment_gateways()) {
 									try {
-										$wc_gateways = WC()->payment_gateways()->get_available_payment_gateways();
+										$wc_gateways = WC()->payment_gateways->payment_gateways();
 										
-										// Filtrar solo las pasarelas permitidas
-										foreach ( $allowed_gateways as $gateway_id ) {
-											if ( isset( $wc_gateways[$gateway_id] ) && $wc_gateways[$gateway_id]->is_available() ) {
-												$gateway = $wc_gateways[$gateway_id];
-												$supported_gateways[] = array(
-													'name' => $gateway->id,
-													'label' => $gateway->get_title(),
-													'icon' => $gateway->get_icon(),
-													'is_manual' => false
+										// Filtrar solo Mercado Pago y PayPal
+										$allowed_gateways = array('woo-mercado-pago-basic', 'paypal');
+										
+										foreach ($wc_gateways as $id => $gateway) {
+											if (in_array($id, $allowed_gateways) && $gateway->enabled === 'yes') {
+												$supported_gateways[$id] = array(
+													'id' => $id,
+													'title' => $gateway->get_title(),
+													'icon' => $gateway->get_icon()
 												);
 											}
 										}
 										
-										error_log('Pasarelas configuradas: ' . implode(', ', array_column($supported_gateways, 'name')));
+										// Si no se encontraron las pasarelas, forzar Mercado Pago
+										if (empty($supported_gateways) && isset($wc_gateways['woo-mercado-pago-basic'])) {
+											$supported_gateways['woo-mercado-pago-basic'] = array(
+												'id' => 'woo-mercado-pago-basic',
+												'title' => $wc_gateways['woo-mercado-pago-basic']->get_title(),
+												'icon' => $wc_gateways['woo-mercado-pago-basic']->get_icon()
+											);
+										}
+										
+										error_log('Pasarelas de pago configuradas: ' . print_r(array_keys($supported_gateways), true));
 									} catch (Exception $e) {
-										error_log('Error al obtener pasarelas de pago: ' . $e->getMessage());
+										error_log('Error al configurar las pasarelas de pago: ' . $e->getMessage());
 									}
 								}
-
-								// Si no hay pasarelas disponibles, mostrar mensaje
-								if ( empty( $supported_gateways ) ) {
-									error_log('No se encontraron pasarelas de pago disponibles');
-								}
 								?>
-								<?php if ( empty( $supported_gateways ) ) : ?>
-								<div class="tutor-alert tutor-warning">
-									<?php esc_html_e( 'No payment method found. Please contact the site administrator.', 'tutor' ); ?>
-								</div>
-							<?php else : ?>
-								<?php 
-								// Mostrar las pasarelas configuradas (siempre en formato de array)
-								foreach ($supported_gateways as $gateway) {
-									if (!is_array($gateway)) continue;
-									
-									$name = $gateway['name'] ?? '';
-									$label = $gateway['label'] ?? $name;
-									$icon = $gateway['icon'] ?? '';
-									$is_manual = $gateway['is_manual'] ?? false;
+
+								<?php if (empty($supported_gateways)) : ?>
+									<div class="tutor-alert tutor-warning">
+										<?php esc_html_e('No se encontraron métodos de pago disponibles. Por favor, contacta al administrador.', 'tutor'); ?>
+									</div>
+								<?php else : ?>
+									<?php foreach ($supported_gateways as $gateway_id => $gateway) : 
+										$name = $gateway['id'] ?? '';
+										$label = $gateway['title'] ?? $name;
+										$icon = $gateway['icon'] ?? '';
 									?>
-									<label class="tutor-checkout-payment-item" data-payment-type="<?php echo $is_manual ? 'manual' : 'automate'; ?>">
-										<input type="radio" name="payment_method" value="<?php echo esc_attr($name); ?>" class="tutor-form-check-input">
+									<label class="tutor-checkout-payment-item" data-payment-type="woocommerce">
+										<input type="radio" name="payment_method" value="<?php echo esc_attr($name); ?>" class="tutor-form-check-input" <?php echo $gateway_id === 'woo-mercado-pago-basic' ? 'checked' : ''; ?>>
 										<div class="tutor-payment-item-content">
-											<?php echo $icon; // El ícono ya está procesado por WooCommerce ?>
+											<?php echo $icon; // El ícono ya está escapado por WooCommerce ?>
 											<?php echo esc_html($label); ?>
 										</div>
-										<?php if ($is_manual && !empty($gateway['payment_instructions'])) : ?>
-											<div class="tutor-d-none tutor-payment-item-instructions"><?php echo wp_kses_post($gateway['payment_instructions']); ?></div>
-										<?php endif; ?>
 									</label>
-									<?php
-								}
-								?>
+								<?php endforeach; ?>
 							<?php endif; ?>
 							</div>
 

@@ -91,6 +91,42 @@ function simplify_checkout_fields( $data ) {
     return $data;
 }
 
+/**
+ * Filtro para limitar las pasarelas de pago disponibles solo a Mercado Pago y PayPal
+ */
+add_filter( 'woocommerce_available_payment_gateways', 'limit_payment_gateways' );
+function limit_payment_gateways( $gateways ) {
+    // Solo permitir estas pasarelas específicas
+    $allowed_gateways = array('woo-mercado-pago-basic', 'paypal');
+    
+    // Filtrar las pasarelas disponibles
+    $filtered_gateways = array();
+    foreach ( $allowed_gateways as $gateway_id ) {
+        if ( isset( $gateways[$gateway_id] ) ) {
+            $filtered_gateways[$gateway_id] = $gateways[$gateway_id];
+        }
+    }
+    
+    // Log para depuración
+    error_log( 'Pasarelas filtradas: ' . implode( ', ', array_keys( $filtered_gateways ) ) );
+    
+    return $filtered_gateways;
+}
+
+/**
+ * Asegurar que las pasarelas funcionen correctamente con Tutor LMS
+ */
+add_action( 'woocommerce_checkout_process', 'validate_tutor_checkout' );
+function validate_tutor_checkout() {
+    // Verificar que el método de pago seleccionado sea válido
+    if ( isset( $_POST['payment_method'] ) ) {
+        $allowed_methods = array( 'woo-mercado-pago-basic', 'paypal' );
+        if ( ! in_array( $_POST['payment_method'], $allowed_methods ) ) {
+            wc_add_notice( 'Método de pago no válido. Por favor selecciona Mercado Pago o PayPal.', 'error' );
+        }
+    }
+}
+
 function intercept_tutor_states_ajax() {
     // Verificar si es la acción que estamos buscando
     if (isset($_POST['action']) && $_POST['action'] === 'tutor_get_states_by_country') {
