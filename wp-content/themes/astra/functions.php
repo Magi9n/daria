@@ -300,20 +300,27 @@ function astra_checkout_debug_visible() {
 add_action( 'wp_ajax_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 99 );
 add_action( 'wp_ajax_nopriv_tutor_add_course_to_cart', 'sync_tutor_to_woocommerce', 99 );
 function sync_tutor_to_woocommerce() {
+    error_log( '[SYNC DEBUG] sync_tutor_to_woocommerce iniciado - Action: ' . ( $_POST['action'] ?? 'no_action' ) );
+    
     // Solo procesar después de que Tutor LMS haya procesado la petición
     if ( ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        error_log( '[SYNC DEBUG] Funciones WC o tutor_utils no disponibles' );
         return;
     }
     
     // Verificar que sea realmente una adición de curso
     if ( ! isset( $_POST['course_id'] ) || ! isset( $_POST['action'] ) || $_POST['action'] !== 'tutor_add_course_to_cart' ) {
+        error_log( '[SYNC DEBUG] No es acción tutor_add_course_to_cart - Action: ' . ( $_POST['action'] ?? 'no_action' ) );
         return;
     }
     
     $course_id = intval( $_POST['course_id'] );
     if ( ! $course_id ) {
+        error_log( '[SYNC DEBUG] Course ID inválido: ' . ( $_POST['course_id'] ?? 'no_course_id' ) );
         return;
     }
+    
+    error_log( '[SYNC DEBUG] Procesando course_id: ' . $course_id );
     
     // Obtener el product_id asociado al curso
     $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
@@ -323,6 +330,8 @@ function sync_tutor_to_woocommerce() {
             $product_id = tutor_utils()->get_course_product_id( $course_id );
         }
     }
+    
+    error_log( '[SYNC DEBUG] Product ID encontrado: ' . ( $product_id ?: 'no_product_id' ) );
     
     if ( $product_id && get_post_status( $product_id ) === 'publish' ) {
         // Verificar si ya está en el carrito para evitar duplicados
@@ -336,17 +345,25 @@ function sync_tutor_to_woocommerce() {
             }
         }
         
+        error_log( '[SYNC DEBUG] Producto en carrito: ' . ( $product_in_cart ? 'SI' : 'NO' ) );
+        
         if ( ! $product_in_cart ) {
-            WC()->cart->add_to_cart( $product_id, 1 );
+            $result = WC()->cart->add_to_cart( $product_id, 1 );
             WC()->cart->calculate_totals();
+            error_log( '[SYNC DEBUG] Producto añadido a WC cart - Resultado: ' . ( $result ? 'SUCCESS' : 'FAILED' ) );
         }
+    } else {
+        error_log( '[SYNC DEBUG] Producto no válido - ID: ' . $product_id . ', Status: ' . get_post_status( $product_id ) );
     }
 }
 
 // 2. Sincronizar de WooCommerce a Tutor LMS cuando se añade un producto
 add_action( 'woocommerce_add_to_cart', 'sync_woocommerce_to_tutor', 10, 6 );
 function sync_woocommerce_to_tutor( $cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data ) {
+    error_log( '[SYNC DEBUG] sync_woocommerce_to_tutor iniciado - Product ID: ' . $product_id );
+    
     if ( ! function_exists( 'tutor_utils' ) || ! class_exists( 'Tutor\Models\CartModel' ) ) {
+        error_log( '[SYNC DEBUG] Funciones Tutor no disponibles en WC sync' );
         return;
     }
     
@@ -371,6 +388,8 @@ function sync_woocommerce_to_tutor( $cart_item_key, $product_id, $quantity, $var
             $course_id = $courses[0]->ID;
         }
         
+        error_log( '[SYNC DEBUG] Course ID encontrado para product ' . $product_id . ': ' . ( $course_id ?: 'no_course' ) );
+        
         if ( $course_id ) {
             $user_id = get_current_user_id();
             if ( $user_id ) {
@@ -388,14 +407,19 @@ function sync_woocommerce_to_tutor( $cart_item_key, $product_id, $quantity, $var
                     }
                 }
                 
+                error_log( '[SYNC DEBUG] Curso existe en Tutor cart: ' . ( $course_exists ? 'SI' : 'NO' ) );
+                
                 if ( ! $course_exists ) {
-                    $tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+                    $result = $tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+                    error_log( '[SYNC DEBUG] Curso añadido a Tutor cart - Resultado: ' . ( $result ? 'SUCCESS' : 'FAILED' ) );
                 }
+            } else {
+                error_log( '[SYNC DEBUG] Usuario no logueado para sync WC->Tutor' );
             }
         }
     } catch ( Exception $e ) {
         // Log error pero no interrumpir el proceso
-        error_log( 'Sync WooCommerce to Tutor error: ' . $e->getMessage() );
+        error_log( '[SYNC ERROR] Sync WooCommerce to Tutor error: ' . $e->getMessage() );
     }
 }
 
@@ -471,25 +495,45 @@ function sync_wc_remove_to_tutor( $cart_item_key, $cart ) {
     }
 }
 
+// Añadir hook para capturar TODAS las peticiones AJAX y logearlas
+add_action( 'init', 'setup_ajax_logging' );
+function setup_ajax_logging() {
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        error_log( '[AJAX DEBUG] Petición AJAX detectada: ' . ( $_POST['action'] ?? 'no_action' ) . ' - POST data: ' . json_encode( $_POST ) );
+        
+        // Log específico para billing country
+        if ( isset( $_POST['action'] ) && strpos( $_POST['action'], 'billing' ) !== false ) {
+            error_log( '[BILLING DEBUG] Acción billing detectada: ' . $_POST['action'] );
+        }
+    }
+}
+
 // 6. Sincronizar eliminación de Tutor LMS a WooCommerce
 add_action( 'wp_ajax_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 add_action( 'wp_ajax_nopriv_tutor_delete_course_from_cart', 'sync_tutor_remove_to_wc', 99 );
 function sync_tutor_remove_to_wc() {
+    error_log( '[SYNC DEBUG] sync_tutor_remove_to_wc iniciado - Action: ' . ( $_POST['action'] ?? 'no_action' ) );
+    
     // Solo procesar si es realmente una eliminación de curso del carrito
     if ( ! isset( $_POST['course_id'] ) || ! function_exists( 'WC' ) || ! function_exists( 'tutor_utils' ) ) {
+        error_log( '[SYNC DEBUG] Condiciones no cumplidas para remove sync' );
         return;
     }
     
     // Verificar que no sea otra acción AJAX de Tutor LMS
     if ( isset( $_POST['action'] ) && $_POST['action'] !== 'tutor_delete_course_from_cart' ) {
+        error_log( '[SYNC DEBUG] No es acción delete_course_from_cart - Action: ' . $_POST['action'] );
         return;
     }
     
     try {
         $course_id = intval( $_POST['course_id'] );
         if ( ! $course_id ) {
+            error_log( '[SYNC DEBUG] Course ID inválido en remove: ' . ( $_POST['course_id'] ?? 'no_course_id' ) );
             return;
         }
+        
+        error_log( '[SYNC DEBUG] Eliminando course_id: ' . $course_id );
         
         // Obtener el product_id asociado al curso
         $product_id = get_post_meta( $course_id, '_tutor_course_product_id', true );
@@ -499,19 +543,24 @@ function sync_tutor_remove_to_wc() {
             }
         }
         
+        error_log( '[SYNC DEBUG] Product ID para eliminar: ' . ( $product_id ?: 'no_product_id' ) );
+        
         if ( $product_id ) {
             // Buscar y eliminar el producto del carrito de WooCommerce
             $cart_contents = WC()->cart->get_cart();
+            $removed = false;
             foreach ( $cart_contents as $cart_item_key => $cart_item ) {
                 if ( $cart_item['product_id'] == $product_id ) {
                     WC()->cart->remove_cart_item( $cart_item_key );
+                    $removed = true;
                     break;
                 }
             }
             WC()->cart->calculate_totals();
+            error_log( '[SYNC DEBUG] Producto eliminado de WC cart: ' . ( $removed ? 'SUCCESS' : 'NOT_FOUND' ) );
         }
     } catch ( Exception $e ) {
-        error_log( 'Sync Tutor remove to WC error: ' . $e->getMessage() );
+        error_log( '[SYNC ERROR] Sync Tutor remove to WC error: ' . $e->getMessage() );
     }
 }
 
