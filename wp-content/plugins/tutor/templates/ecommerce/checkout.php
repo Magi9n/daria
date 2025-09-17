@@ -97,7 +97,18 @@ $is_checkout_page = true;
 								<?php endif; ?>
 
 								<?php
-								$supported_gateways = $plan_id ? tutor_get_subscription_supported_payment_gateways() : tutor_get_all_active_payment_gateways();
+								$supported_gateways = array();
+								if ( $plan_id && function_exists( 'tutor_get_subscription_supported_payment_gateways' ) ) {
+									$supported_gateways = tutor_get_subscription_supported_payment_gateways();
+								} elseif ( function_exists( 'tutor_get_all_active_payment_gateways' ) ) {
+									$supported_gateways = tutor_get_all_active_payment_gateways();
+								} else {
+									// Fallback: usar pasarelas de WooCommerce si están disponibles
+									if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
+										$wc_gateways = WC()->payment_gateways()->get_available_payment_gateways();
+										$supported_gateways = array_keys( $wc_gateways );
+									}
+								}
 								if ( empty( $supported_gateways ) ) {
 									?>
 

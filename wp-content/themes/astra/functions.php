@@ -332,35 +332,52 @@ function sync_woocommerce_to_tutor( $cart_item_key, $product_id, $quantity, $var
         return;
     }
     
-    // Verificar si el producto pertenece a un curso
-    $course_id = null;
-    
-    // Buscar curso asociado al producto
-    $courses = get_posts( array(
-        'post_type' => 'courses',
-        'meta_query' => array(
-            array(
-                'key' => '_tutor_course_product_id',
-                'value' => $product_id,
-                'compare' => '='
-            )
-        ),
-        'posts_per_page' => 1
-    ) );
-    
-    if ( ! empty( $courses ) ) {
-        $course_id = $courses[0]->ID;
-    }
-    
-    if ( $course_id ) {
-        $user_id = get_current_user_id();
-        if ( $user_id ) {
-            $tutor_cart_model = new \Tutor\Models\CartModel();
-            // Verificar si el curso ya está en el carrito de Tutor LMS
-            if ( ! $tutor_cart_model->is_course_in_user_cart( $user_id, $course_id ) ) {
-                $tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+    try {
+        // Verificar si el producto pertenece a un curso
+        $course_id = null;
+        
+        // Buscar curso asociado al producto
+        $courses = get_posts( array(
+            'post_type' => 'courses',
+            'meta_query' => array(
+                array(
+                    'key' => '_tutor_course_product_id',
+                    'value' => $product_id,
+                    'compare' => '='
+                )
+            ),
+            'posts_per_page' => 1
+        ) );
+        
+        if ( ! empty( $courses ) ) {
+            $course_id = $courses[0]->ID;
+        }
+        
+        if ( $course_id ) {
+            $user_id = get_current_user_id();
+            if ( $user_id ) {
+                $tutor_cart_model = new \Tutor\Models\CartModel();
+                // Verificar si el curso ya está en el carrito de Tutor LMS usando método más seguro
+                $existing_items = $tutor_cart_model->get_cart_items( $user_id );
+                $course_exists = false;
+                
+                if ( ! empty( $existing_items ) ) {
+                    foreach ( $existing_items as $item ) {
+                        if ( isset( $item->course_id ) && $item->course_id == $course_id ) {
+                            $course_exists = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if ( ! $course_exists ) {
+                    $tutor_cart_model->add_course_to_cart( $user_id, $course_id );
+                }
             }
         }
+    } catch ( Exception $e ) {
+        // Log error pero no interrumpir el proceso
+        error_log( 'Sync WooCommerce to Tutor error: ' . $e->getMessage() );
     }
 }
 
