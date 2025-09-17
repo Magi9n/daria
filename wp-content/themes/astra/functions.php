@@ -184,4 +184,10 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
-
+/**
+ * Redirigir al carrito estándar de WooCommerce después de añadir producto
+ */
+add_filter( 'woocommerce_add_to_cart_redirect', 'astra_redirect_to_wc_cart' );
+function astra_redirect_to_wc_cart() {
+    return wc_get_cart_url(); // Redirige a /cart/
+}
