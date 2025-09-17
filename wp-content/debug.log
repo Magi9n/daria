@@ -26730,3 +26730,1843 @@ Tiempo de ejecución: 0.958s
 [17-Sep-2025 04:31:40 UTC] Todas las pasarelas disponibles: bacs, cod, ppcp-card-button-gateway, ppcp-oxxo-gateway, ppcp-gateway, woo-mercado-pago-basic, woo-mercado-pago-custom, woo-mercado-pago-ticket, woo-mercado-pago-credits
 [17-Sep-2025 04:31:40 UTC] Pasarelas filtradas: woo-mercado-pago-basic, ppcp-gateway
 [17-Sep-2025 04:31:40 UTC] Pasarelas configuradas: woo-mercado-pago-basic, ppcp-gateway
+[17-Sep-2025 04:32:23 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:23 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:32:23
+[17-Sep-2025 04:32:23 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:24 UTC] [2025-09-17 04:32:24] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.414s
+===================================
+
+
+[17-Sep-2025 04:32:24 UTC] [2025-09-17 04:32:24] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=mercadopago-settings
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.414s
+===================================
+
+
+[17-Sep-2025 04:32:24 UTC] [2025-09-17 04:32:24] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.414s
+===================================
+
+
+[17-Sep-2025 04:32:35 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:35 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:32:35
+[17-Sep-2025 04:32:35 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:36 UTC] [2025-09-17 04:32:36] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.228s
+===================================
+
+
+[17-Sep-2025 04:32:36 UTC] [2025-09-17 04:32:36] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=tutor_settings&tab_page=monetization
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.228s
+===================================
+
+
+[17-Sep-2025 04:32:36 UTC] [2025-09-17 04:32:36] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.229s
+===================================
+
+
+[17-Sep-2025 04:32:36 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:36 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:32:36
+[17-Sep-2025 04:32:36 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:32:37 UTC] [2025-09-17 04:32:37] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.149s
+===================================
+
+
+[17-Sep-2025 04:32:37 UTC] [2025-09-17 04:32:37] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.150s
+===================================
+
+
+[17-Sep-2025 04:34:37 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:34:37 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:34:37
+[17-Sep-2025 04:34:37 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:34:38 UTC] [2025-09-17 04:34:38] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.203s
+===================================
+
+
+[17-Sep-2025 04:34:38 UTC] [2025-09-17 04:34:38] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=tutor_settings&tab_page=monetization
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.204s
+===================================
+
+
+[17-Sep-2025 04:34:38 UTC] [2025-09-17 04:34:38] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.204s
+===================================
+
+
+[17-Sep-2025 04:34:39 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:34:39 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:34:39
+[17-Sep-2025 04:34:39 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:34:39 UTC] [2025-09-17 04:34:39] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.986s
+===================================
+
+
+[17-Sep-2025 04:34:39 UTC] [2025-09-17 04:34:39] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.987s
+===================================
+
+
+[17-Sep-2025 04:36:38 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:36:38 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:36:38
+[17-Sep-2025 04:36:38 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:36:39 UTC] [2025-09-17 04:36:39] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.227s
+===================================
+
+
+[17-Sep-2025 04:36:39 UTC] [2025-09-17 04:36:39] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=tutor_settings&tab_page=monetization
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.228s
+===================================
+
+
+[17-Sep-2025 04:36:39 UTC] [2025-09-17 04:36:39] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.228s
+===================================
+
+
+[17-Sep-2025 04:36:39 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:36:40 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:36:40
+[17-Sep-2025 04:36:40 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:36:40 UTC] [2025-09-17 04:36:40] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.950s
+===================================
+
+
+[17-Sep-2025 04:36:40 UTC] [2025-09-17 04:36:40] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.950s
+===================================
+
+
+[17-Sep-2025 04:37:41 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:41 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:37:41
+[17-Sep-2025 04:37:41 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:44 UTC] [2025-09-17 04:37:44] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 2.908s
+===================================
+
+
+[17-Sep-2025 04:37:44 UTC] [2025-09-17 04:37:44] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 2.908s
+===================================
+
+
+[17-Sep-2025 04:37:44 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:44 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:37:44
+[17-Sep-2025 04:37:44 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:45 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:45 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:37:45
+[17-Sep-2025 04:37:45 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:37:45 UTC] [2025-09-17 04:37:45] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.138s
+===================================
+
+
+[17-Sep-2025 04:37:45 UTC] [2025-09-17 04:37:45] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.138s
+===================================
+
+
+[17-Sep-2025 04:37:45 UTC] [2025-09-17 04:37:45] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.874s
+===================================
+
+
+[17-Sep-2025 04:37:45 UTC] [2025-09-17 04:37:45] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.875s
+===================================
+
+
+[17-Sep-2025 04:38:39 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:38:39 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:38:39
+[17-Sep-2025 04:38:39 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:38:40 UTC] [2025-09-17 04:38:40] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.302s
+===================================
+
+
+[17-Sep-2025 04:38:40 UTC] [2025-09-17 04:38:40] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=tutor_settings&tab_page=monetization
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.302s
+===================================
+
+
+[17-Sep-2025 04:38:40 UTC] [2025-09-17 04:38:40] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.302s
+===================================
+
+
+[17-Sep-2025 04:38:40 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:38:40 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:38:40
+[17-Sep-2025 04:38:40 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:38:41 UTC] [2025-09-17 04:38:41] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.012s
+===================================
+
+
+[17-Sep-2025 04:38:41 UTC] [2025-09-17 04:38:41] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.013s
+===================================
+
+
+[17-Sep-2025 04:40:34 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:34 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:34
+[17-Sep-2025 04:40:34 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Proceso de pago de Tutor LMS iniciado
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Interceptando pago para ppcp-gateway
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Datos POST: Array
+(
+    [_tutor_nonce] => fab1429b44
+    [_wp_http_referer] => /checkout/
+    [tutor_action] => tutor_pay_now
+    [coupon_code] => 
+    [object_ids] => 2377
+    [order_type] => single_order
+    [billing_first_name] => Cliente
+    [billing_last_name] => Web
+    [billing_email] => mahernandez@mshometech.com
+    [billing_phone] => 0000000000
+    [billing_country] => US
+    [billing_address_1] => N/A
+    [billing_city] => N/A
+    [billing_state] => N/A
+    [billing_postcode] => 00000
+    [payment_type] => automate
+    [payment_method] => ppcp-gateway
+)
+
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Producto encontrado: 2378 para curso: 2377
+[17-Sep-2025 04:40:35 UTC] [SYNC DEBUG] sync_woocommerce_to_tutor iniciado - Product ID: 2378
+[17-Sep-2025 04:40:35 UTC] [SYNC DEBUG] Course ID encontrado para product 2378: 2377
+[17-Sep-2025 04:40:35 UTC] [SYNC DEBUG] Curso existe en Tutor cart: NO
+[17-Sep-2025 04:40:35 UTC] [SYNC DEBUG] Curso añadido a Tutor cart - Resultado: SUCCESS
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 2.3.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart_Session-&gt;get_cart_for_session, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 2.3.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 2.3.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_item_totals, WC_Cart_Totals-&gt;get_items_from_cart, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debug in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_item_totals, WC_Cart_Totals-&gt;calculate_discounts, WC_Discounts-&gt;__construct, WC_Discounts-&gt;set_items_from_cart, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_shipping_totals, WC_Cart_Totals-&gt;get_shipping_from_cart, WC_Cart-&gt;calculate_shipping, WC_Cart-&gt;get_shipping_packages, WC_Cart-&gt;get_items_needing_shipping, WC_Cart-&gt;get_cart, wc_doing_ in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_shipping_totals, WC_Cart_Totals-&gt;get_shipping_from_cart, WC_Cart-&gt;calculate_shipping, WC_Cart-&gt;get_shipping_packages, WC_Cart-&gt;get_items_needing_shipping, WC_Cart-&gt;get_cart, wc_doing_ in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart-&gt;is_empty, WC_Cart-&gt;get_cart, WC_Cart_Session-&gt;get_cart_from_session, WC_Cart-&gt;calculate_totals, do_action('woocommerce_after_calculate_totals'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart_Session-&gt;set_session, WC_Cart_Session-&gt;get_cart_for_session, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_item_totals, WC_Cart_Totals-&gt;get_items_from_cart, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 2.3.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_item_totals, WC_Cart_Totals-&gt;calculate_discounts, WC_Discounts-&gt;__construct, WC_Discounts-&gt;set_items_from_cart, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_shipping_totals, WC_Cart_Totals-&gt;get_shipping_from_cart, WC_Cart-&gt;calculate_shipping, WC_Cart-&gt;get_shipping_packages, WC_Cart-&gt;get_items_needing_shipping, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debuggin in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, WC_Cart_Totals-&gt;__construct, WC_Cart_Totals-&gt;calculate, WC_Cart_Totals-&gt;calculate_shipping_totals, WC_Cart_Totals-&gt;get_shipping_from_cart, WC_Cart-&gt;calculate_shipping, WC_Cart-&gt;get_shipping_packages, WC_Cart-&gt;get_items_needing_shipping, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debuggin in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function get_cart was called <strong>incorrectly</strong>. Get cart should not be called before the wp_loaded action. Backtrace: require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, TUTOR\Tutor-&gt;init_action, do_action('tutor_action_tutor_pay_now'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, intercept_tutor_payment_process, WC_Cart-&gt;add_to_cart, do_action('woocommerce_add_to_cart'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart-&gt;calculate_totals, do_action('woocommerce_after_calculate_totals'), WP_Hook-&gt;do_action, WP_Hook-&gt;apply_filters, WC_Cart_Session-&gt;set_session, WC_Cart_Session-&gt;get_cart_for_session, WC_Cart-&gt;get_cart, wc_doing_it_wrong Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 2.3.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Producto agregado al carrito de WooCommerce
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Datos de facturación establecidos
+[17-Sep-2025 04:40:35 UTC] INTERCEPTOR: Redirigiendo a WooCommerce checkout: https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:35 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:35
+[17-Sep-2025 04:40:35 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:36 UTC] [2025-09-17 04:40:36] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.952s
+===================================
+
+
+[17-Sep-2025 04:40:36 UTC] [2025-09-17 04:40:36] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 0.952s
+===================================
+
+
+[17-Sep-2025 04:40:36 UTC] Todas las pasarelas disponibles: bacs, cod, ppcp-card-button-gateway, ppcp-oxxo-gateway, ppcp-gateway, woo-mercado-pago-basic, woo-mercado-pago-custom, woo-mercado-pago-ticket, woo-mercado-pago-credits
+[17-Sep-2025 04:40:36 UTC] Pasarelas filtradas: woo-mercado-pago-basic, ppcp-gateway
+[17-Sep-2025 04:40:37 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:37 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:37
+[17-Sep-2025 04:40:37 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:37 UTC] Todas las pasarelas disponibles: bacs, cod, ppcp-card-button-gateway, ppcp-oxxo-gateway, ppcp-gateway, woo-mercado-pago-basic, woo-mercado-pago-custom, woo-mercado-pago-ticket, woo-mercado-pago-credits
+[17-Sep-2025 04:40:37 UTC] Pasarelas filtradas: woo-mercado-pago-basic, ppcp-gateway
+[17-Sep-2025 04:40:37 UTC] Todas las pasarelas disponibles: bacs, cod, ppcp-card-button-gateway, ppcp-oxxo-gateway, ppcp-gateway, woo-mercado-pago-basic, woo-mercado-pago-custom, woo-mercado-pago-ticket, woo-mercado-pago-credits
+[17-Sep-2025 04:40:37 UTC] Pasarelas filtradas: woo-mercado-pago-basic, ppcp-gateway
+[17-Sep-2025 04:40:37 UTC] Pasarelas configuradas: woo-mercado-pago-basic, ppcp-gateway
+[17-Sep-2025 04:40:38 UTC] [2025-09-17 04:40:38] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.347s
+===================================
+
+
+[17-Sep-2025 04:40:38 UTC] [2025-09-17 04:40:38] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 25 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.348s
+===================================
+
+
+[17-Sep-2025 04:40:40 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:40 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:40
+[17-Sep-2025 04:40:40 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:41 UTC] [2025-09-17 04:40:41] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.482s
+===================================
+
+
+[17-Sep-2025 04:40:41 UTC] [2025-09-17 04:40:41] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => heartbeat
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/wp-admin/admin.php?page=tutor_settings&tab_page=monetization
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.482s
+===================================
+
+
+[17-Sep-2025 04:40:41 UTC] [2025-09-17 04:40:41] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.482s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:54 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:54 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:54
+[17-Sep-2025 04:40:54 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:54
+[17-Sep-2025 04:40:54 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:54 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.143s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => woocommerce_get_refreshed_fragments
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.143s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.143s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] [TUTOR AJAX] Action: tutor_save_billing_info | Data: {"billing_country":"PE","_tutor_nonce":"fab1429b44","action":"tutor_save_billing_info"}
+[17-Sep-2025 04:40:54 UTC] [TUTOR AJAX] Backtrace: #0 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php:324 setup_tutor_ajax_logging\n#1 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php:348 WP_Hook->apply_filters\n#2 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php:517 WP_Hook->do_action\n#3 /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php:727 do_action\n#4 /home/admin/web/daria.mate4kids.com/public_html/wp-config.php:125 require_once\n#5 /home/admin/web/daria.mate4kids.com/public_html/wp-load.php:50 require_once\n#6 /home/admin/web/daria.mate4kids.com/public_html/wp-admin/admin-ajax.php:22 require_once
+[17-Sep-2025 04:40:54 UTC] [TUTOR AJAX] Server vars: Array
+(
+    [REQUEST_METHOD] => POST
+    [REQUEST_URI] => /wp-admin/admin-ajax.php
+    [HTTP_REFERER] => https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+    [REMOTE_ADDR] => 179.6.14.107
+)
+
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.229s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => tutor_save_billing_info
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.230s
+===================================
+
+
+[17-Sep-2025 04:40:54 UTC] [2025-09-17 04:40:54] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.230s
+===================================
+
+
+[17-Sep-2025 04:40:55 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>uael</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:55 UTC] Archivo functions.php cargado correctamente - 2025-09-17 04:40:55
+[17-Sep-2025 04:40:55 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>astra</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in /home/admin/web/daria.mate4kids.com/public_html/wp-includes/functions.php on line 6121
+[17-Sep-2025 04:40:56 UTC] [TUTOR AJAX] Action: tutor_get_checkout_html | Data: {"_tutor_nonce":"fab1429b44","action":"tutor_get_checkout_html","coupon_code":"","billing_country":"PE"}
+[17-Sep-2025 04:40:56 UTC] [TUTOR AJAX] Backtrace: #0 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php:324 setup_tutor_ajax_logging\n#1 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php:348 WP_Hook->apply_filters\n#2 /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php:517 WP_Hook->do_action\n#3 /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php:727 do_action\n#4 /home/admin/web/daria.mate4kids.com/public_html/wp-config.php:125 require_once\n#5 /home/admin/web/daria.mate4kids.com/public_html/wp-load.php:50 require_once\n#6 /home/admin/web/daria.mate4kids.com/public_html/wp-admin/admin-ajax.php:22 require_once
+[17-Sep-2025 04:40:56 UTC] [TUTOR AJAX] Server vars: Array
+(
+    [REQUEST_METHOD] => POST
+    [REQUEST_URI] => /wp-admin/admin-ajax.php
+    [HTTP_REFERER] => https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+    [REMOTE_ADDR] => 179.6.14.107
+)
+
+[17-Sep-2025 04:40:56 UTC] [2025-09-17 04:40:56] === INICIO DE PRUEBA DE REGISTRO ===
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 38
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.045s
+===================================
+
+
+[17-Sep-2025 04:40:56 UTC] [2025-09-17 04:40:56] === PETICIÓN AJAX DETECTADA ===
+Datos: Array
+(
+    [action] => tutor_get_checkout_html
+    [nonce] => Sin nonce
+    [referer] => https://daria.mate4kids.com/checkout/?payment_method=ppcp-gateway
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+)
+
+Backtrace: Array
+(
+    [0] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-content/themes/astra/functions.php
+            [line] => 48
+            [function] => log_debug_info
+        )
+
+    [1] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 324
+            [function] => test_debug_logging
+        )
+
+    [2] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/class-wp-hook.php
+            [line] => 348
+            [function] => apply_filters
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [3] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-includes/plugin.php
+            [line] => 517
+            [function] => do_action
+            [class] => WP_Hook
+            [type] => ->
+        )
+
+    [4] => Array
+        (
+            [file] => /home/admin/web/daria.mate4kids.com/public_html/wp-settings.php
+            [line] => 749
+            [function] => do_action
+        )
+
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.045s
+===================================
+
+
+[17-Sep-2025 04:40:56 UTC] [2025-09-17 04:40:56] === INFORMACIÓN DEL SISTEMA ===
+Datos: Array
+(
+    [PHP Version] => 7.4.33
+    [WordPress Version] => 6.8.2
+    [WooCommerce Active] => Sí
+    [Tutor LMS Active] => Sí
+    [Theme] => Astra 4.8.0
+)
+
+Memoria usada: 26 MB
+Límite de memoria: 12800M
+Tiempo de ejecución: 1.045s
+===================================
+
+
