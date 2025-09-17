@@ -46,16 +46,26 @@ function wcsf_preserve_cart_data() {
     }
 }
 
-// Restaurar carrito en checkout si está vacío
-add_action( 'template_redirect', 'wcsf_restore_cart_on_checkout' );
+// Restaurar carrito en checkout si está vacío - MÚLTIPLES HOOKS
+add_action( 'template_redirect', 'wcsf_restore_cart_on_checkout', 1 );
+add_action( 'wp_loaded', 'wcsf_restore_cart_on_checkout', 1 );
+add_action( 'woocommerce_checkout_init', 'wcsf_restore_cart_on_checkout', 1 );
 function wcsf_restore_cart_on_checkout() {
-    if ( ! is_checkout() || ! function_exists( 'WC' ) ) {
+    if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
         return;
     }
     
-    // Si el carrito está vacío en checkout, intentar restaurar
+    // Solo ejecutar en checkout o si el carrito está vacío
+    $is_checkout_page = ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/checkout' ) !== false );
+    
+    if ( ! $is_checkout_page && ! WC()->cart->is_empty() ) {
+        return;
+    }
+    
+    // Si el carrito está vacío, intentar restaurar
     if ( WC()->cart->is_empty() ) {
         $cart_data = null;
+        $customer_id = WC()->session ? WC()->session->get_customer_id() : 'guest';
         
         // Intentar obtener datos del carrito desde múltiples fuentes
         if ( WC()->session ) {
@@ -63,7 +73,7 @@ function wcsf_restore_cart_on_checkout() {
         }
         
         if ( ! $cart_data ) {
-            $cart_data = get_transient( 'wcsf_cart_backup_' . WC()->session->get_customer_id() );
+            $cart_data = get_transient( 'wcsf_cart_backup_' . $customer_id );
         }
         
         if ( ! $cart_data && isset( $_COOKIE['wcsf_cart_backup'] ) ) {
@@ -73,23 +83,20 @@ function wcsf_restore_cart_on_checkout() {
         // Restaurar productos al carrito
         if ( $cart_data && is_array( $cart_data ) ) {
             foreach ( $cart_data as $item ) {
-                if ( isset( $item['product_id'] ) ) {
+                if ( isset( $item['product_id'] ) && $item['product_id'] ) {
                     WC()->cart->add_to_cart(
                         $item['product_id'],
-                        $item['quantity'],
-                        $item['variation_id'],
-                        $item['variation']
+                        isset( $item['quantity'] ) ? $item['quantity'] : 1,
+                        isset( $item['variation_id'] ) ? $item['variation_id'] : 0,
+                        isset( $item['variation'] ) ? $item['variation'] : array()
                     );
                 }
             }
             
-            // Forzar recálculo
+            // Forzar recálculo y persistencia
             WC()->cart->calculate_totals();
-            
-            // Limpiar backup después de restaurar
-            delete_transient( 'wcsf_cart_backup_' . WC()->session->get_customer_id() );
-            WC()->session->__unset( 'wcsf_cart_backup' );
-            setcookie( 'wcsf_cart_backup', '', time() - 3600, '/' );
+            WC()->cart->maybe_set_cart_cookies();
+            WC()->cart->persistent_cart_update();
         }
     }
 }
@@ -128,21 +135,36 @@ function wcsf_disable_mercadopago_scripts() {
     }
 }
 
-// Debug en consola para verificar funcionamiento
+// Debug en consola para verificar funcionamiento - MEJORADO
 add_action( 'wp_footer', 'wcsf_debug_cart_status' );
 function wcsf_debug_cart_status() {
-    if ( ( is_cart() || is_checkout() ) && function_exists( 'WC' ) ) {
+    if ( function_exists( 'WC' ) && WC()->cart ) {
         $cart_count = WC()->cart->get_cart_contents_count();
         $cart_total = WC()->cart->get_total();
-        $page_type = is_cart() ? 'CART' : 'CHECKOUT';
+        $is_checkout_page = ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/checkout' ) !== false );
+        $is_cart_page = ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/cart' ) !== false );
         
-        ?>
-        <script>
-        console.log('=== WCSF DEBUG <?php echo $page_type; ?> ===');
-        console.log('Items en carrito:', <?php echo $cart_count; ?>);
-        console.log('Total:', '<?php echo esc_js( $cart_total ); ?>');
-        console.log('Sesión ID:', '<?php echo WC()->session->get_customer_id(); ?>');
-        </script>
-        <?php
+        if ( $is_cart_page || $is_checkout_page ) {
+            $page_type = $is_cart_page ? 'CART' : 'CHECKOUT';
+            $customer_id = WC()->session ? WC()->session->get_customer_id() : 'no-session';
+            
+            // Verificar backups disponibles
+            $session_backup = WC()->session ? WC()->session->get( 'wcsf_cart_backup' ) : null;
+            $transient_backup = get_transient( 'wcsf_cart_backup_' . $customer_id );
+            $cookie_backup = isset( $_COOKIE['wcsf_cart_backup'] ) ? 'exists' : 'none';
+            
+            ?>
+            <script>
+            console.log('=== WCSF DEBUG <?php echo $page_type; ?> ===');
+            console.log('Items en carrito:', <?php echo $cart_count; ?>);
+            console.log('Total:', '<?php echo esc_js( $cart_total ); ?>');
+            console.log('Sesión ID:', '<?php echo $customer_id; ?>');
+            console.log('Backup en sesión:', <?php echo $session_backup ? 'exists' : 'none'; ?>);
+            console.log('Backup en transient:', <?php echo $transient_backup ? 'exists' : 'none'; ?>);
+            console.log('Backup en cookie:', '<?php echo $cookie_backup; ?>');
+            console.log('URL actual:', window.location.href);
+            </script>
+            <?php
+        }
     }
 }
