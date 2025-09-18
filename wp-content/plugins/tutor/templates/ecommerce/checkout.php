@@ -72,107 +72,93 @@ $is_checkout_page = true;
 					<?php } ?>
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
-						<div class="tutor-checkout-billing-form">
-						<h3 class="tutor-color-black tutor-fs-5 tutor-fw-medium tutor-mb-16">
-							<?php esc_html_e( 'Billing Information', 'tutor' ); ?>
-						</h3>
+						<div class="billing-address-container">
+						<h2 class="billing-title">Billing Address</h2>
 
-						<div class="tutor-row tutor-gx-xl-5">
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'First Name', 'tutor' ); ?>
-										<span class="tutor-required-star">*</span>
-									</label>
-									<input type="text" name="billing_first_name" class="tutor-form-control" placeholder="<?php esc_attr_e( 'First Name', 'tutor' ); ?>" required>
-								</div>
+						<!-- Campos visibles -->
+						<div class="billing-row">
+							<div class="billing-field">
+								<input type="text" name="billing_first_name" class="billing-input" placeholder="First Name" required>
 							</div>
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'Last Name', 'tutor' ); ?>
-										<span class="tutor-required-star">*</span>
-									</label>
-									<input type="text" name="billing_last_name" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Last Name', 'tutor' ); ?>" required>
-								</div>
+							<div class="billing-field">
+								<input type="text" name="billing_last_name" class="billing-input" placeholder="Last Name" required>
 							</div>
 						</div>
 
-						<div class="tutor-form-group tutor-mb-16">
-							<label class="tutor-form-label">
-								<?php esc_html_e( 'Email', 'tutor' ); ?>
-								<span class="tutor-required-star">*</span>
-							</label>
-							<input type="email" name="billing_email" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Email', 'tutor' ); ?>" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : ''; ?>" required>
+						<div class="billing-field">
+							<input type="email" name="billing_email" class="billing-input" placeholder="Email Address" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : ''; ?>" required>
 						</div>
 
-						<div class="tutor-form-group tutor-mb-16">
-							<label class="tutor-form-label">
-								<?php esc_html_e( 'Phone', 'tutor' ); ?>
-							</label>
-							<input type="tel" name="billing_phone" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Phone', 'tutor' ); ?>">
+						<div class="billing-field">
+							<input type="tel" name="billing_phone" class="billing-input" placeholder="Phone">
 						</div>
 
-						<!-- Campos informativos sin AJAX -->
-						<div class="tutor-row tutor-gx-xl-5">
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'Country', 'tutor' ); ?>
-									</label>
-									<select name="billing_country_display" class="tutor-form-control" disabled>
-										<option value="Mexico" selected>Mexico</option>
-									</select>
-									<input type="hidden" name="billing_country" value="Mexico">
-								</div>
-							</div>
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'State', 'tutor' ); ?>
-									</label>
-									<select name="billing_state_display" class="tutor-form-control" disabled>
-										<option value="MEX" selected>Estado de México</option>
-									</select>
-									<input type="hidden" name="billing_state" value="MEX">
-								</div>
-							</div>
+						<div class="billing-field">
+							<input type="text" name="billing_address_1" class="billing-input" placeholder="Address" required>
 						</div>
 
-						<div class="tutor-form-group tutor-mb-16">
-							<label class="tutor-form-label">
-								<?php esc_html_e( 'Address', 'tutor' ); ?>
-								<span class="tutor-required-star">*</span>
-							</label>
-							<input type="text" name="billing_address_1" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Address', 'tutor' ); ?>" required>
-						</div>
-
-						<div class="tutor-row tutor-gx-xl-5">
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'City', 'tutor' ); ?>
-									</label>
-									<input type="text" name="billing_city_display" class="tutor-form-control" placeholder="Ciudad de México" disabled>
-									<input type="hidden" name="billing_city" value="Ciudad de México">
-								</div>
-							</div>
-							<div class="tutor-col-sm-6">
-								<div class="tutor-form-group tutor-mb-16">
-									<label class="tutor-form-label">
-										<?php esc_html_e( 'Postal Code', 'tutor' ); ?>
-									</label>
-									<input type="text" name="billing_postcode" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Postal Code', 'tutor' ); ?>">
-								</div>
-							</div>
-						</div>
+						<!-- Campos ocultos con valores por defecto -->
+						<input type="hidden" name="billing_country" value="MX">
+						<input type="hidden" name="billing_state" value="MEX">
+						<input type="hidden" name="billing_city" value="Ciudad de México">
+						<input type="hidden" name="billing_postcode" value="00000">
 
 						<style>
-						/* Estilo para campos deshabilitados */
-						.tutor-form-control:disabled {
-							background-color: #f8f9fa;
-							color: #6c757d;
-							cursor: not-allowed;
+						.billing-address-container {
+							background: #f5f5f5;
+							padding: 24px;
+							border-radius: 8px;
+							margin-bottom: 24px;
+							font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+						}
+
+						.billing-title {
+							color: #8B7355;
+							font-size: 20px;
+							font-weight: 400;
+							margin: 0 0 20px 0;
+							letter-spacing: 0.5px;
+						}
+
+						.billing-row {
+							display: flex;
+							gap: 12px;
+							margin-bottom: 12px;
+						}
+
+						.billing-field {
+							flex: 1;
+							margin-bottom: 12px;
+						}
+
+						.billing-input {
+							width: 100%;
+							padding: 12px 16px;
+							border: 1px solid #d1d5db;
+							border-radius: 6px;
+							font-size: 14px;
+							color: #6b7280;
+							background: white;
+							transition: all 0.2s ease;
+							box-sizing: border-box;
+						}
+
+						.billing-input:focus {
+							outline: none;
+							border-color: #8B7355;
+							box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+						}
+
+						.billing-input::placeholder {
+							color: #9ca3af;
+							font-weight: 300;
+						}
+
+						@media (max-width: 768px) {
+							.billing-row {
+								flex-direction: column;
+								gap: 0;
+							}
 						}
 						</style>
 					</div>	
