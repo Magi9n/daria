@@ -105,7 +105,7 @@ $is_checkout_page = true;
 
 						<style>
 						.billing-address-container {
-							background: #f5f5f5;
+							background: ##FFFFFF00;
 							padding: 24px;
 							border-radius: 8px;
 							margin-bottom: 24px;
