@@ -223,7 +223,11 @@ add_action('wp_head', function() {
         .woocommerce-message,
         .wc-block-components-notice-banner,
         .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-totals-item--shipping,
-        .wp-block-woocommerce-cart-order-summary-block .wc-block-components-totals-item--shipping {
+        .wp-block-woocommerce-cart-order-summary-block .wc-block-components-totals-item--shipping,
+        /* Ocultar div de SYNC DEBUG específico */
+        div[style*="position: fixed"][style*="background: #28a745"],
+        div[style*="SYNC DEBUG"],
+        div[style*="z-index: 9999"][style*="background: #28a745"] {
             display: none !important;
         }
         </style>';
@@ -1203,12 +1207,14 @@ function cart_sync_debug() {
         $cart_count = WC()->cart->get_cart_contents_count();
         $cart_total = WC()->cart->get_total();
         
+        // Debug info comentado para ocultar visualmente
+        /*
         echo '<div style="position: fixed; top: 10px; right: 10px; background: #28a745; color: #fff; padding: 10px; z-index: 9999; font-size: 12px; border-radius: 5px; max-width: 200px;">';
         echo '<strong>SYNC DEBUG:</strong><br>';
         echo 'WC Items: ' . $cart_count . '<br>';
         echo 'WC Total: ' . $cart_total . '<br>';
         echo 'Hooks: ✓<br>';
-        echo 'Sync: Completo';
-        echo '</div>';
+        echo 'Sync: Completo</div>';
+        */
     }
 }
