@@ -184,6 +184,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Agregar CSS personalizado para ocultar elementos de WooCommerce
+add_action('wp_head', function() {
+    if (is_page('checkout') || is_checkout() || is_cart()) {
+        echo '<style>
+        /* Ocultar elementos innecesarios en checkout y cart */
+        .woocommerce-checkout-review-order-table .shipping,
+        .woocommerce-checkout-review-order-table .tax-rate,
+        .woocommerce-checkout-review-order-table .order-total .includes_tax,
+        .woocommerce-additional-fields,
+        .woocommerce-checkout .checkout_coupon,
+        .woocommerce-form-coupon-toggle,
+        .woocommerce-checkout-payment .place-order .woocommerce-terms-and-conditions-wrapper,
+        /* Ocultar shipping en cart */
+        .woocommerce-cart .shipping,
+        .woocommerce-cart .cart-collaterals .shipping,
+        .woocommerce-cart-form .shipping,
+        .woocommerce-shipping-calculator,
+        .shipping-calculator-form,
+        .woocommerce-shipping-totals,
+        .cart-subtotal .shipping,
+        .order-total .shipping,
+        .wc-proceed-to-checkout .shipping,
+        /* Ocultar textos de shipping */
+        .woocommerce-cart .cart_totals .shipping,
+        .woocommerce-cart .cart_totals tr.shipping,
+        .woocommerce-cart .cart_totals .shipping-calculator-button,
+        .woocommerce-cart .woocommerce-shipping-calculator,
+        /* Ocultar logs de debug */
+        .tutor-checkout-debug,
+        .debug-info,
+        .sync-log,
+        .payment-debug,
+        pre.debug,
+        .log-container,
+        .debug-container,
+        /* Ocultar elementos de logs verdes y negros */
+        .woocommerce-message,
+        .wc-block-components-notice-banner,
+        .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-totals-item--shipping,
+        .wp-block-woocommerce-cart-order-summary-block .wc-block-components-totals-item--shipping {
+            display: none !important;
+        }
+        </style>';
+    }
+});
+
 /**
  * Define Constants
  */
