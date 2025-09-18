@@ -227,7 +227,11 @@ add_action('wp_head', function() {
         /* Ocultar div de SYNC DEBUG específico */
         div[style*="position: fixed"][style*="background: #28a745"],
         div[style*="SYNC DEBUG"],
-        div[style*="z-index: 9999"][style*="background: #28a745"] {
+        div[style*="z-index: 9999"][style*="background: #28a745"],
+        /* Ocultar div de DEBUG CHECKOUT negro */
+        div[style*="position: fixed"][style*="background: #000"],
+        div[style*="DEBUG CHECKOUT"],
+        div[style*="z-index: 9999"][style*="background: #000"] {
             display: none !important;
         }
         </style>';
@@ -506,13 +510,15 @@ function astra_checkout_debug_visible() {
         $cart_count = WC()->cart->get_cart_contents_count();
         $cart_total = WC()->cart->get_total();
         
+        // Debug checkout comentado para ocultar visualmente
+        /*
         echo '<div style="position: fixed; top: 10px; right: 10px; background: #000; color: #fff; padding: 10px; z-index: 9999; font-size: 12px; border-radius: 5px;">';
         echo '<strong>DEBUG CHECKOUT:</strong><br>';
         echo 'Items: ' . $cart_count . '<br>';
         echo 'Total: ' . $cart_total . '<br>';
         echo 'Filtro aplicado: ✓<br>';
-        echo 'Sincronización: ✓';
-        echo '</div>';
+        echo 'Sincronización: ✓</div>';
+        */
     }
 }
 
