@@ -72,16 +72,110 @@ $is_checkout_page = true;
 					<?php } ?>
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
-						<!-- Billing information simplificado - solo campos esenciales ocultos -->
-						<input type="hidden" name="billing_first_name" value="Cliente">
-						<input type="hidden" name="billing_last_name" value="Comprador">
-						<input type="hidden" name="billing_email" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : 'cliente@ejemplo.com'; ?>">
-						<input type="hidden" name="billing_phone" value="">
-						<input type="hidden" name="billing_country" value="Mexico">
-						<input type="hidden" name="billing_state" value="MEX">
-						<input type="hidden" name="billing_address_1" value="Dirección no especificada">
-						<input type="hidden" name="billing_city" value="Ciudad">
-						<input type="hidden" name="billing_postcode" value="00000">	
+						<div class="tutor-checkout-billing-form">
+						<h3 class="tutor-color-black tutor-fs-5 tutor-fw-medium tutor-mb-16">
+							<?php esc_html_e( 'Billing Information', 'tutor' ); ?>
+						</h3>
+
+						<div class="tutor-row tutor-gx-xl-5">
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'First Name', 'tutor' ); ?>
+										<span class="tutor-required-star">*</span>
+									</label>
+									<input type="text" name="billing_first_name" class="tutor-form-control" placeholder="<?php esc_attr_e( 'First Name', 'tutor' ); ?>" required>
+								</div>
+							</div>
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'Last Name', 'tutor' ); ?>
+										<span class="tutor-required-star">*</span>
+									</label>
+									<input type="text" name="billing_last_name" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Last Name', 'tutor' ); ?>" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="tutor-form-group tutor-mb-16">
+							<label class="tutor-form-label">
+								<?php esc_html_e( 'Email', 'tutor' ); ?>
+								<span class="tutor-required-star">*</span>
+							</label>
+							<input type="email" name="billing_email" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Email', 'tutor' ); ?>" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : ''; ?>" required>
+						</div>
+
+						<div class="tutor-form-group tutor-mb-16">
+							<label class="tutor-form-label">
+								<?php esc_html_e( 'Phone', 'tutor' ); ?>
+							</label>
+							<input type="tel" name="billing_phone" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Phone', 'tutor' ); ?>">
+						</div>
+
+						<!-- Campos informativos sin AJAX -->
+						<div class="tutor-row tutor-gx-xl-5">
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'Country', 'tutor' ); ?>
+									</label>
+									<select name="billing_country_display" class="tutor-form-control" disabled>
+										<option value="Mexico" selected>Mexico</option>
+									</select>
+									<input type="hidden" name="billing_country" value="Mexico">
+								</div>
+							</div>
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'State', 'tutor' ); ?>
+									</label>
+									<select name="billing_state_display" class="tutor-form-control" disabled>
+										<option value="MEX" selected>Estado de México</option>
+									</select>
+									<input type="hidden" name="billing_state" value="MEX">
+								</div>
+							</div>
+						</div>
+
+						<div class="tutor-form-group tutor-mb-16">
+							<label class="tutor-form-label">
+								<?php esc_html_e( 'Address', 'tutor' ); ?>
+								<span class="tutor-required-star">*</span>
+							</label>
+							<input type="text" name="billing_address_1" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Address', 'tutor' ); ?>" required>
+						</div>
+
+						<div class="tutor-row tutor-gx-xl-5">
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'City', 'tutor' ); ?>
+									</label>
+									<input type="text" name="billing_city_display" class="tutor-form-control" placeholder="Ciudad de México" disabled>
+									<input type="hidden" name="billing_city" value="Ciudad de México">
+								</div>
+							</div>
+							<div class="tutor-col-sm-6">
+								<div class="tutor-form-group tutor-mb-16">
+									<label class="tutor-form-label">
+										<?php esc_html_e( 'Postal Code', 'tutor' ); ?>
+									</label>
+									<input type="text" name="billing_postcode" class="tutor-form-control" placeholder="<?php esc_attr_e( 'Postal Code', 'tutor' ); ?>">
+								</div>
+							</div>
+						</div>
+
+						<style>
+						/* Estilo para campos deshabilitados */
+						.tutor-form-control:disabled {
+							background-color: #f8f9fa;
+							color: #6c757d;
+							cursor: not-allowed;
+						}
+						</style>
+					</div>	
 						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
 								<?php esc_html_e( 'Payment Method', 'tutor' ); ?>

@@ -838,6 +838,21 @@ function handle_create_mercadopago_preference() {
     $course_id = intval( $_POST['course_id'] );
     $billing_data = $_POST['billing_data'];
     
+    // Crear estructura de billing_data correcta combinando datos del formulario con valores fijos
+    $billing_address = array(
+        'first_name' => isset( $billing_data['first_name'] ) ? sanitize_text_field( $billing_data['first_name'] ) : 'Cliente',
+        'last_name'  => isset( $billing_data['last_name'] ) ? sanitize_text_field( $billing_data['last_name'] ) : 'Comprador',
+        'email'      => isset( $billing_data['email'] ) ? sanitize_email( $billing_data['email'] ) : (is_user_logged_in() ? wp_get_current_user()->user_email : 'cliente@ejemplo.com'),
+        'phone'      => isset( $billing_data['phone'] ) ? sanitize_text_field( $billing_data['phone'] ) : '',
+        'company'    => '',
+        'address_1'  => isset( $billing_data['address_1'] ) ? sanitize_text_field( $billing_data['address_1'] ) : 'Dirección no especificada',
+        'address_2'  => '',
+        'city'       => 'Ciudad de México', // Valor fijo
+        'state'      => 'MEX',              // Valor fijo
+        'postcode'   => isset( $billing_data['postcode'] ) ? sanitize_text_field( $billing_data['postcode'] ) : '00000',
+        'country'    => 'MX'                // Valor fijo
+    );
+    
     if ( ! $course_id ) {
         error_log( '[DIRECT MP] Course ID inválido' );
         wp_send_json_error( 'Course ID inválido' );
@@ -845,7 +860,7 @@ function handle_create_mercadopago_preference() {
     }
     
     error_log( '[DIRECT MP] Procesando curso: ' . $course_id );
-    error_log( '[DIRECT MP] Datos facturación: ' . print_r( $billing_data, true ) );
+    error_log( '[DIRECT MP] Datos facturación: ' . print_r( $billing_address, true ) );
     
     // Obtener información del curso
     $course = get_post( $course_id );
@@ -921,7 +936,7 @@ function handle_create_mercadopago_preference() {
     // Crear orden temporal en WooCommerce para usar pasarela real
     $wc_order = wc_create_order();
     $wc_order->add_product( wc_get_product( get_post_meta( $course_id, '_tutor_course_product_id', true ) ), 1 );
-    $wc_order->set_address( $billing_data, 'billing' );
+    $wc_order->set_billing_address( $billing_address );
     $wc_order->set_payment_method( 'woo-mercado-pago-basic' );
     $wc_order->calculate_totals();
     $wc_order->save();
@@ -1067,7 +1082,7 @@ function handle_create_paypal_order() {
     // Crear orden temporal en WooCommerce para usar pasarela real
     $wc_order = wc_create_order();
     $wc_order->add_product( wc_get_product( get_post_meta( $course_id, '_tutor_course_product_id', true ) ), 1 );
-    $wc_order->set_address( $billing_data, 'billing' );
+    $wc_order->set_billing_address( $billing_address );
     $wc_order->set_payment_method( 'ppcp-gateway' );
     $wc_order->calculate_totals();
     $wc_order->save();
