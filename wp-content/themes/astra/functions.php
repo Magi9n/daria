@@ -918,35 +918,52 @@ function handle_create_mercadopago_preference() {
     
     error_log( '[DIRECT MP] Orden creada: ' . $order_id );
     
-    // Crear preferencia de Mercado Pago
-    $preference_data = array(
-        'items' => array(
-            array(
-                'title' => $course->post_title,
-                'quantity' => 1,
-                'unit_price' => floatval( $course_price )
-            )
-        ),
-        'payer' => array(
-            'name' => $billing_data['first_name'],
-            'surname' => $billing_data['last_name'],
-            'email' => $billing_data['email']
-        ),
-        'back_urls' => array(
-            'success' => home_url( '/payment-success/?order_id=' . $order_id ),
-            'failure' => home_url( '/payment-failure/?order_id=' . $order_id ),
-            'pending' => home_url( '/payment-pending/?order_id=' . $order_id )
-        ),
-        'auto_return' => 'approved',
-        'external_reference' => $order_id
-    );
+    // Crear orden temporal en WooCommerce para usar pasarela real
+    $wc_order = wc_create_order();
+    $wc_order->add_product( wc_get_product( get_post_meta( $course_id, '_tutor_course_product_id', true ) ), 1 );
+    $wc_order->set_address( $billing_data, 'billing' );
+    $wc_order->set_payment_method( 'woo-mercado-pago-basic' );
+    $wc_order->calculate_totals();
+    $wc_order->save();
     
-    // Simular respuesta de Mercado Pago (en producción usar API real)
-    $mp_response = array(
-        'init_point' => 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=test_preference_' . $order_id
-    );
+    error_log( '[DIRECT MP] Orden WooCommerce creada: ' . $wc_order->get_id() );
     
-    error_log( '[DIRECT MP] Preferencia creada exitosamente' );
+    // Obtener la pasarela de Mercado Pago configurada
+    $gateway = WC()->payment_gateways()->payment_gateways()['woo-mercado-pago-basic'];
+    
+    if ( $gateway && $gateway->is_available() ) {
+        // Usar la pasarela real para generar URL de pago
+        $payment_url = $gateway->get_return_url( $wc_order );
+        
+        // Si la pasarela tiene método para obtener URL de checkout
+        if ( method_exists( $gateway, 'process_payment' ) ) {
+            $result = $gateway->process_payment( $wc_order->get_id() );
+            
+            if ( isset( $result['redirect'] ) ) {
+                $mp_response = array(
+                    'init_point' => $result['redirect']
+                );
+                error_log( '[DIRECT MP] URL real obtenida: ' . $result['redirect'] );
+            } else {
+                // Fallback: usar checkout de WooCommerce
+                $mp_response = array(
+                    'init_point' => $wc_order->get_checkout_payment_url( true )
+                );
+                error_log( '[DIRECT MP] Usando checkout WooCommerce: ' . $wc_order->get_checkout_payment_url( true ) );
+            }
+        } else {
+            $mp_response = array(
+                'init_point' => $wc_order->get_checkout_payment_url( true )
+            );
+        }
+    } else {
+        error_log( '[DIRECT MP] Pasarela no disponible, usando checkout WooCommerce' );
+        $mp_response = array(
+            'init_point' => $wc_order->get_checkout_payment_url( true )
+        );
+    }
+    
+    error_log( '[DIRECT MP] Preferencia creada exitosamente con pasarela real' );
     
     wp_send_json_success( $mp_response );
 }
@@ -1047,30 +1064,49 @@ function handle_create_paypal_order() {
     
     error_log( '[DIRECT PP] Orden creada: ' . $order_id );
     
-    // Crear orden de PayPal
-    $paypal_data = array(
-        'intent' => 'CAPTURE',
-        'purchase_units' => array(
-            array(
-                'amount' => array(
-                    'currency_code' => 'USD',
-                    'value' => number_format( $course_price, 2, '.', '' )
-                ),
-                'description' => $course->post_title
-            )
-        ),
-        'application_context' => array(
-            'return_url' => home_url( '/payment-success/?order_id=' . $order_id ),
-            'cancel_url' => home_url( '/payment-failure/?order_id=' . $order_id )
-        )
-    );
+    // Crear orden temporal en WooCommerce para usar pasarela real
+    $wc_order = wc_create_order();
+    $wc_order->add_product( wc_get_product( get_post_meta( $course_id, '_tutor_course_product_id', true ) ), 1 );
+    $wc_order->set_address( $billing_data, 'billing' );
+    $wc_order->set_payment_method( 'ppcp-gateway' );
+    $wc_order->calculate_totals();
+    $wc_order->save();
     
-    // Simular respuesta de PayPal (en producción usar API real)
-    $paypal_response = array(
-        'approval_url' => 'https://www.sandbox.paypal.com/checkoutnow?token=test_token_' . $order_id
-    );
+    error_log( '[DIRECT PP] Orden WooCommerce creada: ' . $wc_order->get_id() );
     
-    error_log( '[DIRECT PP] Orden PayPal creada exitosamente' );
+    // Obtener la pasarela de PayPal configurada
+    $gateway = WC()->payment_gateways()->payment_gateways()['ppcp-gateway'];
+    
+    if ( $gateway && $gateway->is_available() ) {
+        // Usar la pasarela real para generar URL de pago
+        if ( method_exists( $gateway, 'process_payment' ) ) {
+            $result = $gateway->process_payment( $wc_order->get_id() );
+            
+            if ( isset( $result['redirect'] ) ) {
+                $paypal_response = array(
+                    'approval_url' => $result['redirect']
+                );
+                error_log( '[DIRECT PP] URL real obtenida: ' . $result['redirect'] );
+            } else {
+                // Fallback: usar checkout de WooCommerce
+                $paypal_response = array(
+                    'approval_url' => $wc_order->get_checkout_payment_url( true )
+                );
+                error_log( '[DIRECT PP] Usando checkout WooCommerce: ' . $wc_order->get_checkout_payment_url( true ) );
+            }
+        } else {
+            $paypal_response = array(
+                'approval_url' => $wc_order->get_checkout_payment_url( true )
+            );
+        }
+    } else {
+        error_log( '[DIRECT PP] Pasarela no disponible, usando checkout WooCommerce' );
+        $paypal_response = array(
+            'approval_url' => $wc_order->get_checkout_payment_url( true )
+        );
+    }
+    
+    error_log( '[DIRECT PP] Orden PayPal creada exitosamente con pasarela real' );
     
     wp_send_json_success( $paypal_response );
 }
