@@ -1,0 +1,13 @@
+2025-09-19T21:39:03+00:00 DEBUG #6214 - [New Request] POST /wp-admin/admin-ajax.php
+2025-09-19T21:39:03+00:00 WARNING #6214 - No PayPal order ID found in order #3134 meta.
+2025-09-19T21:39:03+00:00 DEBUG #6214 - POST https://api.woocommerce.com/integrations/ppc/v2/checkout/orders
+Request Body: {"intent":"CAPTURE","purchase_units":[{"reference_id":"default","amount":{"currency_code":"MXN","value":"999.00","breakdown":{"item_total":{"currency_code":"MXN","value":"999.00"},"shipping":{"currency_code":"MXN","value":"0.00"},"tax_total":{"currency_code":"MXN","value":"0.00"}}},"description":"","items":[{"name":"Esencial","unit_amount":{"currency_code":"MXN","value":"999.00"},"quantity":1,"description":"","sku":"","category":"PHYSICAL_GOODS","url":"https:\/\/daria.mate4kids.com\/producto\/esencial\/","image_url":"https:\/\/daria.mate4kids.com\/wp-content\/uploads\/2025\/07\/Captura-de-pantalla-2025-07-01-195411.png"}],"custom_id":"3134","invoice_id":"ebddcb-3134"}],"payer":{"email_address":"mariajose14_859@vaupk.org","name":{"given_name":"ihjkjklj","surname":"hjbkjn"},"phone":{"phone_type":"HOME","phone_number":{"national_number":"567845678"}}},"payment_source":{"paypal":{"experience_context":{"return_url":"https:\/\/daria.mate4kids.com\/?wc-ajax=ppc-return-url","cancel_url":"https:\/\/daria.mate4kids.com\/checkout\/","brand_name":"Daria Alexa Maquillista Profesional","locale":"en-US","landing_page":"NO_PREFERENCE","shipping_preference":"GET_FROM_FILE","user_action":"PAY_NOW","payment_method_preference":"UNRESTRICTED"}}}}
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-09-19T21:39:03+00:00 WARNING #6214 - Failed to create order. PayPal API response: [Error] Not Found
+2025-09-19T21:39:03+00:00 ERROR #6214 - Payment failed: Failed to process the payment. Please try again or contact the shop admin. [Error] Not Found PayPalGateway.php:513 [Error] Not Found OrderEndpoint.php:191

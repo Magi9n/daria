@@ -1,0 +1,155 @@
+2025-09-18T20:01:18+00:00 DEBUG #7741 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:01:18+00:00 DEBUG #7741 - GET https://api.woocommerce.com/integrations/ppc/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/8KFBE6X8LFPJN
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-09-18T20:01:18+00:00 WARNING #7741 - [Error] Not Found CONTEXT: {"args":{"method":"GET","headers":{"Authorization":"Bearer token","Content-Type":"application/json"}},"response":{"headers":{},"body":"{"statusCode":404,"error":"Not Found","message":"Not Found"}","response":{"code":404,"message":"Not Found"},"cookies":[],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:01:19+00:00 INFO #7741 - Generating onboarding URL for: production-ppcp
+2025-09-18T20:01:20+00:00 DEBUG #7741 - POST https://api.woocommerce.com/integrations/ppc/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/daria.mate4kids.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoicHJvZHVjdGlvbi1wcGNwIiwidSI6OTEsImgiOiJiZGI2OTI2MmFmYjNjYzBhYTA5YzA2MzE4OGUwNTAyYiJ9","return_url_description":"Return to your shop.","show_add_credit_card":true},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT","VAULT","FUTURE_PAYMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: c959844df9b11
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-09-18T20:01:20+00:00 INFO #7741 - Persisted onboarding URL for: production-ppcp
+2025-09-18T20:01:20+00:00 INFO #7741 - Generating onboarding URL for: production-express_checkout
+2025-09-18T20:01:20+00:00 DEBUG #7741 - POST https://api.woocommerce.com/integrations/ppc/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/daria.mate4kids.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoicHJvZHVjdGlvbi1leHByZXNzX2NoZWNrb3V0IiwidSI6OTEsImgiOiI4ZTU5MGJiNDBiYjBiOTQyYzUzZjM1YzA1YzI4MDAzOSJ9","return_url_description":"Return to your shop.","show_add_credit_card":true},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT","VAULT","FUTURE_PAYMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: 76644033fefc1
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-09-18T20:01:20+00:00 INFO #7741 - Persisted onboarding URL for: production-express_checkout
+2025-09-18T20:01:20+00:00 INFO #7741 - Generating onboarding URL for: sandbox-ppcp
+2025-09-18T20:01:21+00:00 DEBUG #7741 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/daria.mate4kids.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1wcGNwIiwidSI6OTEsImgiOiJkNmQ3YzQ2YWIxNTY5OGNlNTk0Yzg4NDYyNGE2OTE5NyJ9","return_url_description":"Return to your shop.","show_add_credit_card":true},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT","VAULT","FUTURE_PAYMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: 6119d004b3f8a
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-09-18T20:01:22+00:00 INFO #7741 - Persisted onboarding URL for: sandbox-ppcp
+2025-09-18T20:01:22+00:00 INFO #7741 - Generating onboarding URL for: sandbox-express_checkout
+2025-09-18T20:01:22+00:00 DEBUG #7741 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/daria.mate4kids.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1leHByZXNzX2NoZWNrb3V0IiwidSI6OTEsImgiOiJiZTg1MTdiMGJlNzg1ZDhhZDJmNTkxMDE5OGY0ZDA4MSJ9","return_url_description":"Return to your shop.","show_add_credit_card":true},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT","VAULT","FUTURE_PAYMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: c3f09b8f6784a
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-09-18T20:01:22+00:00 INFO #7741 - Persisted onboarding URL for: sandbox-express_checkout
+2025-09-18T20:01:45+00:00 DEBUG #4229 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:01:45+00:00 DEBUG #4229 - Loaded onbording URL from cache: production-ppcp
+2025-09-18T20:01:45+00:00 DEBUG #4229 - Loaded onbording URL from cache: production-express_checkout
+2025-09-18T20:01:45+00:00 DEBUG #4229 - Loaded onbording URL from cache: sandbox-ppcp
+2025-09-18T20:01:45+00:00 DEBUG #4229 - Loaded onbording URL from cache: sandbox-express_checkout
+2025-09-18T20:10:56+00:00 DEBUG #2209 - [New Request] POST /
+2025-09-18T20:10:56+00:00 DEBUG #2209 - POST https://api-m.paypal.com/v1/oauth2/token/
+Response Debug ID: a5743bbeb38c1
+Response: Array
+(
+    [code] => 401
+    [message] => Unauthorized
+)
+
+Response Body: {"error":"invalid_authz_code","error_description":"Authorization code has expired"}
+2025-09-18T20:10:56+00:00 WARNING #2209 - No token found. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Basic QkFBVjF1M29NbVVXTEhkYnNyRWtOcHlpSERGcm96NjB0X2NOTWRueWg5WExCaWdaYTlTMW1QdXFXdVNzc1VDa0hSXzMxTi1yUEhsaWU4YmdNYzo="},"body":{"grant_type":"authorization_code","code":"C21AANaYVzDvOngcaSAOjdIy9EWAZTLdXnNd1Ak84jefvlabKUrJgGMJMu028vFvCRpV7H61zXjF8tnlZoTt-yMNPWDyL6YXg","code_verifier":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}},"response":{"headers":{},"body":"{"error":"invalid_authz_code","error_description":"Authorization code has expired"}","response":{"code":401,"message":"Unauthorized"},"cookies":[{"name":"l7_az","value":"ccg14.slc","expires":1758228056,"path":"/","domain":"paypal.com","port":null,"host_only":false},{"name":"__cf_bm","value":"Yt1AMVj26ZIrcl2qMrRP3ufS23g6zoN0huJVWEFIJ90-1758226256-1.0.1.1-rxbiOWcTuwW7bpC7YoLA56OlCVsu7hLPBg3jMqWFxgwDiiJutGFQRpTar4ZTyoy9Tqo7UgIwKD0tMp8g85FP7Os1aZBWjrd0w3S5CQfR2lI","expires":1758228056,"path":"/","domain":"api-m.paypal.com","port":null,"host_only":false}],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:10:56+00:00 ERROR #2209 - Onboarding completion handling error: No token found.
+2025-09-18T20:10:56+00:00 DEBUG #8397 - [New Request] POST /
+2025-09-18T20:10:56+00:00 DEBUG #8397 - POST https://api-m.paypal.com/v1/oauth2/token/
+Response Debug ID: c9b3b1dc5c78e
+Response: Array
+(
+    [code] => 400
+    [message] => Bad Request
+)
+
+Response Body: {"error":"invalid_grant","error_description":"Authorization code not found in cache"}
+2025-09-18T20:10:56+00:00 WARNING #8397 - No token found. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Basic QkFBVjF1M29NbVVXTEhkYnNyRWtOcHlpSERGcm96NjB0X2NOTWRueWg5WExCaWdaYTlTMW1QdXFXdVNzc1VDa0hSXzMxTi1yUEhsaWU4YmdNYzo="},"body":{"grant_type":"authorization_code","code":"C21AANaYVzDvOngcaSAOjdIy9EWAZTLdXnNd1Ak84jefvlabKUrJgGMJMu028vFvCRpV7H61zXjF8tnlZoTt-yMNPWDyL6YXg","code_verifier":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}},"response":{"headers":{},"body":"{"error":"invalid_grant","error_description":"Authorization code not found in cache"}","response":{"code":400,"message":"Bad Request"},"cookies":[{"name":"l7_az","value":"ccg13.slc","expires":1758228056,"path":"/","domain":"paypal.com","port":null,"host_only":false}],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:10:56+00:00 ERROR #8397 - Onboarding completion handling error: No token found.
+2025-09-18T20:19:19+00:00 DEBUG #1569 - [New Request] POST /
+2025-09-18T20:19:19+00:00 DEBUG #5007 - [New Request] POST /
+2025-09-18T20:19:19+00:00 DEBUG #1569 - POST https://api-m.paypal.com/v1/oauth2/token/
+Response Debug ID: 8a6212d70b6c4
+Response: Array
+(
+    [code] => 400
+    [message] => Bad Request
+)
+
+Response Body: {"error":"invalid_grant","error_description":"Authorization code not found in cache"}
+2025-09-18T20:19:19+00:00 DEBUG #5007 - POST https://api-m.paypal.com/v1/oauth2/token/
+Response Debug ID: bdf0614f5d9b6
+Response: Array
+(
+    [code] => 400
+    [message] => Bad Request
+)
+
+Response Body: {"error":"invalid_grant","error_description":"Authorization code not found in cache"}
+2025-09-18T20:19:19+00:00 WARNING #1569 - No token found. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Basic QkFBVjF1M29NbVVXTEhkYnNyRWtOcHlpSERGcm96NjB0X2NOTWRueWg5WExCaWdaYTlTMW1QdXFXdVNzc1VDa0hSXzMxTi1yUEhsaWU4YmdNYzo="},"body":{"grant_type":"authorization_code","code":"C21AANaYVzDvOngcaSAOjdIy9EWAZTLdXnNd1Ak84jefvlabKUrJgGMJMu028vFvCRpV7H61zXjF8tnlZoTt-yMNPWDyL6YXg","code_verifier":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}},"response":{"headers":{},"body":"{"error":"invalid_grant","error_description":"Authorization code not found in cache"}","response":{"code":400,"message":"Bad Request"},"cookies":[{"name":"l7_az","value":"ccg01.phx","expires":1758228559,"path":"/","domain":"paypal.com","port":null,"host_only":false},{"name":"__cf_bm","value":"JdPWpl0hHVNAsz2pdMLj3HKr6ufI8lKq4qIcO7UBgFQ-1758226759-1.0.1.1-ciWD24GfYkZUEmo_1VtwsqnkyCKj7m13qPMP8ibwBZohCR4TILbIq8QiN08MdaazIuqDS7a31VnHPAIdqutbJRUMhmNSqtBeG88XANKEsog","expires":1758228559,"path":"/","domain":"api-m.paypal.com","port":null,"host_only":false}],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:19:19+00:00 ERROR #1569 - Onboarding completion handling error: No token found.
+2025-09-18T20:19:19+00:00 WARNING #5007 - No token found. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Basic QkFBVjF1M29NbVVXTEhkYnNyRWtOcHlpSERGcm96NjB0X2NOTWRueWg5WExCaWdaYTlTMW1QdXFXdVNzc1VDa0hSXzMxTi1yUEhsaWU4YmdNYzo="},"body":{"grant_type":"authorization_code","code":"C21AANaYVzDvOngcaSAOjdIy9EWAZTLdXnNd1Ak84jefvlabKUrJgGMJMu028vFvCRpV7H61zXjF8tnlZoTt-yMNPWDyL6YXg","code_verifier":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}},"response":{"headers":{},"body":"{"error":"invalid_grant","error_description":"Authorization code not found in cache"}","response":{"code":400,"message":"Bad Request"},"cookies":[{"name":"l7_az","value":"ccg13.slc","expires":1758228559,"path":"/","domain":"paypal.com","port":null,"host_only":false},{"name":"__cf_bm","value":"Z8qZw5qS2I80MfLfhSNl85eEFLeGHVScuD7mGR9uj9c-1758226759-1.0.1.1-ZXqz5WxYA2avqJ4Ox.wdu4CFDjRKXBUXOFzUdcinJ7IwsgoHPVNcAZ.rPPpoYrqw24wFNyfKXIIOYdzYK_3EgDs0Yo9HBisGzpTWPYkbNfg","expires":1758228559,"path":"/","domain":"api-m.paypal.com","port":null,"host_only":false}],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:19:19+00:00 ERROR #5007 - Onboarding completion handling error: No token found.
+2025-09-18T20:19:30+00:00 DEBUG #6586 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:30+00:00 DEBUG #6586 - GET https://api.woocommerce.com/integrations/ppc/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/8KFBE6X8LFPJN
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-09-18T20:19:30+00:00 WARNING #6586 - [Error] Not Found CONTEXT: {"args":{"method":"GET","headers":{"Authorization":"Bearer token","Content-Type":"application/json"}},"response":{"headers":{},"body":"{"statusCode":404,"error":"Not Found","message":"Not Found"}","response":{"code":404,"message":"Not Found"},"cookies":[],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-09-18T20:19:32+00:00 INFO #6586 - Retrying onboarding return URL, retry nr: 1
+2025-09-18T20:19:36+00:00 DEBUG #1462 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:36+00:00 INFO #1462 - Retrying onboarding return URL, retry nr: 2
+2025-09-18T20:19:40+00:00 DEBUG #3131 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:40+00:00 INFO #3131 - Retrying onboarding return URL, retry nr: 3
+2025-09-18T20:19:43+00:00 DEBUG #4913 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:43+00:00 INFO #4913 - Retrying onboarding return URL, retry nr: 4
+2025-09-18T20:19:47+00:00 DEBUG #8628 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:47+00:00 INFO #8628 - Retrying onboarding return URL, retry nr: 5
+2025-09-18T20:19:48+00:00 DEBUG #4706 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:48+00:00 DEBUG #4706 - Validating onboarding ppcpToken: ey...AzOSJ9
+2025-09-18T20:19:48+00:00 INFO #4706 - Validated onboarding ppcpToken: ey...AzOSJ9
+2025-09-18T20:19:48+00:00 INFO #4706 - Redirect ERROR: https://daria.mate4kids.com/wp-admin/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcp-tab=ppcp-connection&ppcp-onboarding-error=1
+2025-09-18T20:19:50+00:00 DEBUG #8051 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:19:50+00:00 DEBUG #8051 - Loaded onbording URL from cache: production-ppcp
+2025-09-18T20:19:50+00:00 INFO #8051 - Generating onboarding URL for: production-express_checkout
+2025-09-18T20:19:51+00:00 DEBUG #8051 - POST https://api.woocommerce.com/integrations/ppc/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/daria.mate4kids.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoicHJvZHVjdGlvbi1leHByZXNzX2NoZWNrb3V0IiwidSI6OTEsImgiOiJkNjQ4ODg2MDM0Nzc1ZjM5MDkzYWI5YjA5ZmJhMDZmZCJ9","return_url_description":"Return to your shop.","show_add_credit_card":true},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT","VAULT","FUTURE_PAYMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: 407099f8986a3
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-09-18T20:19:51+00:00 INFO #8051 - Persisted onboarding URL for: production-express_checkout
+2025-09-18T20:19:51+00:00 DEBUG #8051 - Loaded onbording URL from cache: sandbox-ppcp
+2025-09-18T20:19:51+00:00 DEBUG #8051 - Loaded onbording URL from cache: sandbox-express_checkout
+2025-09-18T20:20:04+00:00 DEBUG #7098 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:20:04+00:00 DEBUG #7098 - Loaded onbording URL from cache: production-ppcp
+2025-09-18T20:20:04+00:00 DEBUG #7098 - Loaded onbording URL from cache: production-express_checkout
+2025-09-18T20:20:04+00:00 DEBUG #7098 - Loaded onbording URL from cache: sandbox-ppcp
+2025-09-18T20:20:04+00:00 DEBUG #7098 - Loaded onbording URL from cache: sandbox-express_checkout
+2025-09-18T20:32:44+00:00 DEBUG #1133 - [New Request] GET /wp-admin/admin.php
+2025-09-18T20:32:44+00:00 DEBUG #1133 - Loaded onbording URL from cache: production-ppcp
+2025-09-18T20:32:44+00:00 DEBUG #1133 - Loaded onbording URL from cache: production-express_checkout
+2025-09-18T20:32:44+00:00 DEBUG #1133 - Loaded onbording URL from cache: sandbox-ppcp
+2025-09-18T20:32:44+00:00 DEBUG #1133 - Loaded onbording URL from cache: sandbox-express_checkout
