@@ -19,290 +19,149 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+<form class="woocommerce-cart-form cart-table table-responsive" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-.custom-cart-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
+	<table class="shop_table cart_table shop_table_responsive responsive_table cart woocommerce-cart-form__contents table table-bordered" cellspacing="0">
+		<thead>
+			<tr>
+				<th class="cart-col-image"><?php echo esc_html__( 'Image', 'wellnez' ); ?></th>
+				<th class="cart-col-productname"><?php echo esc_html__( 'Product Name', 'wellnez' ); ?></th>
+				<th class="cart-col-price"><?php echo esc_html__( 'Price/Unit', 'wellnez' ); ?></th>
+				<th class="cart-col-quantity"><?php echo esc_html__( 'Quantity', 'wellnez' ); ?></th>
+				<th class="cart-col-total"><?php echo esc_html__( 'Total', 'wellnez' ); ?></th>
+				<th class="cart-col-remove"><?php echo esc_html__( 'Remove', 'wellnez' ); ?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
-.cart-header {
-    background-color: #592D36;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 600;
-}
+			<?php
+			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
-.cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-bottom: 1px solid #e0e0e0;
-    gap: 20px;
-}
+				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+					?>
+					<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
-.cart-item:last-child {
-    border-bottom: none;
-}
+						<td class="product-name" data-title="<?php echo esc_attr__( 'Product', 'wellnez' ); ?>">
+                            <?php
+                                $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image( array('120','120') ), $cart_item, $cart_item_key );
 
-.item-name {
-    flex: 1;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-}
+                                if ( ! $product_permalink ) {
+                                    echo wp_kses_post($thumbnail); // PHPCS: XSS ok.
+                                } else {
+                                    printf( '<a class="cart-productimage" href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
+                                }
 
-.item-price {
-    flex: 0 0 auto;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    min-width: 120px;
-}
+                                do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
 
-.item-actions {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-}
+                                // Meta data.
+                                echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
 
-.go-to-course {
-    font-family: 'Poppins', sans-serif;
-    color: #592D36;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid #592D36;
-    padding-bottom: 2px;
-    transition: all 0.3s ease;
-}
+                                // Backorder notification.
+                                if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+                                    echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'wellnez' ) . '</p>', $product_id ) );
+                                }
+                            ?>
+						</td>
+						<td data-title="<?php echo esc_attr__( 'Name', 'wellnez' ); ?>">
+							<?php
+								if ( ! $product_permalink ) {
+									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+								} else {
+									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a class="cart-productname" href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+								}
+							?>
+                        </td>
+						<td class="product-price" data-title="<?php echo esc_attr__( 'Price', 'wellnez' ); ?>">
+							<?php
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+							?>
+						</td>
 
-.go-to-course:hover {
-    color: #7a3d47;
-    border-bottom-color: #7a3d47;
-}
+						<td class="product-quantity" data-title="<?php echo esc_attr__( 'Quantity', 'wellnez' ); ?>">
+						<?php
+						if ( $_product->is_sold_individually() ) {
+							$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+						} else {
+							$product_quantity = woocommerce_quantity_input(
+								array(
+									'input_name'   => "cart[{$cart_item_key}][qty]",
+									'input_value'  => $cart_item['quantity'],
+									'max_value'    => $_product->get_max_purchase_quantity(),
+									'min_value'    => '0',
+									'product_name' => $_product->get_name(),
+								),
+								$_product,
+								false
+							);
+						}
 
-.chevron-icon {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #592D36;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    transition: all 0.3s ease;
-}
+						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+						?>
+						</td>
 
-.go-to-course:hover .chevron-icon {
-    border-color: #7a3d47;
-}
+						<td class="product-subtotal" data-title="<?php echo esc_attr__( 'Total', 'wellnez' ); ?>">
+							<?php
+                                echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+							?>
+						</td>
+						<td class="mini_cart_item" data-title="<?php echo esc_attr__( 'Remove', 'wellnez' ); ?>">
+							<?php
+								// remove button
+								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									'woocommerce_cart_item_remove_link',
+									sprintf(
+										'<a href="%s" class="remove ml-3" aria-label="%s" data-product_id="%s" data-product_sku="%s" data-cart_item_key="%s"><i class="fal fa-trash-alt"></i></a>',
+										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+										esc_html__( 'Remove this item', 'wellnez' ),
+										esc_attr( $product_id ),
+										esc_attr( $_product->get_sku() ),
+										esc_attr( $cart_item_key )
+									),
+									$cart_item_key
+								);
+							?>
+	                    </td>
+					</tr>
+					<?php
+				}
+			}
+			?>
 
-.remove-btn {
-    background: none;
-    border: none;
-    color: #999;
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: underline;
-}
+			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
-.remove-btn:hover {
-    color: #666;
-}
+			<tr>
+				<td colspan="6" class="actions">
+                    <?php if ( wc_coupons_enabled() ) { ?>
+                        <div class="vs-cart-coupon">
+                            <input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php echo esc_attr__( 'Enter Coupon Code', 'wellnez' ); ?>" />
+                            <button type="submit" class="vs-btn" name="apply_coupon" value="<?php echo esc_attr__( 'Apply coupon', 'wellnez' ); ?>"><?php echo esc_attr__( 'Submit', 'wellnez' ); ?></button>
+                            <?php do_action( 'woocommerce_cart_coupon' ); ?>
+                        </div>
+                    <?php } ?>
+					<?php
+						$wellnez_shop_page_url = get_permalink( wc_get_page_id( 'shop' ) );
+					?>
+					<button type="submit" class="vs-btn" name="update_cart" value="<?php echo esc_attr__( 'Update cart', 'wellnez' ); ?>"><?php echo esc_html__( ' Update cart', 'wellnez' ); ?></button>
+					<a href="<?php echo esc_url( $wellnez_shop_page_url ); ?>" class="vs-btn"><?php echo esc_html__('Continue Shopping','wellnez'); ?></a>
+                    
 
-.checkout-section {
-    margin-top: 30px;
-    text-align: right;
-}
+                    <?php do_action( 'woocommerce_cart_actions' ); ?>
 
-.checkout-btn {
-    background-color: #592D36;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
+                    <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
 
-.checkout-btn:hover {
-    background-color: #7a3d47;
-    color: white;
-}
 
-/* Ocultar el diseño original de WooCommerce */
-.woocommerce-cart-form,
-.cart-collaterals {
-    display: none !important;
-}
+                </td>
+			</tr>
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .custom-cart-container {
-        padding: 15px;
-    }
-    
-    .cart-header {
-        padding: 12px 20px;
-        font-size: 16px;
-    }
-    
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        padding: 15px 0;
-    }
-    
-    .item-name {
-        font-size: 15px;
-        order: 1;
-    }
-    
-    .item-price {
-        font-size: 16px;
-        order: 2;
-        align-self: flex-start;
-        min-width: auto;
-    }
-    
-    .item-actions {
-        order: 3;
-        align-self: flex-end;
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .go-to-course {
-        font-size: 13px;
-    }
-    
-    .checkout-section {
-        text-align: center;
-        margin-top: 25px;
-    }
-    
-    .checkout-btn {
-        width: 100%;
-        padding: 12px 20px;
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .custom-cart-container {
-        padding: 10px;
-    }
-    
-    .cart-header {
-        padding: 10px 15px;
-        font-size: 15px;
-    }
-    
-    .cart-item {
-        padding: 12px 0;
-        gap: 12px;
-    }
-    
-    .item-name {
-        font-size: 14px;
-    }
-    
-    .item-price {
-        font-size: 15px;
-    }
-    
-    .go-to-course {
-        font-size: 12px;
-    }
-    
-    .chevron-icon {
-        width: 14px;
-        height: 14px;
-        font-size: 9px;
-    }
-}
-</style>
-
-<!-- Diseño personalizado del carrito -->
-<div class="custom-cart-container">
-    <div class="cart-header">
-        Detalles de tu Compra
-    </div>
-    
-    <div class="cart-items">
-        <?php
-        foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-            $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-            $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-
-            if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-                $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-                ?>
-                <div class="cart-item">
-                    <div class="item-name">
-                        <?php echo esc_html( $_product->get_name() ); ?>
-                    </div>
-                    <div class="item-price">
-                        <?php echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); ?>
-                    </div>
-                    <div class="item-actions">
-                        <?php if ( $product_permalink ) : ?>
-                        <a href="<?php echo esc_url( $product_permalink ); ?>" class="go-to-course">
-                            Ir al curso
-                            <span class="chevron-icon">⌄</span>
-                        </a>
-                        <?php endif; ?>
-                        <?php
-                        echo apply_filters(
-                            'woocommerce_cart_item_remove_link',
-                            sprintf(
-                                '<button class="remove-btn" onclick="window.location.href=\'%s\'" data-product_id="%s" data-cart_item_key="%s">Remove</button>',
-                                esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-                                esc_attr( $product_id ),
-                                esc_attr( $cart_item_key )
-                            ),
-                            $cart_item_key
-                        );
-                        ?>
-                    </div>
-                </div>
-                <?php
-            }
-        }
-        ?>
-    </div>
-    
-    <div class="checkout-section">
-        <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-btn">
-            Ir a pagar
-        </a>
-    </div>
-</div>
-
-<!-- Formulario oculto para mantener funcionalidad -->
-<form class="woocommerce-cart-form cart-table table-responsive" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post" style="display: none;">
-    <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
-    <?php do_action( 'woocommerce_cart_actions' ); ?>
+			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+		</tbody>
+	</table>
+	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>

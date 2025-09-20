@@ -30,264 +30,83 @@ $tax_exempt_price = 0;
 $checkout_page_url = CheckoutController::get_page_url();
 
 ?>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-.custom-cart-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.cart-header {
-    background-color: #592D36;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-bottom: 1px solid #e0e0e0;
-    gap: 20px;
-}
-
-.cart-item:last-child {
-    border-bottom: none;
-}
-
-.item-name {
-    flex: 1;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-}
-
-.item-price {
-    flex: 0 0 auto;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    min-width: 120px;
-}
-
-.item-actions {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-}
-
-.go-to-course {
-    font-family: 'Poppins', sans-serif;
-    color: #592D36;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid #592D36;
-    padding-bottom: 2px;
-    transition: all 0.3s ease;
-}
-
-.go-to-course:hover {
-    color: #7a3d47;
-    border-bottom-color: #7a3d47;
-}
-
-.chevron-icon {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #592D36;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    transition: all 0.3s ease;
-}
-
-.go-to-course:hover .chevron-icon {
-    border-color: #7a3d47;
-}
-
-.remove-btn {
-    background: none;
-    border: none;
-    color: #999;
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.remove-btn:hover {
-    color: #666;
-}
-
-.checkout-section {
-    margin-top: 30px;
-    text-align: right;
-}
-
-.checkout-btn {
-    background-color: #592D36;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.checkout-btn:hover {
-    background-color: #7a3d47;
-    color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .custom-cart-container {
-        padding: 15px;
-    }
-    
-    .cart-header {
-        padding: 12px 20px;
-        font-size: 16px;
-    }
-    
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        padding: 15px 0;
-    }
-    
-    .item-name {
-        font-size: 15px;
-        order: 1;
-    }
-    
-    .item-price {
-        font-size: 16px;
-        order: 2;
-        align-self: flex-start;
-        min-width: auto;
-    }
-    
-    .item-actions {
-        order: 3;
-        align-self: flex-end;
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .go-to-course {
-        font-size: 13px;
-    }
-    
-    .checkout-section {
-        text-align: center;
-        margin-top: 25px;
-    }
-    
-    .checkout-btn {
-        width: 100%;
-        padding: 12px 20px;
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .custom-cart-container {
-        padding: 10px;
-    }
-    
-    .cart-header {
-        padding: 10px 15px;
-        font-size: 15px;
-    }
-    
-    .cart-item {
-        padding: 12px 0;
-        gap: 12px;
-    }
-    
-    .item-name {
-        font-size: 14px;
-    }
-    
-    .item-price {
-        font-size: 15px;
-    }
-    
-    .go-to-course {
-        font-size: 12px;
-    }
-    
-    .chevron-icon {
-        width: 14px;
-        height: 14px;
-        font-size: 9px;
-    }
-}
-</style>
 <div class="tutor-cart-page">
 	<div class="tutor-cart-page-wrapper">
-		<div class="custom-cart-container">
+		<div class="tutor-container">
 			<?php if ( is_array( $course_list ) && count( $course_list ) ) : ?>
-				<div class="cart-header">
-					Detalles de tu Compra
-				</div>
-				
-				<div class="cart-items">
-					<?php
-					foreach ( $course_list as $key => $course ) :
-						$course_price     = tutor_utils()->get_raw_course_price( $course->ID );
-						$regular_price    = $course_price->regular_price;
-						$sale_price       = $course_price->sale_price;
-						$display_price    = $sale_price ? $sale_price : $regular_price;
-
-						$subtotal += $display_price;
-
-						$tax_collection = CourseModel::is_tax_enabled_for_single_purchase( $course->ID );
-						if ( ! $tax_collection ) {
-							$tax_exempt_price += $display_price;
-						}
+			<div class="tutor-row tutor-g-4">
+				<div class="tutor-col-lg-8">
+					<h3 class="tutor-fs-3 tutor-fw-bold tutor-color-black tutor-mb-16">
+						<?php
+						// translators: %d: Number of courses in the cart.
+						echo esc_html( sprintf( _n( '%d Course in Cart', '%d Courses in Cart', $total_count, 'tutor' ), $total_count ) );
 						?>
-						<div class="cart-item">
-							<div class="item-name">
-								<?php echo esc_html( $course->post_title ); ?>
+					</h3>
+
+					<div class="tutor-cart-course-list">
+						<?php
+						foreach ( $course_list as $key => $course ) :
+							$course_duration  = get_tutor_course_duration_context( $course->ID, true );
+							$course_price     = tutor_utils()->get_raw_course_price( $course->ID );
+							$regular_price    = $course_price->regular_price;
+							$sale_price       = $course_price->sale_price;
+							$display_price    = $sale_price ? $sale_price : $regular_price;
+							$tutor_course_img = get_tutor_course_thumbnail_src( '', $course->ID );
+
+							$subtotal += $display_price;
+
+							$tax_collection = CourseModel::is_tax_enabled_for_single_purchase( $course->ID );
+							if ( ! $tax_collection ) {
+								$tax_exempt_price += $display_price;
+							}
+							?>
+							<div class="tutor-cart-course-item">
+								<div class="tutor-cart-course-thumb">
+									<a href="<?php echo esc_url( get_the_permalink( $course ) ); ?>">
+										<img src="<?php echo esc_url( $tutor_course_img ); ?>" alt="Course thumb">
+									</a>
+								</div>
+								<div class="tutor-cart-course-title">
+									<?php if ( tutor()->has_pro && 'course-bundle' === $course->post_type ) : ?>
+									<div class="tutor-cart-course-bundle-badge">
+										<?php
+										$bundle_model      = new \TutorPro\CourseBundle\Models\BundleModel();
+										$bundle_course_ids = $bundle_model::get_bundle_course_ids( $course->ID );
+										// translators: %d: Number of courses in the cart.
+										echo esc_html( sprintf( __( '%d Course bundle', 'tutor' ), count( $bundle_course_ids ) ) );
+										?>
+									</div>
+									<?php endif; ?>
+									<h5 class="tutor-fs-6 tutor-fw-medium tutor-color-black">
+										<a href="<?php echo esc_url( get_the_permalink( $course ) ); ?>">
+											<?php echo esc_html( $course->post_title ); ?>
+										</a>
+									</h5>
+									<ul class="tutor-cart-course-info">
+										<?php if ( $course_duration ) : ?>
+										<li><?php echo esc_html( tutor_utils()->clean_html_content( $course_duration ) ); ?> <span></span></li>
+										<?php endif; ?>
+										<li><?php echo esc_html( get_tutor_course_level( $course->ID ) ); ?></li>
+									</ul>
+								</div>
+								<div class="tutor-cart-course-price-wrapper">
+									<div class="tutor-cart-course-price">
+										<div class="tutor-fw-bold">
+											<?php tutor_print_formatted_price( $display_price ); ?>
+										</div>
+										<?php if ( $regular_price && $sale_price && $sale_price !== $regular_price ) : ?>
+										<div class="tutor-cart-discount-price">
+											<?php tutor_print_formatted_price( $regular_price ); ?>
+										</div>
+										<?php endif; ?>
+									</div>
+									<button class="tutor-btn tutor-btn-link tutor-cart-remove-button" data-course-id="<?php echo esc_attr( $course->ID ); ?>">
+										<?php esc_html_e( 'Remove', 'tutor' ); ?>
+									</button>
+								</div>
 							</div>
-							<div class="item-price">
-								<?php tutor_print_formatted_price( $display_price ); ?>
-							</div>
-							<div class="item-actions">
-								<a href="<?php echo esc_url( get_the_permalink( $course ) ); ?>" class="go-to-course">
-									Ir al curso
-									<span class="chevron-icon">⌄</span>
-								</a>
-								<button class="remove-btn tutor-cart-remove-button" data-course-id="<?php echo esc_attr( $course->ID ); ?>">
-									Remove
-								</button>
-							</div>
-						</div>
-					<?php endforeach; ?>
+						<?php endforeach; ?>
+					</div>
 				</div>
 				<?php
 				$should_calculate_tax     = Tax::should_calculate_tax();
@@ -307,12 +126,44 @@ $checkout_page_url = CheckoutController::get_page_url();
 					$grand_total += $tax_amount;
 				}
 				?>
-				
-				<div class="checkout-section">
-					<a data-cy="tutor-native-checkout-button" class="checkout-btn <?php echo esc_attr( $checkout_page_url ? '' : 'tutor-checkout-page-not-configured' ); ?>" href="<?php echo esc_url( $checkout_page_url ? $checkout_page_url : '#' ); ?>">
-						Ir a pagar
-					</a>
+				<div class="tutor-col-lg-4">
+					<h3 class="tutor-fs-3 tutor-fw-bold tutor-color-black tutor-mb-16"><div><?php esc_html_e( 'Summary:', 'tutor' ); ?></div></h3>
+					<div class="tutor-cart-summery">
+						<div class="tutor-cart-summery-top">
+							<div class="tutor-cart-summery-item tutor-fw-medium">
+								<div><?php esc_html_e( 'Subtotal:', 'tutor' ); ?></div>
+								<div><?php tutor_print_formatted_price( $subtotal ); ?></div>
+							</div>
+							<?php if ( $should_calculate_tax && $tax_rate > 0 && ! $is_tax_included_in_price ) : ?>
+							<div class="tutor-cart-summery-item">
+								<div><?php esc_html_e( 'Tax:', 'tutor' ); ?></div>
+								<div><?php tutor_print_formatted_price( $tax_amount ); ?></div>
+							</div>
+							<?php endif; ?>
+						</div>
+						<div class="tutor-cart-summery-bottom">
+							<div class="tutor-cart-summery-item tutor-fw-medium <?php echo esc_attr( $show_tax_incl_text ? '' : 'tutor-mb-40' ); ?>">
+								<div><?php esc_html_e( 'Grand total', 'tutor' ); ?></div>
+								<div><?php tutor_print_formatted_price( $grand_total ); ?></div>
+							</div>
+							<?php
+							if ( $should_calculate_tax && $tax_rate > 0 && $is_tax_included_in_price ) :
+								?>
+									<div class="tutor-text-right tutor-fs-7 tutor-color-muted tutor-mb-40">
+								<?php
+								/* translators: %s: tax amount */
+								echo esc_html( sprintf( __( '(Incl. Tax %s)', 'tutor' ), tutor_get_formatted_price( $tax_amount ) ) );
+								?>
+									</div>
+								<?php endif ?>
+
+							<a data-cy="tutor-native-checkout-button" class="tutor-btn tutor-btn-primary tutor-btn-lg tutor-w-100 tutor-justify-center <?php echo esc_attr( $checkout_page_url ? '' : 'tutor-checkout-page-not-configured' ); ?>" href="<?php echo esc_url( $checkout_page_url ? $checkout_page_url : '#' ); ?>">
+								<?php esc_html_e( 'Proceed to checkout', 'tutor' ); ?>
+							</a>
+						</div>
+					</div>
 				</div>
+			</div>
 			<?php else : ?>
 				<div class="tutor-cart-empty-state">
 					<img src="<?php echo esc_url( tutor()->url ); ?>assets/images/empty-cart.svg" alt="<?php esc_html_e( 'Empty shopping cart', 'tutor' ); ?>" />
