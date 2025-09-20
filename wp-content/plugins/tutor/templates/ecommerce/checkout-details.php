@@ -58,8 +58,18 @@ body.tutor-page-checkout, html {
     background: #ffffff !important;
 }
 
+#page {
+    background-color: #ffffff !important;
+}
+
 .tutor-checkout-page .tutor-checkout-container {
     max-width: 95% !important;
+}
+
+@media (min-width: 1400px) {
+    .tutor-container-xxl, .tutor-container-xl, .tutor-container-lg, .tutor-container-md, .tutor-container-sm, .tutor-container {
+        max-width: 98% !important;
+    }
 }
 
 .tutor-checkout-detail-item.tutor-checkout-summary,
@@ -76,26 +86,30 @@ body.tutor-page-checkout, html {
 }
 
 .cart-item .remove-item-btn {
-    display: none;
+    opacity: 0;
     position: absolute;
-    right: -10px;
+    left: -15px;
     top: 50%;
-    transform: translateY(-50%);
-    background-color: #e0e0e0;
+    transform: translateY(-50%) translateX(-10px);
+    background-color: #c0392b;
     color: #fff;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    font-size: 12px;
     font-weight: bold;
     transition: all 0.3s ease;
+    border: 1px solid #c0392b;
+    z-index: 10;
 }
 
 .cart-item:hover .remove-item-btn {
-    display: block;
-    background-color: #c0392b;
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
 }
 
 
@@ -290,7 +304,7 @@ body.tutor-page-checkout, html {
 						Ir al curso
 						<span class="chevron-icon">›</span>
 					</a>
-					<span class="remove-item-btn" data-item-id="<?php echo esc_attr( $item->item_id ); ?>">X</span>
+					<span class="remove-item-btn" data-item-id="<?php echo esc_attr( $item->item_id ); ?>">×</span>
 				</div>
 			<?php endforeach; ?>
 		</div>
@@ -395,22 +409,37 @@ body.tutor-page-checkout, html {
 document.addEventListener('DOMContentLoaded', function() {
     const removeButtons = document.querySelectorAll('.remove-item-btn');
     removeButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const itemId = this.getAttribute('data-item-id');
-            const originalRemoveButton = document.querySelector(`.tutor-checkout-cart-item-remove[data-item-id="${itemId}"]`);
-
-            if (originalRemoveButton) {
-                originalRemoveButton.click();
-            } else {
-                // Fallback for when the original button isn't found, we can try a more direct approach.
-                const cartKey = this.closest('.cart-item').getAttribute('data-cart_item_key'); // Assuming we add this attribute.
-                if(cartKey) {
-                    window.location.href = `?remove_item=${cartKey}`;
+            
+            // Create form data for AJAX request
+            const formData = new FormData();
+            formData.append('action', 'tutor_remove_from_cart');
+            formData.append('course_id', itemId);
+            formData.append('_wpnonce', tutor_get_nonce_data(true).nonce);
+            
+            // Send AJAX request to remove item
+            fetch(ajaxurl || '/wp-admin/admin-ajax.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload the page to reflect changes
+                    window.location.reload();
                 } else {
-                     // As a last resort, just reload.
-                     window.location.reload();
+                    // Fallback: try URL-based removal
+                    window.location.href = window.location.pathname + '?remove_course_id=' + itemId;
                 }
-            }
+            })
+            .catch(error => {
+                // Fallback: try URL-based removal
+                window.location.href = window.location.pathname + '?remove_course_id=' + itemId;
+            });
         });
     });
 });
