@@ -72,6 +72,96 @@ body.tutor-page-checkout, html {
     }
 }
 
+/* Ajustes de layout para PC */
+@media (min-width: 768px) {
+    .tutor-col-md-6[tutor-checkout-details] {
+        width: 60% !important;
+    }
+    
+    .tutor-col-md-6:not([tutor-checkout-details]) {
+        width: 40% !important;
+    }
+    
+    .billing-address-container {
+        padding-top: 15% !important;
+        background-color: #F6F5F0 !important;
+        border-radius: 25px !important;
+        padding: 30px !important;
+        margin: 20px 0 !important;
+    }
+    
+    .billing-title {
+        font-family: 'Times New Roman', serif !important;
+        font-size: 30px !important;
+        font-weight: 400 !important;
+        letter-spacing: -3% !important;
+        color: #333 !important;
+        margin-bottom: 25px !important;
+        text-align: center !important;
+    }
+    
+    .tutor-form-group label,
+    .billing-address-container label {
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+        letter-spacing: 2% !important;
+        color: #333 !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+    
+    .tutor-form-group input,
+    .tutor-form-group select,
+    .billing-address-container input,
+    .billing-address-container select {
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 300 !important;
+        font-style: normal !important;
+        letter-spacing: 2% !important;
+        border: 2px solid #592D36 !important;
+        border-radius: 8px !important;
+        padding: 12px 15px !important;
+        width: 100% !important;
+        background-color: #fff !important;
+        color: #333 !important;
+    }
+    
+    .tutor-form-group input:focus,
+    .tutor-form-group select:focus,
+    .billing-address-container input:focus,
+    .billing-address-container select:focus {
+        outline: none !important;
+        border-color: #592D36 !important;
+        box-shadow: 0 0 5px rgba(89, 45, 54, 0.3) !important;
+    }
+    
+    /* Estilos para métodos de pago */
+    .tutor-checkout-payment-methods {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        margin-top: 30px !important;
+    }
+    
+    .tutor-checkout-payment-method {
+        background-color: #fff !important;
+        border: 2px solid #ddd !important;
+        border-radius: 12px !important;
+        padding: 15px 25px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        min-width: 120px !important;
+        text-align: center !important;
+    }
+    
+    .tutor-checkout-payment-method:hover,
+    .tutor-checkout-payment-method.selected {
+        border-color: #592D36 !important;
+        background-color: #f9f9f9 !important;
+    }
+}
+
 .tutor-checkout-detail-item.tutor-checkout-summary,
 .tutor-pt-12.tutor-pb-20 {
     position: absolute !important;
@@ -85,32 +175,6 @@ body.tutor-page-checkout, html {
     border: 0 !important;
 }
 
-.cart-item .remove-item-btn {
-    opacity: 0;
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%) translateX(-10px);
-    background-color: #c0392b;
-    color: #fff;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 1px solid #c0392b;
-    z-index: 10;
-}
-
-.cart-item:hover .remove-item-btn {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
 
 
 .custom-cart-container {
@@ -304,8 +368,7 @@ body.tutor-page-checkout, html {
 						Ir al curso
 						<span class="chevron-icon">›</span>
 					</a>
-					<span class="remove-item-btn" data-item-id="<?php echo esc_attr( $item->item_id ); ?>">×</span>
-				</div>
+									</div>
 			<?php endforeach; ?>
 		</div>
 
@@ -407,40 +470,17 @@ body.tutor-page-checkout, html {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const removeButtons = document.querySelectorAll('.remove-item-btn');
-    removeButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const itemId = this.getAttribute('data-item-id');
-            
-            // Create form data for AJAX request
-            const formData = new FormData();
-            formData.append('action', 'tutor_remove_from_cart');
-            formData.append('course_id', itemId);
-            formData.append('_wpnonce', tutor_get_nonce_data(true).nonce);
-            
-            // Send AJAX request to remove item
-            fetch(ajaxurl || '/wp-admin/admin-ajax.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Reload the page to reflect changes
-                    window.location.reload();
-                } else {
-                    // Fallback: try URL-based removal
-                    window.location.href = window.location.pathname + '?remove_course_id=' + itemId;
-                }
-            })
-            .catch(error => {
-                // Fallback: try URL-based removal
-                window.location.href = window.location.pathname + '?remove_course_id=' + itemId;
-            });
-        });
+    // Cambiar el título de Billing Address
+    const billingTitle = document.querySelector('.billing-title, h2');
+    if (billingTitle && billingTitle.textContent.includes('Billing Address')) {
+        billingTitle.textContent = 'Dirección de Facturación';
+        billingTitle.classList.add('billing-title');
+    }
+    
+    // Aplicar estilos a los métodos de pago
+    const paymentMethods = document.querySelectorAll('.tutor-checkout-payment-method, .payment_method_paypal, .payment_method_mercadopago');
+    paymentMethods.forEach(method => {
+        method.classList.add('tutor-checkout-payment-method');
     });
 });
 </script>
