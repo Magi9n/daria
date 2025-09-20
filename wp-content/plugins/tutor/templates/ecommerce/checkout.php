@@ -143,7 +143,7 @@ $is_checkout_page = true;
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12" style="font-family: 'Poppins', sans-serif !important; font-weight: 500 !important; font-style: medium !important; font-size: 15px !important; letter-spacing: 0% !important; color: #212121 !important;">
 								---- Métodos de pago ----
 							</h5>
-							<div class="tutor-checkout-payment-options tutor-mb-24">
+							<div class="tutor-checkout-payment-options tutor-mb-24" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 20px !important; align-items: center !important;">
 								<input type="hidden" name="payment_type">
 
 								<?php if ( ! $show_payment_methods ) : ?>
