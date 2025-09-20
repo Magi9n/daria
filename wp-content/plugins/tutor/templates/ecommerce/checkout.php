@@ -48,7 +48,7 @@ $is_checkout_page = true;
 		<?php tutor_nonce_field(); ?>
 		<input type="hidden" name="tutor_action" value="tutor_pay_now">
 		<div class="tutor-row tutor-g-5">
-			<div class="tutor-col-md-6" tutor-checkout-details>
+			<div class="tutor-col-md-6" tutor-checkout-details style="width: 60%;">
 				<?php
 				$file = __DIR__ . '/checkout-details.php';
 				if ( file_exists( $file ) ) {
@@ -56,7 +56,7 @@ $is_checkout_page = true;
 				}
 				?>
 			</div>
-			<div class="tutor-col-md-6">
+			<div class="tutor-col-md-6" style="width: 40%;">
 				<div class="tutor-checkout-billing">
 					<div class="tutor-checkout-billing-inner">
 					<?php
@@ -72,30 +72,35 @@ $is_checkout_page = true;
 					<?php } ?>
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
-						<div class="billing-address-container">
-						<h2 class="billing-title">Dirección de facturación</h2>
+					<div class="billing-address-container" style="margin-top: 15%;">
+					<h2 class="billing-title">Dirección de facturación</h2>
 
 						<!-- Campos visibles -->
-						<div class="billing-row">
-							<div class="billing-field">
-								<input type="text" name="billing_first_name" class="billing-input" placeholder="First Name" required>
-							</div>
-							<div class="billing-field">
-								<input type="text" name="billing_last_name" class="billing-input" placeholder="Last Name" required>
-							</div>
-						</div>
-
+					<div class="billing-row">
 						<div class="billing-field">
-							<input type="email" name="billing_email" class="billing-input" placeholder="Email Address" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : ''; ?>" required>
+							<label>Nombre</label>
+							<input type="text" name="billing_first_name" class="tutor-form-control" placeholder="Andrea" required>
 						</div>
-
 						<div class="billing-field">
-							<input type="tel" name="billing_phone" class="billing-input" placeholder="Phone">
+							<label>Apellido</label>
+							<input type="text" name="billing_last_name" class="tutor-form-control" placeholder="Mendez" required>
 						</div>
+					</div>
 
-						<div class="billing-field">
-							<input type="text" name="billing_address_1" class="billing-input" placeholder="Address" required>
-						</div>
+					<div class="billing-field">
+						<label>Email</label>
+						<input type="email" name="billing_email" class="tutor-form-control" placeholder="andreamendez@gmail.com" value="<?php echo is_user_logged_in() ? wp_get_current_user()->user_email : ''; ?>" required>
+					</div>
+
+					<div class="billing-field">
+						<label>Teléfono</label>
+						<input type="tel" name="billing_phone" class="tutor-form-control" placeholder="+52 1 81 0000 0000">
+					</div>
+
+					<div class="billing-field">
+						<label>Dirección</label>
+						<input type="text" name="billing_address_1" class="tutor-form-control" placeholder="Calle Principal 123" required>
+					</div>
 
 						<!-- Campos ocultos con valores por defecto -->
 						<input type="hidden" name="billing_country" value="MX">
@@ -104,65 +109,33 @@ $is_checkout_page = true;
 						<input type="hidden" name="billing_postcode" value="00000">
 
 						<style>
-						.billing-address-container {
-							background: ##FFFFFF00;
-							padding: 24px;
-							border-radius: 8px;
-							margin-bottom: 24px;
-							font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-						}
+					.billing-row {
+						display: flex;
+						gap: 15px;
+						margin-bottom: 15px;
+					}
 
-						.billing-title {
-							color: #8B7355;
-							font-size: 20px;
-							font-weight: 400;
-							margin: 0 0 20px 0;
-							letter-spacing: 0.5px;
-						}
+					.billing-field {
+						flex: 1;
+						margin-bottom: 15px;
+					}
 
+					.billing-field label {
+						display: block;
+						margin-bottom: 8px;
+					}
+
+					@media (max-width: 768px) {
 						.billing-row {
-							display: flex;
-							gap: 12px;
-							margin-bottom: 12px;
+							flex-direction: column;
+							gap: 0;
 						}
-
-						.billing-field {
-							flex: 1;
-							margin-bottom: 12px;
+						.billing-address-container {
+							margin-top: 0 !important;
 						}
-
-						.billing-input {
-							width: 100%;
-							padding: 12px 16px;
-							border: 1px solid #d1d5db;
-							border-radius: 6px;
-							font-size: 14px;
-							color: #6b7280;
-							background: white;
-							transition: all 0.2s ease;
-							box-sizing: border-box;
-						}
-
-						.billing-input:focus {
-							outline: none;
-							border-color: #8B7355;
-							box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
-						}
-
-						.billing-input::placeholder {
-							color: #9ca3af;
-							font-weight: 300;
-						}
-
-						@media (max-width: 768px) {
-							.billing-row {
-								flex-direction: column;
-								gap: 0;
-							}
-						}
-						</style>
-					</div>	
-						<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
+					}
+					</style>
+							<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
 							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
 								<?php esc_html_e( 'Payment Method', 'tutor' ); ?>
 							</h5>
