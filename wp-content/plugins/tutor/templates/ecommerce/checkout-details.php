@@ -251,6 +251,12 @@ body.tutor-page-checkout, html {
     overflow: hidden !important;
 }
 
+@media (max-width: 768px) {
+    .cart-header {
+        font-size: 20px !important;
+    }
+}
+
 .cart-header::before {
     content: '' !important;
     position: absolute !important;
