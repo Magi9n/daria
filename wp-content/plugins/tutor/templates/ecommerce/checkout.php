@@ -155,9 +155,11 @@ $is_checkout_page = true;
 					}
 					</style>
 							<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
-							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12" style="font-family: 'Poppins', sans-serif !important; font-weight: 500 !important; font-style: medium !important; font-size: 15px !important; letter-spacing: 0% !important; color: #212121 !important; margin-bottom: unset !important;">
-								---- Métodos de pago ----
-							</h5>
+							<div class="payment-methods-title" style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0px; gap: 10px; width: 212px; height: 23px; opacity: 0.4; margin: 0 auto; margin-bottom: unset !important;">
+								<div style="width: 30px; height: 0px; opacity: 0.3; border: 1px solid #212121; flex: none; order: 0; flex-grow: 0;"></div>
+								<span style="width: 132px; height: 23px; font-family: 'Poppins'; font-style: normal; font-weight: 500; font-size: 15px; line-height: 22px; color: #212121; flex: none; order: 1; flex-grow: 0;">Métodos de Pago</span>
+								<div style="width: 30px; height: 0px; opacity: 0.3; border: 1px solid #212121; flex: none; order: 2; flex-grow: 0;"></div>
+							</div>
 							<div class="tutor-checkout-payment-options tutor-mb-24" style="display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 20px !important; align-items: center !important;">
 								<input type="hidden" name="payment_type">
 
