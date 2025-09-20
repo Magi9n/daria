@@ -69,9 +69,11 @@ do_action( 'woocommerce_before_cart' ); ?>
     z-index: 0 !important;
 }
 
-.cart-header > * {
+.cart-header > *,
+.cart-header-text {
     position: relative !important;
     z-index: 1 !important;
+    display: inline-block !important;
 }
 
 .cart-item {
@@ -251,7 +253,7 @@ ul.woocommerce-error {
 
 	<div class="custom-cart-container">
 		<div class="cart-header">
-			Detalles de tu Compra
+			<span class="cart-header-text">Detalles de tu Compra</span>
 		</div>
 
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
