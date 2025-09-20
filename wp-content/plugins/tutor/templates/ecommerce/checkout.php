@@ -47,7 +47,22 @@ $is_checkout_page = true;
 	<form method="post" id="tutor-checkout-form">
 		<?php tutor_nonce_field(); ?>
 		<input type="hidden" name="tutor_action" value="tutor_pay_now">
-		<div class="tutor-row tutor-g-5" style="margin-top: -10%;">
+		<div class="tutor-row tutor-g-5" style="margin-top: -10%; flex-direction: row;">
+			<style>
+			@media (max-width: 768px) {
+				.tutor-row.tutor-g-5 {
+					flex-direction: column-reverse !important;
+				}
+				.tutor-col-md-6[tutor-checkout-details] {
+					width: 100% !important;
+					order: 2 !important;
+				}
+				.tutor-col-md-6:not([tutor-checkout-details]) {
+					width: 100% !important;
+					order: 1 !important;
+				}
+			}
+			</style>
 			<div class="tutor-col-md-6" tutor-checkout-details style="width: 60%;">
 				<?php
 				$file = __DIR__ . '/checkout-details.php';
