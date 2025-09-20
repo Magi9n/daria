@@ -162,22 +162,29 @@ body.tutor-page-checkout, html {
     gap: 20px !important;
     flex-wrap: nowrap !important;
     align-items: center !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
 }
 
 .tutor-checkout-payment-item {
     cursor: pointer !important;
-    border: 2px solid #592D36 !important;
+    border: none !important;
     border-radius: 15px !important;
     padding: 15px 25px !important;
-    background-color: #F6F5F0 !important;
+    background: transparent !important;
     transition: all 0.3s ease !important;
     min-width: 120px !important;
+    max-width: 120px !important;
+    width: 120px !important;
     text-align: center !important;
+    flex: 0 0 120px !important;
 }
 
 .tutor-checkout-payment-item:hover {
-    background-color: #592D36 !important;
-    color: white !important;
+    background: transparent !important;
+    color: inherit !important;
+    opacity: 0.8 !important;
 }
 
 .tutor-checkout-payment-item input[type="radio"] {
@@ -195,7 +202,8 @@ body.tutor-page-checkout, html {
 }
 
 .tutor-checkout-payment-item:hover .tutor-payment-item-content {
-    color: white !important;
+    color: inherit !important;
+    opacity: 0.8 !important;
 }
 
 .tutor-payment-item-content img {
