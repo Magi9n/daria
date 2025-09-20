@@ -50,85 +50,207 @@ $tax_rate                 = Tax::get_user_tax_rate( $user_id );
 $checkout_data   = $checkout_controller->prepare_checkout_items( $item_ids, $order_type, $coupon_code );
 $show_coupon_box = Settings::is_coupon_usage_enabled() && ! $checkout_data->is_coupon_applied;
 ?>
+<!-- Estilos CSS para el nuevo diseño del checkout -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body.tutor-page-checkout {
+    background: #ffffff !important;
+}
+
+.custom-cart-container {
+    font-family: 'Poppins', sans-serif !important;
+    max-width: 95% !important;
+    margin: 20px auto !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 20px !important;
+}
+
+/* Espaciado adicional solo en desktop */
+@media (min-width: 768px) {
+    .custom-cart-container {
+        margin: 40px auto !important;
+        padding: 20px 20px !important;
+    }
+}
+
+.cart-header {
+    background-color: #ffffff !important;
+    color: white !important;
+    padding: 8px 25px !important;
+    font-weight: 300 !important;
+    font-size: 24px !important;
+    font-family: 'Poppins', sans-serif !important;
+    border-radius: 15px 15px 0 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.cart-header::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 80% !important;
+    background: #592D36 !important;
+    border-radius: 9999px !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 0 !important;
+}
+
+.cart-header > *,
+.cart-header-text {
+    position: relative !important;
+    z-index: 1 !important;
+    display: inline-block !important;
+}
+
+.cart-item {
+    background: white !important;
+    margin: 0 !important;
+    padding: 25px 25px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative;
+    min-height: 80px !important;
+}
+
+.cart-item:last-child {
+    border-bottom: none !important;
+}
+
+.product-info {
+    display: flex !important;
+    align-items: center !important;
+    flex: 1 !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+}
+
+.product-name-text {
+    font-weight: 300 !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-family: 'Poppins', sans-serif !important;
+    text-align: left !important;
+}
+
+.plan-type {
+    font-weight: bold !important;
+    color: #322828 !important;
+    font-size: 16px !important;
+}
+
+.product-price {
+    font-weight: bold !important;
+    color: #322828 !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+    text-align: center !important;
+    flex: 1 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.course-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    position: relative;
+    flex: 1 !important;
+    justify-content: flex-end !important;
+    text-align: right !important;
+    transition: all 0.3s ease !important;
+    transform: translateX(0) !important;
+}
+
+.course-link:hover {
+    transform: translateX(-5px) !important;
+    color: #592D36 !important;
+}
+
+.course-link::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 350px !important;
+    right: 0 !important;
+    height: 1px !important;
+    background-color: #333 !important;
+}
+
+.course-link:hover::after {
+    background-color: #592D36 !important;
+}
+
+.chevron-icon {
+    width: 20px !important;
+    height: 20px !important;
+    border: 1px solid #333 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+}
+
+.course-link:hover .chevron-icon {
+    border-color: #592D36 !important;
+    color: #592D36 !important;
+}
+</style>
+<?php
+?>
 
 <div class="tutor-checkout-details">
 
 	<?php do_action( 'tutor_before_checkout_order_details', $course_list ); ?>
 
 	<div class="tutor-checkout-details-inner">
-		<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-border-bottom tutor-pb-8">
-			<?php esc_html_e( 'Order Details', 'tutor' ); ?>
-		</h5>
-		<div class="tutor-checkout-detail-item">
-			<div class="tutor-checkout-courses">
-				<?php
-				// Subscription plan checkout item.
-				if ( $plan_info ) {
-					$plan_item_template = apply_filters( 'tutor_checkout_plan_item_template', null, $plan_info );
-					if ( file_exists( $plan_item_template ) ) {
-						require $plan_item_template;
-					}
-				} else {
-					/**
-					 * Course and bundle checkout items.
-					 */
-					if ( is_array( $course_list ) && count( $course_list ) ) :
-						?>
-						<?php
-						foreach ( $checkout_data->items as $item ) :
-							$course           = get_post( $item->item_id );
-							$course_thumbnail = get_tutor_course_thumbnail_src( 'post-thumbnail', $course->ID );
-							array_push( $object_ids, $item->item_id );
-							?>
-							<div class="tutor-checkout-course-item" data-course-id="<?php echo esc_attr( $item->item_id ); ?>">
-								<?php if ( tutor()->has_pro && 'course-bundle' === $course->post_type ) : ?>
-								<div class="tutor-checkout-course-bundle-badge">
-									<?php
-										$bundle_model      = new \TutorPro\CourseBundle\Models\BundleModel();
-										$bundle_course_ids = $bundle_model::get_bundle_course_ids( $course->ID );
-										// translators: %d: Number of courses in the cart.
-										echo esc_html( sprintf( __( '%d Course bundle', 'tutor' ), count( $bundle_course_ids ) ) );
-									?>
-								</div>
-								<?php endif; ?>
-								<div class="tutor-checkout-course-content">
-									<div class="tutor-d-flex tutor-flex-column tutor-gap-1">
-										<div class="tutor-checkout-course-thumb-title">
-											<img src="<?php echo esc_url( $course_thumbnail ); ?>" alt="<?php echo esc_attr( $course->post_title ); ?>" />
-											<h6 class="tutor-checkout-course-title">
-												<a href="<?php echo esc_url( get_the_permalink( $course ) ); ?>">
-													<?php echo esc_html( $course->post_title ); ?>
-												</a>
-											</h6>
-										</div>
-										<div class="tutor-checkout-coupon-badge <?php echo esc_attr( $item->is_coupon_applied ? '' : 'tutor-d-none' ); ?>">
-											<i class="tutor-icon-tag" area-hidden="true"></i>
-											<span><?php echo esc_html( $item->is_coupon_applied ? $checkout_data->coupon_title : '' ); ?></span>
-										</div>
-									</div>
-									<div class="tutor-text-right">
-										<div class="tutor-fw-bold">
-											<?php tutor_print_formatted_price( $item->display_price ); ?>
-										</div>
-										<?php if ( $item->sale_price || $item->discount_price ) : ?>
-										<div class="tutor-checkout-discount-price">
-											<?php tutor_print_formatted_price( $item->regular_price ); ?>
-										</div>
-										<?php endif; ?>
-										<?php if ( $checkout_data->total_items > 1 && $item->tax_amount > 0 && $item->tax_collection ) : ?>
-										<div class="tutor-fs-8 tutor-color-muted tutor-checkout-incl-tax-label">
-											<?php echo esc_html( $item->tax_amount_readable ); ?>
-										</div>
-										<?php endif; ?>
-									</div>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					<?php else : ?>
-						<?php tutor_utils()->tutor_empty_state( tutor_utils()->not_found_text() ); ?>
-					<?php endif; ?>
-				<?php } ?>
+		<div class="custom-cart-container">
+			<div class="cart-header">
+				<span class="cart-header-text">Detalles de tu Compra</span>
 			</div>
+
+			<?php
+			foreach ( $checkout_data->items as $item ) :
+				$course      = get_post( $item->item_id );
+				$product_permalink = get_the_permalink( $course );
+				array_push( $object_ids, $item->item_id );
+				?>
+				<div class="cart-item">
+					<div class="product-info">
+						<p class="product-name-text">
+							Sé tu propia maquillista - 
+							<span class="plan-type">
+								<?php echo esc_html( $item->item_name ); ?>
+							</span>
+						</p>
+					</div>
+
+					<div class="product-price">
+						<?php tutor_print_formatted_price( $item->display_price ); ?> MXN
+					</div>
+
+					<a href="<?php echo esc_url( $product_permalink ); ?>" class="course-link">
+						Ir al curso
+						<span class="chevron-icon">›</span>
+					</a>
+				</div>
+			<?php endforeach; ?>
 		</div>
 
 		<div class="tutor-checkout-detail-item tutor-checkout-summary">
