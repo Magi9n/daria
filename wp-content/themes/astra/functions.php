@@ -522,6 +522,21 @@ function astra_checkout_debug_visible() {
     }
 }
 
+// FORZAR USO DEL TEMPLATE PERSONALIZADO DE CARRITO
+add_filter( 'template_include', 'force_custom_cart_template', 99 );
+function force_custom_cart_template( $template ) {
+    if ( is_cart() ) {
+        $custom_template = get_template_directory() . '/tutor/ecommerce/cart.php';
+        if ( file_exists( $custom_template ) ) {
+            error_log( '[CART DEBUG] Cargando template personalizado: ' . $custom_template );
+            return $custom_template;
+        } else {
+            error_log( '[CART DEBUG] Template personalizado no encontrado: ' . $custom_template );
+        }
+    }
+    return $template;
+}
+
 // SOLUCIÓN SEGURA: Sincronización bidireccional Tutor LMS <-> WooCommerce
 
 // 1. Sincronizar de Tutor LMS a WooCommerce cuando se añade un curso

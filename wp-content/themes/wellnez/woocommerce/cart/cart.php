@@ -1,22 +1,21 @@
 <?php
 /**
- * Cart Page
+ * Custom Cart Page - Diseño personalizado responsive
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates
  * @version 7.9.0
  */
 
 defined( 'ABSPATH' ) || exit;
 
+// Incluir el template personalizado de Tutor LMS
+$custom_template = get_template_directory() . '/tutor/ecommerce/cart.php';
+if ( file_exists( $custom_template ) ) {
+    include $custom_template;
+    return;
+}
+
+// Fallback al template original
 do_action( 'woocommerce_before_cart' ); ?>
 
 <form class="woocommerce-cart-form cart-table table-responsive" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
