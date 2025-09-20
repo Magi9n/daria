@@ -54,20 +54,50 @@ $show_coupon_box = Settings::is_coupon_usage_enabled() && ! $checkout_data->is_c
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-html, body.tutor-page-checkout {
+body.tutor-page-checkout, html {
     background: #ffffff !important;
 }
 
 .tutor-checkout-page .tutor-checkout-container {
     max-width: 95% !important;
-    margin: 0 auto !important;
 }
 
-/* Ocultar resumen de pago sin romper la funcionalidad */
 .tutor-checkout-detail-item.tutor-checkout-summary,
 .tutor-pt-12.tutor-pb-20 {
-    display: none !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
+
+.cart-item .remove-item-btn {
+    display: none;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #e0e0e0;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover .remove-item-btn {
+    display: block;
+    background-color: #c0392b;
+}
+
 
 .custom-cart-container {
     font-family: 'Poppins', sans-serif !important;
@@ -132,36 +162,6 @@ html, body.tutor-page-checkout {
     justify-content: space-between !important;
     position: relative;
     min-height: 80px !important;
-    transition: background-color 0.3s ease;
-}
-
-.cart-item .remove-item-from-checkout {
-    position: absolute;
-    top: 50%;
-    right: -40px; /* Inicia fuera de la vista */
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background-color: #e0e0e0;
-    color: #333;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    opacity: 0;
-    transition: right 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-}
-
-.cart-item:hover .remove-item-from-checkout {
-    right: 15px; /* Se desliza hacia adentro */
-    opacity: 1;
-}
-
-.remove-item-from-checkout:hover {
-    background-color: #d1d1d1;
 }
 
 .cart-item:last-child {
@@ -267,42 +267,30 @@ html, body.tutor-page-checkout {
 			</div>
 
 			<?php
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) :
-                $item_id = $cart_item['product_id'];
-                // Encontrar el item correspondiente en los datos de checkout de Tutor para el precio
-                $tutor_item = null;
-                foreach ($checkout_data->items as $t_item) {
-                    if ($t_item->item_id == $item_id) {
-                        $tutor_item = $t_item;
-                        break;
-                    }
-                }
-                if (null === $tutor_item) continue; // Si no se encuentra, saltar
-
-				$_product = $cart_item['data'];
-				$product_permalink = $_product ? get_permalink( $_product->get_id() ) : '';
-				$product_permalink = get_permalink( $tutor_item->course_id );
-				array_push( $object_ids, $item_id );
+			foreach ( $checkout_data->items as $item ) :
+				$course      = get_post( $item->item_id );
+				$product_permalink = get_the_permalink( $course );
+				array_push( $object_ids, $item->item_id );
 				?>
 				<div class="cart-item">
 					<div class="product-info">
 						<p class="product-name-text">
 							Sé tu propia maquillista - 
 							<span class="plan-type">
-								<?php echo esc_html( $cart_item['data']->get_name() ); ?>
+								<?php echo esc_html( $item->item_name ); ?>
 							</span>
 						</p>
 					</div>
 
 					<div class="product-price">
-						<?php echo WC()->cart->get_product_price( $cart_item['data'] ); ?> MXN
+						<?php tutor_print_formatted_price( $item->display_price ); ?> MXN
 					</div>
 
 					<a href="<?php echo esc_url( $product_permalink ); ?>" class="course-link">
 						Ir al curso
 						<span class="chevron-icon">›</span>
 					</a>
-					<a href="<?php echo esc_url( wc_get_cart_url() . '?remove_item=' . $cart_item_key ); ?>" class="remove-item-from-checkout" title="<?php esc_attr_e( 'Remove this item', 'tutor' ); ?>">&times;</a>
+					<span class="remove-item-btn" data-item-id="<?php echo esc_attr( $item->item_id ); ?>">X</span>
 				</div>
 			<?php endforeach; ?>
 		</div>
@@ -402,5 +390,30 @@ html, body.tutor-page-checkout {
 		$checkout_data->payment_method_required = $show_payment_methods;
 		?>
 		<input type="hidden" id="checkout_data" value="<?php echo esc_attr( wp_json_encode( $checkout_data ) ); ?>">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const removeButtons = document.querySelectorAll('.remove-item-btn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item-id');
+            const originalRemoveButton = document.querySelector(`.tutor-checkout-cart-item-remove[data-item-id="${itemId}"]`);
+
+            if (originalRemoveButton) {
+                originalRemoveButton.click();
+            } else {
+                // Fallback for when the original button isn't found, we can try a more direct approach.
+                const cartKey = this.closest('.cart-item').getAttribute('data-cart_item_key'); // Assuming we add this attribute.
+                if(cartKey) {
+                    window.location.href = `?remove_item=${cartKey}`;
+                } else {
+                     // As a last resort, just reload.
+                     window.location.reload();
+                }
+            }
+        });
+    });
+});
+</script>
 	</div>
 </div>
