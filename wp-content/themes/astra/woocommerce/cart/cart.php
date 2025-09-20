@@ -35,12 +35,20 @@ do_action( 'woocommerce_before_cart' ); ?>
     padding: 0 20px !important;
 }
 
+/* Espaciado adicional solo en desktop */
+@media (min-width: 768px) {
+    .custom-cart-container {
+        margin: 40px auto !important;
+        padding: 20px 20px !important;
+    }
+}
+
 .cart-header {
     background-color: #592D36 !important;
     color: white !important;
     padding: 8px 25px !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
+    font-weight: 300 !important;
+    font-size: 24px !important;
     font-family: 'Poppins', sans-serif !important;
     border-radius: 15px 15px 0 0 !important;
     margin-bottom: 0 !important;
@@ -71,10 +79,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 }
 
 .product-name-text {
-    font-weight: bold !important;
+    font-weight: 300 !important;
     color: #000000 !important;
     margin: 0 !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
     font-family: 'Poppins', sans-serif !important;
     text-align: left !important;
 }
@@ -82,12 +90,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 .plan-type {
     font-weight: bold !important;
     color: #322828 !important;
+    font-size: 16px !important;
 }
 
 .product-price {
     font-weight: bold !important;
     color: #322828 !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     margin: 0 !important;
     text-align: center !important;
     flex: 1 !important;
