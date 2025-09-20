@@ -52,6 +52,26 @@ do_action( 'woocommerce_before_cart' ); ?>
     font-family: 'Poppins', sans-serif !important;
     border-radius: 15px 15px 0 0 !important;
     margin-bottom: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.cart-header::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 80% !important;
+    height: 60% !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50px !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 0 !important;
+}
+
+.cart-header > * {
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 .cart-item {
@@ -116,17 +136,21 @@ do_action( 'woocommerce_before_cart' ); ?>
     flex: 1 !important;
     justify-content: flex-end !important;
     text-align: right !important;
+    transition: all 0.3s ease !important;
+    transform: translateX(0) !important;
 }
 
 .course-link:hover {
+    transform: translateX(-5px) !important;
     color: #592D36 !important;
 }
+
 
 .course-link::after {
     content: '' !important;
     position: absolute !important;
     bottom: -2px !important;
-    left: 0 !important;
+    left: 350px !important;
     right: 0 !important;
     height: 1px !important;
     background-color: #333 !important;
@@ -197,7 +221,7 @@ ul.woocommerce-error {
 .wc-proceed-to-checkout {
     text-align: right !important;
     margin: 30px 0 20px 0 !important;
-    padding-right: 20px !important;
+    padding-right: 80px !important;
 }
 
 .wc-proceed-to-checkout .checkout-button {
