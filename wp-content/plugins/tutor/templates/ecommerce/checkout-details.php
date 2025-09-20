@@ -145,7 +145,7 @@ body.tutor-page-checkout, html {
 
 /* Payment Methods Styling */
 .tutor-payment-method-wrapper {
-    margin-top: 30px !important;
+    /* margin-top: 30px !important; */
 }
 
 .tutor-payment-method-wrapper h5 {
