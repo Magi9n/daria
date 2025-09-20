@@ -72,7 +72,7 @@ body.tutor-page-checkout, html {
     }
 }
 
-/* Ajustes de layout para PC */
+/* Layout adjustments for desktop */
 @media (min-width: 768px) {
     .tutor-col-md-6[tutor-checkout-details] {
         width: 60% !important;
@@ -85,81 +85,95 @@ body.tutor-page-checkout, html {
     .billing-address-container {
         padding-top: 15% !important;
         background-color: #F6F5F0 !important;
-        border-radius: 25px !important;
-        padding: 30px !important;
+        border-radius: 20px !important;
+        padding: 15% 30px 30px 30px !important;
         margin: 20px 0 !important;
     }
-    
-    .billing-title {
-        font-family: 'Times New Roman', serif !important;
-        font-size: 30px !important;
-        font-weight: 400 !important;
-        letter-spacing: -3% !important;
-        color: #333 !important;
-        margin-bottom: 25px !important;
-        text-align: center !important;
-    }
-    
-    .tutor-form-group label,
-    .billing-address-container label {
-        font-family: 'Poppins', sans-serif !important;
-        font-weight: 700 !important;
-        font-size: 15px !important;
-        letter-spacing: 2% !important;
-        color: #333 !important;
-        margin-bottom: 8px !important;
-        display: block !important;
-    }
-    
-    .tutor-form-group input,
-    .tutor-form-group select,
-    .billing-address-container input,
-    .billing-address-container select {
-        font-family: 'Poppins', sans-serif !important;
-        font-weight: 300 !important;
-        font-style: normal !important;
-        letter-spacing: 2% !important;
-        border: 2px solid #592D36 !important;
-        border-radius: 8px !important;
-        padding: 12px 15px !important;
-        width: 100% !important;
-        background-color: #fff !important;
-        color: #333 !important;
-    }
-    
-    .tutor-form-group input:focus,
-    .tutor-form-group select:focus,
-    .billing-address-container input:focus,
-    .billing-address-container select:focus {
-        outline: none !important;
-        border-color: #592D36 !important;
-        box-shadow: 0 0 5px rgba(89, 45, 54, 0.3) !important;
-    }
-    
-    /* Estilos para métodos de pago */
-    .tutor-checkout-payment-methods {
-        display: flex !important;
-        justify-content: center !important;
-        gap: 20px !important;
-        margin-top: 30px !important;
-    }
-    
-    .tutor-checkout-payment-method {
-        background-color: #fff !important;
-        border: 2px solid #ddd !important;
-        border-radius: 12px !important;
-        padding: 15px 25px !important;
-        cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        min-width: 120px !important;
-        text-align: center !important;
-    }
-    
-    .tutor-checkout-payment-method:hover,
-    .tutor-checkout-payment-method.selected {
-        border-color: #592D36 !important;
-        background-color: #f9f9f9 !important;
-    }
+}
+
+/* Billing Address Styling */
+.billing-title {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 30px !important;
+    font-weight: 400 !important;
+    letter-spacing: -3% !important;
+    text-align: left !important;
+    color: #592D36 !important;
+    margin-bottom: 25px !important;
+}
+
+.billing-address-container label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    letter-spacing: 2% !important;
+    color: #592D36 !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
+
+.billing-address-container input[type="text"],
+.billing-address-container input[type="email"],
+.billing-address-container input[type="tel"],
+.billing-address-container select,
+.billing-address-container textarea {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    letter-spacing: 2% !important;
+    color: #592D36 !important;
+    background-color: transparent !important;
+    border: 2px solid #592D36 !important;
+    border-radius: 25px !important;
+    padding: 12px 20px !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+}
+
+.billing-address-container input[type="text"]:focus,
+.billing-address-container input[type="email"]:focus,
+.billing-address-container input[type="tel"]:focus,
+.billing-address-container select:focus,
+.billing-address-container textarea:focus {
+    outline: none !important;
+    border-color: #592D36 !important;
+    box-shadow: 0 0 5px rgba(89, 45, 54, 0.3) !important;
+}
+
+/* Payment methods positioning */
+.tutor-payment-method-wrapper {
+    margin-top: 30px !important;
+}
+
+.tutor-checkout-payment-item {
+    display: inline-block !important;
+    margin-right: 20px !important;
+    margin-bottom: 15px !important;
+    padding: 15px 20px !important;
+    border: 2px solid #ddd !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.tutor-checkout-payment-item:hover {
+    border-color: #592D36 !important;
+    background-color: #f9f9f9 !important;
+}
+
+.tutor-checkout-payment-item input[type="radio"] {
+    margin-right: 10px !important;
+}
+
+.tutor-payment-item-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.tutor-payment-item-content img {
+    width: 30px !important;
+    height: auto !important;
 }
 
 .tutor-checkout-detail-item.tutor-checkout-summary,
@@ -175,6 +189,7 @@ body.tutor-page-checkout, html {
     border: 0 !important;
 }
 
+/* Removed X button styles */
 
 
 .custom-cart-container {
@@ -469,20 +484,7 @@ body.tutor-page-checkout, html {
 		<input type="hidden" id="checkout_data" value="<?php echo esc_attr( wp_json_encode( $checkout_data ) ); ?>">
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Cambiar el título de Billing Address
-    const billingTitle = document.querySelector('.billing-title, h2');
-    if (billingTitle && billingTitle.textContent.includes('Billing Address')) {
-        billingTitle.textContent = 'Dirección de Facturación';
-        billingTitle.classList.add('billing-title');
-    }
-    
-    // Aplicar estilos a los métodos de pago
-    const paymentMethods = document.querySelectorAll('.tutor-checkout-payment-method, .payment_method_paypal, .payment_method_mercadopago');
-    paymentMethods.forEach(method => {
-        method.classList.add('tutor-checkout-payment-method');
-    });
-});
+// Remove button functionality removed
 </script>
 	</div>
 </div>

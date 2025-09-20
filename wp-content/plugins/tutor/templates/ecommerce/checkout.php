@@ -73,7 +73,7 @@ $is_checkout_page = true;
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
 						<div class="billing-address-container">
-						<h2 class="billing-title">Billing Address</h2>
+						<h2 class="billing-title">Dirección de facturación</h2>
 
 						<!-- Campos visibles -->
 						<div class="billing-row">
