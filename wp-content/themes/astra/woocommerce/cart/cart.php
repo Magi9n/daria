@@ -41,7 +41,7 @@ do_action( 'woocommerce_before_cart' ); ?>
     padding: 8px 25px !important;
     font-weight: 600 !important;
     font-size: 16px !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: inherit !important; /* Quitar fuente Poppins */
     border-radius: 15px 15px 0 0 !important;
     margin-bottom: 0 !important;
 }
@@ -69,16 +69,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 }
 
 .product-name-text {
-    font-weight: normal !important;
-    color: #333 !important;
+    font-weight: bold !important;
+    color: #592D36 !important;
     margin: 0 !important;
     font-size: 15px !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: inherit !important; /* Quitar fuente Poppins */
     flex: 1 !important;
     text-align: left !important;
 }
 
-.product-name-text strong {
+/* Estilo para las palabras Esencial o Personalizado */
+.product-name-text span.plan-type {
     color: #322828 !important;
     font-weight: bold !important;
 }
@@ -105,10 +106,16 @@ do_action( 'woocommerce_before_cart' ); ?>
     font-size: 14px !important;
     position: relative;
     transition: all 0.3s ease !important;
+    transform: translateY(0) !important;
 }
 
 .course-link:hover {
+    transform: translateY(-2px) !important;
     color: #592D36 !important;
+}
+
+.course-link:hover .chevron-icon {
+    background-color: #f0f0f0 !important;
     transform: translateX(3px) !important;
 }
 
@@ -120,7 +127,6 @@ do_action( 'woocommerce_before_cart' ); ?>
     right: 0 !important;
     height: 1px !important;
     background-color: #333 !important;
-    transition: all 0.3s ease !important;
 }
 
 .course-link:hover::after {
@@ -136,13 +142,11 @@ do_action( 'woocommerce_before_cart' ); ?>
     align-items: center !important;
     justify-content: center !important;
     font-size: 12px !important;
-    transition: all 0.3s ease !important;
 }
 
 .course-link:hover .chevron-icon {
     border-color: #592D36 !important;
     color: #592D36 !important;
-    transform: rotate(45deg) !important;
 }
 
 .hidden-cart-data {
@@ -160,8 +164,172 @@ body.woocommerce-cart,
 .entry-content .entry-header,
 .page-header,
 .breadcrumbs,
-.site-header {
+.site-header,
+.woocommerce-cart-form__contents .cart-subtotal,
+.woocommerce-cart-form__contents .cart-subtotal th,
+.woocommerce-cart-form__contents .order-total,
+.woocommerce-cart-form__contents .order-total th,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal th,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal,
+.woocommerce-cart-form__contents .order-total,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal,
+.woocommerce-cart-form__contents .cart-subtotal td,
+.woocommerce-cart-form__contents .order-total td,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal td,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-currencySymbol,
+.woocommerce-cart-form__contents .cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .order-total .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .woocommerce-Price-amount,
+.woocommerce-cart-form__contents .cart-subtotal .amount,
+.woocommerce-cart-form__contents .order-total .amount,
+.woocommerce-cart-form__contents .woocommerce-cart-subtotal .amount {
     display: none !important;
+}
+
+/* Ocultar advertencias de "You cannot add another..." */
+.woocommerce-error,
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-notice,
+.woocommerce-message--info,
+.woocommerce-message--error,
+.woocommerce-message--info,
+.woocommerce-error li,
+.woocommerce-message li,
+.woocommerce-info li,
+.woocommerce-notice li,
+.woocommerce-message--info li,
+.woocommerce-message--error li,
+.woocommerce-message--info li,
+.woocommerce-error:before,
+.woocommerce-message:before,
+.woocommerce-info:before,
+.woocommerce-notice:before,
+.woocommerce-message--info:before,
+.woocommerce-message--error:before,
+.woocommerce-message--info:before,
+.woocommerce-error:after,
+.woocommerce-message:after,
+.woocommerce-info:after,
+.woocommerce-notice:after,
+.woocommerce-message--info:after,
+.woocommerce-message--error:after,
+.woocommerce-message--info:after {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
 }
 
 /* Botón Ir a pagar posicionado */
@@ -185,6 +353,18 @@ body.woocommerce-cart,
     width: auto !important;
     box-shadow: 0 3px 10px rgba(89, 45, 54, 0.3) !important;
     transition: all 0.3s ease !important;
+    text-transform: none !important;
+}
+
+/* Asegurar que el botón diga "Ir a pagar" */
+.wc-proceed-to-checkout .checkout-button:before {
+    content: 'Ir a pagar' !important;
+    display: inline-block !important;
+}
+
+/* Ocultar el texto original del botón */
+.wc-proceed-to-checkout .checkout-button span {
+    display: none !important;
 }
 
 .wc-proceed-to-checkout .checkout-button:hover {
@@ -216,11 +396,20 @@ body.woocommerce-cart,
 						<p class="product-name-text">
 							Sé tu propia maquillista - 
 							<?php
-				if ( ! $product_permalink ) {
-					echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
-				} else {
-					echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a class="cart-productname" href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-			?>
+							$product_name = $_product->get_name();
+							// Buscar si el nombre contiene "Esencial" o "Personalizado"
+							if (strpos($product_name, 'Esencial') !== false) {
+								$product_name = str_replace('Esencial', '<span class="plan-type">Esencial</span>', $product_name);
+							} elseif (strpos($product_name, 'Personalizado') !== false) {
+								$product_name = str_replace('Personalizado', '<span class="plan-type">Personalizado</span>', $product_name);
+							}
+							
+							if ( ! $product_permalink ) {
+								echo wp_kses($product_name, array('span' => array('class' => true)));
+							} else {
+								echo wp_kses($product_name, array('span' => array('class' => true)));
+							}
+							?>
 						</p>
 					</div>
 
