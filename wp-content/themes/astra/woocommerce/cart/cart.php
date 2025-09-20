@@ -32,26 +32,30 @@ do_action( 'woocommerce_before_cart' ); ?>
     overflow: hidden;
     box-shadow: none !important;
     border: none !important;
+    padding: 0 20px !important;
 }
 
 .cart-header {
     background-color: #592D36 !important;
     color: white !important;
-    padding: 15px 25px !important;
+    padding: 8px 25px !important;
     font-weight: 600 !important;
     font-size: 16px !important;
     font-family: 'Poppins', sans-serif !important;
+    border-radius: 15px 15px 0 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .cart-item {
     background: white !important;
     margin: 0 !important;
-    padding: 20px 25px !important;
-    border-bottom: 1px solid #e0e0e0 !important;
+    padding: 25px 25px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     position: relative;
+    min-height: 80px !important;
 }
 
 .cart-item:last-child {
@@ -65,21 +69,24 @@ do_action( 'woocommerce_before_cart' ); ?>
 }
 
 .product-name-text {
-    font-weight: 500 !important;
-    color: #333 !important;
+    font-weight: bold !important;
+    color: #592D36 !important;
     margin: 0 !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
     font-family: 'Poppins', sans-serif !important;
+    flex: 1 !important;
+    text-align: left !important;
 }
 
 .product-price {
-    font-weight: 600 !important;
-    color: #333 !important;
-    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #322828 !important;
+    font-size: 18px !important;
     margin: 0 40px !important;
     text-align: center !important;
     flex-shrink: 0 !important;
     font-family: 'Poppins', sans-serif !important;
+    min-width: 120px !important;
 }
 
 .course-link {
@@ -132,55 +139,49 @@ do_action( 'woocommerce_before_cart' ); ?>
     display: none !important;
 }
 
-/* Ocultar tabla original de WooCommerce */
-.woocommerce-cart-form table.shop_table,
-.shop_table.cart_table,
-.woocommerce-cart-form__contents {
+/* Fondo blanco para toda la página */
+body.woocommerce-cart,
+.page-template-default {
+    background: #ffffff !important;
+}
+
+/* Ocultar elementos innecesarios */
+.entry-header,
+.entry-content .entry-header,
+.page-header,
+.breadcrumbs,
+.site-header {
     display: none !important;
 }
 
-/* Ocultar advertencias de WooCommerce */
-.woocommerce-error,
-.woocommerce-message,
-.woocommerce-info,
-.woocommerce-notices-wrapper {
-    display: none !important;
-}
-
-/* Ocultar textos de Cart Totals */
-.cart_totals h2,
-.cart_totals .cart-subtotal th,
-.cart_totals .cart-subtotal td,
-.cart_totals .order-total th,
-.cart_totals .order-total td,
-.cart_totals {
-    display: none !important;
-}
-
-/* Personalizar botón Proceed to checkout */
+/* Botón Ir a pagar posicionado */
 .wc-proceed-to-checkout {
     text-align: right !important;
-    margin-top: 20px !important;
+    margin: 30px 0 20px 0 !important;
+    padding-right: 20px !important;
 }
 
 .wc-proceed-to-checkout .checkout-button {
     background-color: #592D36 !important;
     color: white !important;
-    padding: 10px 20px !important;
+    padding: 12px 25px !important;
     font-size: 14px !important;
-    border-radius: 5px !important;
+    border-radius: 25px !important;
     text-decoration: none !important;
     display: inline-block !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 500 !important;
     border: none !important;
     width: auto !important;
+    box-shadow: 0 3px 10px rgba(89, 45, 54, 0.3) !important;
+    transition: all 0.3s ease !important;
 }
 
 .wc-proceed-to-checkout .checkout-button:hover {
     background-color: #4a252b !important;
-}
-</style>
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(89, 45, 54, 0.4) !important;
+}</style>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
