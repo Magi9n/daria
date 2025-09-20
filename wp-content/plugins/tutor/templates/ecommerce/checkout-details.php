@@ -54,8 +54,19 @@ $show_coupon_box = Settings::is_coupon_usage_enabled() && ! $checkout_data->is_c
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body.tutor-page-checkout {
+html, body.tutor-page-checkout {
     background: #ffffff !important;
+}
+
+.tutor-checkout-page .tutor-checkout-container {
+    max-width: 95% !important;
+    margin: 0 auto !important;
+}
+
+/* Ocultar resumen de pago sin romper la funcionalidad */
+.tutor-checkout-detail-item.tutor-checkout-summary,
+.tutor-pt-12.tutor-pb-20 {
+    display: none !important;
 }
 
 .custom-cart-container {
@@ -121,6 +132,36 @@ body.tutor-page-checkout {
     justify-content: space-between !important;
     position: relative;
     min-height: 80px !important;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item .remove-item-from-checkout {
+    position: absolute;
+    top: 50%;
+    right: -40px; /* Inicia fuera de la vista */
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.cart-item:hover .remove-item-from-checkout {
+    right: 15px; /* Se desliza hacia adentro */
+    opacity: 1;
+}
+
+.remove-item-from-checkout:hover {
+    background-color: #d1d1d1;
 }
 
 .cart-item:last-child {
@@ -226,29 +267,42 @@ body.tutor-page-checkout {
 			</div>
 
 			<?php
-			foreach ( $checkout_data->items as $item ) :
-				$course      = get_post( $item->item_id );
-				$product_permalink = get_the_permalink( $course );
-				array_push( $object_ids, $item->item_id );
+			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) :
+                $item_id = $cart_item['product_id'];
+                // Encontrar el item correspondiente en los datos de checkout de Tutor para el precio
+                $tutor_item = null;
+                foreach ($checkout_data->items as $t_item) {
+                    if ($t_item->item_id == $item_id) {
+                        $tutor_item = $t_item;
+                        break;
+                    }
+                }
+                if (null === $tutor_item) continue; // Si no se encuentra, saltar
+
+				$_product = $cart_item['data'];
+				$product_permalink = $_product ? get_permalink( $_product->get_id() ) : '';
+				$product_permalink = get_permalink( $tutor_item->course_id );
+				array_push( $object_ids, $item_id );
 				?>
 				<div class="cart-item">
 					<div class="product-info">
 						<p class="product-name-text">
 							Sé tu propia maquillista - 
 							<span class="plan-type">
-								<?php echo esc_html( $item->item_name ); ?>
+								<?php echo esc_html( $cart_item['data']->get_name() ); ?>
 							</span>
 						</p>
 					</div>
 
 					<div class="product-price">
-						<?php tutor_print_formatted_price( $item->display_price ); ?> MXN
+						<?php echo WC()->cart->get_product_price( $cart_item['data'] ); ?> MXN
 					</div>
 
 					<a href="<?php echo esc_url( $product_permalink ); ?>" class="course-link">
 						Ir al curso
 						<span class="chevron-icon">›</span>
 					</a>
+					<a href="<?php echo esc_url( wc_get_cart_url() . '?remove_item=' . $cart_item_key ); ?>" class="remove-item-from-checkout" title="<?php esc_attr_e( 'Remove this item', 'tutor' ); ?>">&times;</a>
 				</div>
 			<?php endforeach; ?>
 		</div>
