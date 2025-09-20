@@ -56,7 +56,7 @@ $is_checkout_page = true;
 				}
 				?>
 			</div>
-			<div class="tutor-col-md-6" style="width: 40%;">
+			<div class="tutor-col-md-6" style="width: 40%; padding-left: unset; padding-right: unset;">
 				<div class="tutor-checkout-billing">
 					<div class="tutor-checkout-billing-inner">
 					<?php
@@ -72,7 +72,7 @@ $is_checkout_page = true;
 					<?php } ?>
 
 						<!-- Formulario de facturación restaurado pero con manejo de errores AJAX -->
-					<div class="billing-address-container" style="margin-top: 15%;">
+					<div class="billing-address-container" style="margin-top: 15% !important;">
 					<h2 class="billing-title">Dirección de facturación</h2>
 
 						<!-- Campos visibles -->
@@ -97,10 +97,8 @@ $is_checkout_page = true;
 						<input type="tel" name="billing_phone" class="tutor-form-control" placeholder="+52 1 81 0000 0000">
 					</div>
 
-					<div class="billing-field">
-						<label>Dirección</label>
-						<input type="text" name="billing_address_1" class="tutor-form-control" placeholder="Calle Principal 123" required>
-					</div>
+					<!-- Campo de dirección oculto con valor por defecto -->
+					<input type="hidden" name="billing_address_1" value="Dirección no especificada">
 
 						<!-- Campos ocultos con valores por defecto -->
 						<input type="hidden" name="billing_country" value="MX">
@@ -123,6 +121,12 @@ $is_checkout_page = true;
 					.billing-field label {
 						display: block;
 						margin-bottom: 8px;
+						font-family: 'Poppins', sans-serif !important;
+						font-weight: 700 !important;
+						font-style: bold !important;
+						font-size: 15px !important;
+						letter-spacing: 2% !important;
+						color: #592D36 !important;
 					}
 
 					@media (max-width: 768px) {
@@ -136,8 +140,8 @@ $is_checkout_page = true;
 					}
 					</style>
 							<div class="tutor-payment-method-wrapper tutor-mt-20 <?php echo esc_attr( $show_payment_methods ? '' : 'tutor-d-none' ); ?>">
-							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12">
-								<?php esc_html_e( 'Payment Method', 'tutor' ); ?>
+							<h5 class="tutor-fs-5 tutor-fw-medium tutor-color-black tutor-mb-12" style="font-family: 'Poppins', sans-serif !important; font-weight: 500 !important; font-style: medium !important; font-size: 15px !important; letter-spacing: 0% !important; color: #212121 !important;">
+								---- Métodos de pago ----
 							</h5>
 							<div class="tutor-checkout-payment-options tutor-mb-24">
 								<input type="hidden" name="payment_type">

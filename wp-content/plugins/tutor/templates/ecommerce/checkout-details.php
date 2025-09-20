@@ -160,7 +160,8 @@ body.tutor-page-checkout, html {
     display: flex !important;
     justify-content: center !important;
     gap: 20px !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
 }
 
 .tutor-checkout-payment-item {
@@ -370,7 +371,7 @@ body.tutor-page-checkout, html {
 
 	<?php do_action( 'tutor_before_checkout_order_details', $course_list ); ?>
 
-	<div class="tutor-checkout-details-inner">
+	<div class="tutor-checkout-details-inner" style="padding-right: unset; padding-left: unset;">
 		<div class="custom-cart-container">
 			<div class="cart-header">
 				<span class="cart-header-text">Detalles de tu Compra</span>
