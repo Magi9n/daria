@@ -25,12 +25,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 .custom-cart-container {
     font-family: 'Poppins', sans-serif !important;
-    max-width: 800px;
+    max-width: 95% !important;
     margin: 20px auto !important;
-    background: #f8f8f8 !important;
-    border-radius: 8px;
+    background: #ffffff !important;
+    border-radius: 0 !important;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .cart-header {
@@ -136,6 +137,48 @@ do_action( 'woocommerce_before_cart' ); ?>
 .shop_table.cart_table,
 .woocommerce-cart-form__contents {
     display: none !important;
+}
+
+/* Ocultar advertencias de WooCommerce */
+.woocommerce-error,
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-notices-wrapper {
+    display: none !important;
+}
+
+/* Ocultar textos de Cart Totals */
+.cart_totals h2,
+.cart_totals .cart-subtotal th,
+.cart_totals .cart-subtotal td,
+.cart_totals .order-total th,
+.cart_totals .order-total td,
+.cart_totals {
+    display: none !important;
+}
+
+/* Personalizar botón Proceed to checkout */
+.wc-proceed-to-checkout {
+    text-align: right !important;
+    margin-top: 20px !important;
+}
+
+.wc-proceed-to-checkout .checkout-button {
+    background-color: #592D36 !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    border: none !important;
+    width: auto !important;
+}
+
+.wc-proceed-to-checkout .checkout-button:hover {
+    background-color: #4a252b !important;
 }
 </style>
 
@@ -252,7 +295,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 			</div>
 		<?php } ?>
 
-		<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+		<a href="<?php echo esc_url( $checkout_page_url ? $checkout_page_url : '#' ); ?>">
+			Ir a pagar
+		</a>
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
 		<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
