@@ -69,13 +69,18 @@ do_action( 'woocommerce_before_cart' ); ?>
 }
 
 .product-name-text {
-    font-weight: bold !important;
-    color: #592D36 !important;
+    font-weight: normal !important;
+    color: #333 !important;
     margin: 0 !important;
     font-size: 15px !important;
     font-family: 'Poppins', sans-serif !important;
     flex: 1 !important;
     text-align: left !important;
+}
+
+.product-name-text strong {
+    color: #322828 !important;
+    font-weight: bold !important;
 }
 
 .product-price {
@@ -99,10 +104,12 @@ do_action( 'woocommerce_before_cart' ); ?>
     font-weight: 500 !important;
     font-size: 14px !important;
     position: relative;
+    transition: all 0.3s ease !important;
 }
 
 .course-link:hover {
     color: #592D36 !important;
+    transform: translateX(3px) !important;
 }
 
 .course-link::after {
@@ -113,6 +120,7 @@ do_action( 'woocommerce_before_cart' ); ?>
     right: 0 !important;
     height: 1px !important;
     background-color: #333 !important;
+    transition: all 0.3s ease !important;
 }
 
 .course-link:hover::after {
@@ -128,11 +136,13 @@ do_action( 'woocommerce_before_cart' ); ?>
     align-items: center !important;
     justify-content: center !important;
     font-size: 12px !important;
+    transition: all 0.3s ease !important;
 }
 
 .course-link:hover .chevron-icon {
     border-color: #592D36 !important;
     color: #592D36 !important;
+    transform: rotate(45deg) !important;
 }
 
 .hidden-cart-data {
@@ -206,12 +216,11 @@ body.woocommerce-cart,
 						<p class="product-name-text">
 							Sé tu propia maquillista - 
 							<?php
-								if ( ! $product_permalink ) {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) );
-								} else {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) );
-								}
-							?>
+				if ( ! $product_permalink ) {
+					echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+				} else {
+					echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a class="cart-productname" href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+			?>
 						</p>
 					</div>
 
