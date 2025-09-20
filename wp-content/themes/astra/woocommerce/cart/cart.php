@@ -72,7 +72,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 .product-name-text {
     font-weight: bold !important;
-    color: #592D36 !important;
+    color: #000000 !important;
     margin: 0 !important;
     font-size: 15px !important;
     font-family: 'Poppins', sans-serif !important;
@@ -81,7 +81,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 .plan-type {
     font-weight: bold !important;
-    color: #592D36 !important;
+    color: #322828 !important;
 }
 
 .product-price {
@@ -175,6 +175,12 @@ body.woocommerce-cart,
 
 /* Ocultar título Cart totals */
 .cart_totals h2 {
+    display: none !important;
+}
+
+/* Ocultar mensajes de error de WooCommerce */
+.woocommerce-error,
+ul.woocommerce-error {
     display: none !important;
 }
 
@@ -336,14 +342,12 @@ body.woocommerce-cart,
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-<?php
-	/**
-	 * Cart collaterals hook.
-	 *
-	 * @hooked woocommerce_cross_sell_display
-	 * @hooked woocommerce_cart_totals - 10
-	 */
-	do_action( 'woocommerce_cart_collaterals' );
-?>
+<div class="cart_totals">
+	<div class="wc-proceed-to-checkout">
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
+			Ir a pagar
+		</a>
+	</div>
+</div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
