@@ -72,7 +72,7 @@ do_action( 'woocommerce_before_cart' ); ?>
     background: #592D36 !important;
     border-radius: 9999px !important;
     transform: translate(-50%, -50%) !important;
-    z-index: 1 !important;
+    z-index: 0 !important;
 }
 
 .cart-header > *,
