@@ -21,6 +21,20 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Estilos CSS para el nuevo diseño del carrito -->
 <style>
+/* Ocultar columna derecha de totales de Elementor */
+.e-cart__column.e-cart__column-end {
+    display: none !important;
+}
+
+/* Forzar layout en una sola columna */
+.elementor-widget-woocommerce-cart .e-cart__container {
+    display: block !important;
+}
+
+/* Asegurar que la columna izquierda ocupe todo el ancho */
+.e-cart__column.e-cart__column-start {
+    width: 100% !important;
+}
 /* Ocultar la sección del cupón */
 .coupon.e-cart-section.shop_table {
     display: none !important;
