@@ -285,7 +285,7 @@ ul.woocommerce-error {
 }
 
 /* Estilos móviles solicitados */
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     /* Los items del carrito en columna */
     .cart-item {
         flex-direction: column !important;
