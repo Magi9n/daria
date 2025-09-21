@@ -310,6 +310,12 @@ ul.woocommerce-error {
     .course-link {
         margin-left: 143px !important;
     }
+
+    /* Quitar padding lateral en la tabla del carrito (solo móvil) */
+    .e-shop-table.e-cart-section {
+        padding-right: unset !important;
+        padding-left: unset !important;
+    }
 }
 </style>
 
