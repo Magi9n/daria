@@ -297,7 +297,7 @@ ul.woocommerce-error {
     .cart_totals {
         display: flex !important;
         justify-content: center !important;
-        margin-left: 100px !important;
+        margin-left: 40px !important;
         width: 100% !important;
     }
 
