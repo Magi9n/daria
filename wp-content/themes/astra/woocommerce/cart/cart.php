@@ -21,6 +21,22 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Estilos CSS para el nuevo diseño del carrito -->
 <style>
+/* Ocultar la sección del cupón */
+.coupon.e-cart-section.shop_table {
+    display: none !important;
+}
+
+/* Eliminar bordes de los contenedores del carrito de Elementor */
+.elementor-widget-woocommerce-cart .e-cart-section {
+    border-width: 0px !important;
+}
+
+/* Contenedor para alinear el botón de pago a la derecha */
+.cart_totals {
+    display: flex;
+    justify-content: flex-end;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .custom-cart-container {
