@@ -21,6 +21,15 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Estilos CSS para el nuevo diseño del carrito -->
 <style>
+/* Forzar que cada item del carrito apile su contenido en columna */
+.cart-item {
+    flex-direction: column !important;
+}
+
+/* Quitar margen izquierdo del contenedor de totales, incluso si viene inline */
+.cart_totals {
+    margin-left: 0 !important;
+}
 /* Ocultar columna derecha de totales de Elementor */
 .e-cart__column.e-cart__column-end {
     display: none !important;
