@@ -21,15 +21,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Estilos CSS para el nuevo diseño del carrito -->
 <style>
-/* Forzar que cada item del carrito apile su contenido en columna */
-.cart-item {
-    flex-direction: column !important;
-}
-
-/* Quitar margen izquierdo del contenedor de totales, incluso si viene inline */
-.cart_totals {
-    margin-left: 0 !important;
-}
 /* Ocultar columna derecha de totales de Elementor */
 .e-cart__column.e-cart__column-end {
     display: none !important;
@@ -291,7 +282,36 @@ ul.woocommerce-error {
     background-color: #4a252b !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 5px 15px rgba(89, 45, 54, 0.4) !important;
-}</style>
+}
+
+/* Estilos móviles solicitados */
+@media (max-width: 768px) {
+    /* Los items del carrito en columna */
+    .cart-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    /* Centrar los totales debajo con margen a la izquierda */
+    .cart_totals {
+        display: flex !important;
+        justify-content: center !important;
+        margin-left: 100px !important;
+        width: 100% !important;
+    }
+
+    /* Margen específico para el precio en móvil */
+    .product-price {
+        margin-left: 157px !important;
+    }
+
+    /* Margen específico para el enlace Ir al curso en móvil */
+    .course-link {
+        margin-left: 143px !important;
+    }
+}
+</style>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
