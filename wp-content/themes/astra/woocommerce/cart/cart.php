@@ -371,7 +371,16 @@ ul.woocommerce-error {
 		}
 		?>
 
-		<?php do_action( 'woocommerce_cart_contents' ); ?>
+		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+
+	</div>
+
+	<div class="cart_totals">
+		<div class="wc-proceed-to-checkout">
+			<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
+				Ir a pagar
+			</a>
+		</div>
 	</div>
 
 	<!-- Mantener acciones ocultas pero funcionales -->
@@ -385,13 +394,11 @@ ul.woocommerce-error {
 			</div>
 		<?php } ?>
 
-		<a href="<?php echo esc_url( $checkout_page_url ? $checkout_page_url : '#' ); ?>">
-			Ir a pagar
-		</a>
+		<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
+
 		<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
-		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 	</div>
 
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
@@ -399,12 +406,16 @@ ul.woocommerce-error {
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-<div class="cart_totals">
-	<div class="wc-proceed-to-checkout">
-		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
-			Ir a pagar
-		</a>
-	</div>
+<div class="cart-collaterals">
+	<?php
+		/**
+		 * Cart collaterals hook.
+		 *
+		 * @hooked woocommerce_cross_sell_display
+		 * @hooked woocommerce_cart_totals - 10
+		 */
+		do_action( 'woocommerce_cart_collaterals' );
+	?>
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
