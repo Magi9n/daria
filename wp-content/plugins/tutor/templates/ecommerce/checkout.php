@@ -99,8 +99,9 @@ $is_checkout_page = true;
 				/* Anular estilos inline (width/paddings) de la columna derecha solo en móvil */
 				.tutor-row.tutor-g-5 .tutor-col-md-6:not([tutor-checkout-details]) {
 					width: 100% !important;
-					padding-left: 0 !important;
-					padding-right: 0 !important;
+					padding-left: 10% !important;
+					padding-right: 10% !important;
+					margin-top: unset !important;
 				}
 			}
 			</style>
