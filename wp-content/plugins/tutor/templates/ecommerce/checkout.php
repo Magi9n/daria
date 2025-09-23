@@ -47,7 +47,7 @@ $is_checkout_page = true;
 	<form method="post" id="tutor-checkout-form">
 		<?php tutor_nonce_field(); ?>
 		<input type="hidden" name="tutor_action" value="tutor_pay_now">
-		<div class="tutor-row tutor-g-5" style="margin-top: -10%; flex-direction: row;">
+		<div class="tutor-row tutor-g-5" style="margin-top: -7%; flex-direction: row;">
 			<style>
 			@media (max-width: 768px) {
 				.tutor-row.tutor-g-5 {
