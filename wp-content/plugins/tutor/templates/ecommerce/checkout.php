@@ -95,6 +95,13 @@ $is_checkout_page = true;
 					padding-right: unset !important;
 					padding-left: unset !important;
 				}
+
+				/* Anular estilos inline (width/paddings) de la columna derecha solo en móvil */
+				.tutor-row.tutor-g-5 .tutor-col-md-6:not([tutor-checkout-details]) {
+					width: 100% !important;
+					padding-left: 0 !important;
+					padding-right: 0 !important;
+				}
 			}
 			</style>
 			<div class="tutor-col-md-6" tutor-checkout-details style="width: 60%;">
