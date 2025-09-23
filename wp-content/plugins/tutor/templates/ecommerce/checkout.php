@@ -62,6 +62,40 @@ $is_checkout_page = true;
 					order: 1 !important;
 				}
 			}
+
+			/* Estilos móviles adicionales para replicar diseño del carrito (solo móvil) */
+			@media (max-width: 400px) {
+				/* Items del checkout en columna */
+				.tutor-checkout-page .cart-item {
+					flex-direction: column !important;
+					align-items: flex-start !important;
+					gap: 10px !important;
+				}
+
+				/* Centrar bloque de totales debajo con margen a la izquierda */
+				.tutor-checkout-page .cart_totals {
+					display: flex !important;
+					justify-content: center !important;
+					margin-left: 40px !important;
+					width: 100% !important;
+				}
+
+				/* Margen específico para el precio en móvil */
+				.tutor-checkout-page .product-price {
+					margin-left: 157px !important;
+				}
+
+				/* Margen específico para el enlace Ir al curso en móvil */
+				.tutor-checkout-page .course-link {
+					margin-left: 143px !important;
+				}
+
+				/* Quitar padding lateral en la tabla del carrito (solo móvil) */
+				.tutor-checkout-page .e-shop-table.e-cart-section {
+					padding-right: unset !important;
+					padding-left: unset !important;
+				}
+			}
 			</style>
 			<div class="tutor-col-md-6" tutor-checkout-details style="width: 60%;">
 				<?php
